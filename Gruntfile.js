@@ -271,10 +271,15 @@ module.exports = function (grunt) {
 
     imagemin: {
       dist: {
+        options: {                       // Target options
+          optimizationLevel: 1,
+          progressive: false,
+          interlaced: false
+        },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '**/*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -350,6 +355,14 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            'images/{,*/}*.{png,jpg,jpeg,gif}'
+          ]
         }]
       },
       styles: {
@@ -370,7 +383,7 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-        'imagemin',
+        //'imagemin',
         'svgmin'
       ]
     },
@@ -436,4 +449,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('wtf', ['imagemin:dist']);
 };
