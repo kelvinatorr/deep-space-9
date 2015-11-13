@@ -34,6 +34,7 @@
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/">About</a></li>
               <li><a ng-href="#/">Contact</a></li>
+                <li><a ng-href="#/admin">Admin</a></li>
             </ul>
           </div>
         </div>
@@ -41,7 +42,8 @@
     </div>
 
     <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+    <!--<div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>-->
+        <ui-view></ui-view>
     </div>
 
     <div class="footer">
@@ -66,12 +68,14 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
         <!-- endbuild -->
 </body>
 </html>
