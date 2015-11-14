@@ -11,7 +11,7 @@
    * Main module of the application.
    */
   var app = angular.module('deepspace9App', [
-      'ngAnimate','ui.router'
+      'ngAnimate', 'ui.router', 'firebase'
     ]);
 
   app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', AppConfig]);
