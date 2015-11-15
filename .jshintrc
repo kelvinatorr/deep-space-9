@@ -11,7 +11,7 @@
   "latedef": "nofunc",
   "newcap": true,
   "noarg": true,
-  "quotmark": "single",
+  //"quotmark": "single",
   "undef": true,
   "unused": true,
   "strict": true,

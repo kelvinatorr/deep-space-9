@@ -33,6 +33,12 @@
               templateUrl: 'views/admin.html',
               controller: 'AdminCtrl',
               controllerAs: 'ctrl'
+          })
+          .state('login', {
+              url: '/login',
+              templateUrl: 'views/login.html',
+              controller: 'LoginCtrl',
+              controllerAs: 'ctrl'
           });
 
       $urlRouterProvider.otherwise('/main');

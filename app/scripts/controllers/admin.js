@@ -12,38 +12,72 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl() {
+    function AdminCtrl($scope) {
         var self = this;
 
-        var myFirebaseRef = new Firebase('https://deepspace9.firebaseio.com/');
+        var ref = new Firebase('https://deepspace9.firebaseio.com/');
 
-        //myFirebaseRef.set({
-        //    title: 'Hello World!',
-        //    author: 'Firebase',
-        //    location: {
-        //        city: 'San Francisco Start',
-        //        state: 'California',
-        //        zip: 94103
+        self.userFormModel = {
+            email: '',
+            password: '',
+            name: ''
+        };
+
+        //ref.set({
+        //    'users': {
+        //        'mchen': {
+        //            'name': 'Mary Chen',
+        //            // index Mary's groups in her profile
+        //            'groups': {
+        //                // the value here doesn't matter, just that the key exists
+        //                'alpha': true,
+        //                'charlie': true
+        //            }
+        //        }
         //    }
         //});
 
-        myFirebaseRef.on('value', function(snapshot) {
-            console.log(snapshot.val());
-        });
+        self.createUser = function() {
+            ref.createUser({
+                email: self.userFormModel.email,
+                password: self.userFormModel.password
+            }, function(error, userData) {
+                if(error) {
+                    console.log('Error creating user:', error);
+                } else {
+                    console.log('Successfully created user with uid:', userData.uid);
+                    // create the user in the firebase db
+                    console.log(userData);
+                    ref.child('users').child(userData.uid).set({
+                        name: self.userFormModel.name,
+                        email: self.userFormModel.email
+                    });
+                    // reset the form
+                    $scope.$apply(self.userFormModel = {
+                        email: '',
+                        password: '',
+                        name: ''
+                    });
+                }
+            });
+        };
+
+        function authDataCallback(authData) {
+            if (authData) {
+                console.log('User ' + authData.uid + ' is logged in with ' + authData.provider);
+            } else {
+                console.log('User is logged out');
+            }
+        }
+        ref.onAuth(authDataCallback);
 
         self.writeTest = function () {
             console.log('writing');
-            var locationChild = myFirebaseRef.child('location/city');
-            locationChild.set('boom headshot');
-            var titleChild = myFirebaseRef.child('title');
-            titleChild.set('ultrakill');
+
         };
 
         self.readTest = function() {
-            myFirebaseRef.child('title').on('value', function(snapshot) {
-                console.log('wut');
-                console.log(snapshot.val());
-            });
+
         };
 
         //TODO: Test Authentication
