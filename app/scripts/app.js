@@ -39,6 +39,12 @@
               templateUrl: 'views/login.html',
               controller: 'LoginCtrl',
               controllerAs: 'ctrl'
+          })
+          .state('testauth', {
+              url: '/testauth',
+              templateUrl: 'views/testauth.html',
+              controller: 'TestauthCtrl',
+              controllerAs: 'ctrl'
           });
 
       $urlRouterProvider.otherwise('/main');

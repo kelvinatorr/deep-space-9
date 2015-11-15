@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($scope) {
+    function AdminCtrl($scope, $firebaseArray) {
         var self = this;
 
         var ref = new Firebase('https://deepspace9.firebaseio.com/');
@@ -20,8 +20,19 @@
         self.userFormModel = {
             email: '',
             password: '',
-            name: ''
+            name: '',
+            role: 'users'
         };
+
+        self.users =  $firebaseArray(ref.child('users'));
+
+        self.users.$loaded()
+            .then(function() {
+                console.log(self.users);
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
 
         //ref.set({
         //    'users': {
@@ -50,16 +61,23 @@
                     console.log(userData);
                     ref.child('users').child(userData.uid).set({
                         name: self.userFormModel.name,
-                        email: self.userFormModel.email
+                        email: self.userFormModel.email,
+                        role: self.userFormModel.role
                     });
                     // reset the form
                     $scope.$apply(self.userFormModel = {
                         email: '',
                         password: '',
-                        name: ''
+                        name: '',
+                        role: 'users'
                     });
                 }
             });
+        };
+
+        self.testEdit = function(user) {
+            user.name = 'Pepe';
+            self.users.$save(user);
         };
 
         function authDataCallback(authData) {

@@ -26,6 +26,8 @@ angular.module('deepspace9App')
 
       self.login = login;
 
+      self.logout = logout;
+
 
       // Register the callback to be fired every time auth state changes
       ref.onAuth(authDataCallback);
@@ -51,5 +53,9 @@ angular.module('deepspace9App')
                   console.log(authData);
               }
           });
+      }
+
+      function logout() {
+          ref.unauth();
       }
   });
