@@ -11,12 +11,12 @@
    * Main module of the application.
    */
   var app = angular.module('deepspace9App', [
-      'ngAnimate', 'ui.router', 'firebase'
+      'ngAnimate', 'ui.router', 'firebase','ngMaterial'
     ]);
 
-  app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', AppConfig]);
+  app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider', AppConfig]);
 
-  function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+  function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $mdIconProvider) {
       $urlMatcherFactoryProvider.caseInsensitive(true);
       // ignore trailing slashes.
       $urlMatcherFactoryProvider.strictMode(false);
@@ -45,6 +45,12 @@
               templateUrl: 'views/testauth.html',
               controller: 'TestauthCtrl',
               controllerAs: 'ctrl'
+          })
+          .state('materialplayground', {
+              url: '/materialplayground',
+              templateUrl: 'views/materialplayground.html',
+              controller: 'MaterialplaygroundCtrl',
+              controllerAs: 'ctrl'
           });
 
       $urlRouterProvider.otherwise('/main');
@@ -52,6 +58,15 @@
       if(window.location.host.split(':')[0] !== 'localhost') {
           $compileProvider.debugInfoEnabled(false);
       }
+
+      $mdIconProvider
+          .defaultIconSet("./images/avatars.svg", 128)
+          .icon("menu"       , "./images/menu.svg"        , 24)
+          .icon("share"      , "./images/share.svg"       , 24)
+          .icon("google_plus", "./images/google_plus.svg" , 512)
+          .icon("hangouts"   , "./images/hangouts.svg"    , 512)
+          .icon("twitter"    , "./images/twitter.svg"     , 512)
+          .icon("phone"      , "./images/phone.svg"       , 512);
 
   }
 })();
