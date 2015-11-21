@@ -8,7 +8,7 @@
  * Controller of the deepspace9App
  */
 angular.module('deepspace9App')
-  .controller('TestauthCtrl', function ($scope, $firebaseObject) {
+  .controller('TestauthCtrl', function ($scope, $firebaseObject, $timeout) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -61,10 +61,31 @@ angular.module('deepspace9App')
                       }
                   }
               },
-              houseLannister: {}
+              houseLannister: {
+                  'captain': {
+                      candidates: {
+                          'jlPicard': true
+                      }
+                  }
+              }
           });
       };
 
+      //self.dataResult = '';
+      //
+      self.readData = function() {
+          self.dataResult =  '';
+          self.dataResult = $firebaseObject(ref.child('positions/houseLannister'));
+          //ref.child('clients').once('value', function(snap) {
+          //    $timeout(function() {
+          //        self.dataResult = snap.val()
+          //    });
+          //});
+      };
+
+      self.writeData = function() {
+
+      };
 
 
       self.loggedInAs = '';
