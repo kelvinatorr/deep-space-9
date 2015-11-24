@@ -16,6 +16,26 @@ angular.module('deepspace9App')
     ];
 
 
+      document.getElementById('testSubList').style.height = 0 + 'px';
+
+      var subListShowing = false;
+
+      $scope.toggleSublist = function() {
+          console.log('changing!');
+          if(!subListShowing) {
+              var height = 0;
+              for(var i = 0; i < 48 * 2; i++) {
+                  height += i;
+                  console.log(height);
+                  document.getElementById('testSubList').style.height = i + 'px';
+              }
+          } else {
+              document.getElementById('testSubList').style.height = 0 + 'px';
+          }
+          subListShowing = !subListShowing;
+          //$scope.$apply();
+      };
+
       //$scope.toggleLeft = buildDelayedToggler('left');
       $scope.toggleLeft = buildToggler('left');
       $scope.isOpenLeft = function(){
