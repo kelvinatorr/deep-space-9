@@ -1,61 +1,75 @@
-'use strict';
+(function() {
 
-/**
- * @ngdoc function
- * @name deepspace9App.controller:LoginCtrl
- * @description
- * # LoginCtrl
- * Controller of the deepspace9App
- */
-angular.module('deepspace9App')
-  .controller('LoginCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    'use strict';
 
-      var self = this;
+    /**
+     * @ngdoc function
+     * @name deepspace9App.controller:LoginCtrl
+     * @description
+     * # LoginCtrl
+     * Controller of the deepspace9App
+     */
+    angular.module('deepspace9App')
+        .controller('LoginCtrl', LoginCtrl);
 
-      var ref = new Firebase('https://deepspace9.firebaseio.com/');
+    function LoginCtrl() {
+        //$scope.awesomeThings = [
+        //    'HTML5 Boilerplate',
+        //    'AngularJS',
+        //    'Karma'
+        //];
 
-      self.loginFormModel = {
-          email: '',
-          password: ''
-      };
+        var vm = this;
 
-      self.login = login;
+        var ref = new Firebase('https://deepspace9.firebaseio.com/');
 
-      self.logout = logout;
+        vm.loginFormModel = {
+            email: '',
+            password: ''
+        };
+
+        vm.login = login;
+
+        vm.logout = logout;
+
+        vm.loginForm = {
+            options: {
+                debounce: 400
+            }
+        };
 
 
-      // Register the callback to be fired every time auth state changes
-      ref.onAuth(authDataCallback);
+        // Register the callback to be fired every time auth state changes
+        ref.onAuth(authDataCallback);
 
-      function authDataCallback(authData) {
-          if (authData) {
-              console.log("User " + authData.uid + " is logged in with " + authData.provider);
-          } else {
-              console.log("User is logged out");
-          }
-          console.log(authData);
-      }
+        function authDataCallback(authData) {
+            console.log('auth data callback fired');
+            if (authData) {
+                console.log("User " + authData.uid + " is logged in with " + authData.provider);
+            } else {
+                console.log("User is logged out");
+            }
+            console.log(authData);
+        }
 
-      function login(loginData) {
-          ref.authWithPassword({
-              email : loginData.email,
-              password : loginData.password
-          }, function(error, authData) {
-              if (error) {
-                  console.log("Login Failed!", error);
-              } else {
-                  console.log("Authenticated successfully with payload:", authData);
-                  console.log(authData);
-              }
-          });
-      }
+        function login(loginData) {
+            console.log('hi');
+            ref.authWithPassword({
+                email : loginData.email,
+                password : loginData.password
+            }, function(error, authData) {
+                if (error) {
+                    console.log("Login Failed!", error);
+                } else {
+                    console.log("Authenticated successfully with payload:", authData);
+                    console.log(authData);
+                }
+            });
+        }
 
-      function logout() {
-          ref.unauth();
-      }
-  });
+        function logout() {
+            ref.unauth();
+        }
+    }
+})();
+

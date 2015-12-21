@@ -11,7 +11,7 @@
    * Main module of the application.
    */
   var app = angular.module('deepspace9App', [
-      'ngAnimate', 'ui.router', 'firebase','ngMaterial'
+      'ngAnimate', 'ui.router', 'firebase','ngMaterial','ngMessages'
     ]);
 
   app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider', AppConfig]);
@@ -38,7 +38,7 @@
               url: '/login',
               templateUrl: 'views/login.html',
               controller: 'LoginCtrl',
-              controllerAs: 'ctrl'
+              controllerAs: 'vm'
           })
           .state('testauth', {
               url: '/testauth',
