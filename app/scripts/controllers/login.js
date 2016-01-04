@@ -13,11 +13,6 @@
         .controller('LoginCtrl', LoginCtrl);
 
     function LoginCtrl() {
-        //$scope.awesomeThings = [
-        //    'HTML5 Boilerplate',
-        //    'AngularJS',
-        //    'Karma'
-        //];
 
         var vm = this;
 
@@ -40,20 +35,19 @@
 
 
         // Register the callback to be fired every time auth state changes
-        ref.onAuth(authDataCallback);
-
-        function authDataCallback(authData) {
-            console.log('auth data callback fired');
-            if (authData) {
-                console.log("User " + authData.uid + " is logged in with " + authData.provider);
-            } else {
-                console.log("User is logged out");
-            }
-            console.log(authData);
-        }
+        //ref.onAuth(authDataCallback);
+        //
+        //function authDataCallback(authData) {
+        //    console.log('auth data callback fired');
+        //    if (authData) {
+        //        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        //    } else {
+        //        console.log("User is logged out");
+        //    }
+        //    console.log(authData);
+        //}
 
         function login(loginData) {
-            console.log('hi');
             ref.authWithPassword({
                 email : loginData.email,
                 password : loginData.password

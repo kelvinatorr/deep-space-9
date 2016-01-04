@@ -8,7 +8,7 @@
  * Controller of the deepspace9App
  */
 angular.module('deepspace9App')
-  .controller('TestauthCtrl', function ($scope, $firebaseObject, $timeout) {
+  .controller('TestauthCtrl', function ($scope, $firebaseObject) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
