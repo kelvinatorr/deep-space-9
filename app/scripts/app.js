@@ -53,7 +53,7 @@
               controllerAs: 'ctrl'
           });
 
-      $urlRouterProvider.otherwise('/main');
+      $urlRouterProvider.otherwise('/login');
       // Remove debug info when in production.
       if(window.location.host.split(':')[0] !== 'localhost') {
           $compileProvider.debugInfoEnabled(false);
