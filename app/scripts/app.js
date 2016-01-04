@@ -15,11 +15,12 @@
     ]);
 
 
-    app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider', AppConfig]);
+    app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider',
+        '$mdThemingProvider', AppConfig]);
 
     app.constant('APIEndpoint', 'https://deepspace9.firebaseio.com/');
 
-  function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $mdIconProvider) {
+  function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $mdIconProvider, $mdThemingProvider) {
       $urlMatcherFactoryProvider.caseInsensitive(true);
       // ignore trailing slashes.
       $urlMatcherFactoryProvider.strictMode(false);
@@ -61,6 +62,11 @@
       if(window.location.host.split(':')[0] !== 'localhost') {
           $compileProvider.debugInfoEnabled(false);
       }
+
+      $mdThemingProvider.theme('default')
+          .primaryPalette('light-blue')
+          .accentPalette('deep-purple')
+          .warnPalette('red');
 
       $mdIconProvider
           .defaultIconSet("./images/avatars.svg", 128)
