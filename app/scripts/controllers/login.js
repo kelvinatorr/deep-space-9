@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($scope) {
+    function LoginCtrl($timeout) {
 
         var vm = this;
 
@@ -35,6 +35,8 @@
 
         vm.isLogginIn = false;
 
+        vm.failed = false;
+
 
         // Register the callback to be fired every time auth state changes
         //ref.onAuth(authDataCallback);
@@ -51,13 +53,17 @@
 
         function login(loginData) {
             vm.isLogginIn = true;
+            vm.failed = false;
             ref.authWithPassword({
                 email : loginData.email,
                 password : loginData.password
             }, function(error, authData) {
                 if (error) {
-                    console.log("Login Failed!", error);
-                    $scope.$apply(vm.isLogginIn = false);
+                    //console.log("Login Failed!", error);
+                    $timeout(function() {
+                        vm.isLogginIn = false;
+                        vm.failed = true;
+                    });
                 } else {
                     console.log("Authenticated successfully with payload:", authData);
                     console.log(authData);

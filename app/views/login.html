@@ -27,11 +27,9 @@
                                     </div>
                                 </md-input-container>
 
-                                <div layout="row" style="color:red" ng-if="vm.failed">
-                                    <md-input-container>
-                                        Invalid credentials
-                                    </md-input-container>
-                                </div>
+
+                                <p ng-if="vm.failed" style="color:rgb(255,87,34)">Invalid credentials</p>
+
 
                                 <div layout="row" layout-align="center center">
                                     <md-button type="submit" class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
