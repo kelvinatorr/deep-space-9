@@ -14,7 +14,10 @@
       'ngAnimate', 'ui.router', 'firebase','ngMaterial','ngMessages'
     ]);
 
-  app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider', AppConfig]);
+
+    app.config(['$compileProvider','$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$mdIconProvider', AppConfig]);
+
+    app.constant('APIEndpoint', 'https://deepspace9.firebaseio.com/');
 
   function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $mdIconProvider) {
       $urlMatcherFactoryProvider.caseInsensitive(true);

@@ -12,11 +12,11 @@
     angular.module('deepspace9App')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($timeout) {
+    function LoginCtrl($timeout, APIEndpoint) {
 
         var vm = this;
 
-        var ref = new Firebase('https://deepspace9.firebaseio.com/');
+        var ref = new Firebase(APIEndpoint);
 
         vm.loginFormModel = {
             email: '',
