@@ -1,1 +1,83 @@
-<p>This is the users view.</p>
+
+<div layout="row" flex="100" ng-cloak>
+
+    <section layout="column" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            </md-toolbar>
+            <md-list>
+                <md-list-item >
+                    <div layout="column" flex>
+                        <md-button flex="100" layout="row" ng-click="toggleSublist()">
+                            <div layout="row">
+                                <div flex layout-align="start start" style="text-align: start">
+                                    <md-icon md-svg-icon="share"></md-icon>
+                                    Lol
+                                </div>
+                                <div flex="20" layout-align="end center">
+                                    <md-icon md-svg-icon="share"></md-icon>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-list id="testSubList" flex style="overflow: hidden; padding: 0px 0px 0px 16px">
+                            <md-list-item>
+                                <md-button flex style="text-align: start">
+                                    Under
+                                </md-button>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-button flex style="text-align: start">
+                                    Under2
+                                </md-button>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+
+                </md-list-item>
+
+                <md-list-item>
+                    <md-button>
+                        <md-icon md-svg-icon="share"></md-icon>
+                        Lol
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button>
+                        <md-icon md-svg-icon="share"></md-icon>
+                        Lol
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button>
+                        <md-icon md-svg-icon="share"></md-icon>
+                        Lol
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Deepspace9</h1>
+        </md-toolbar>
+        <md-content flex layout-padding>
+            <div layout="column" layout-fill layout-align="top center">
+                <p>
+                    The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                </p>
+                <p>
+                    The right sidenav will focus on a specific child element.
+                </p>
+                <div>
+                    <md-button ng-click="toggleLeft()"
+                               class="md-primary">
+                        Toggle left
+                    </md-button>
+                </div>
+            </div>
+            <div flex></div>
+        </md-content>
+
+    </section>
+</div>
+
