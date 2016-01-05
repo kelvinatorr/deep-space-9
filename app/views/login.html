@@ -30,10 +30,10 @@
                         <div layout="row" layout-align="center center">
                             <md-button type="submit" class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
                                        ng-disabled="vm.loginForm.$invalid" aria-label="Login Button"
-                                       ng-hide="vm.isLogginIn">
+                                       ng-hide="vm.isLoggingIn">
                                 Sign In
                             </md-button>
-                            <md-progress-circular md-mode="indeterminate" md-diameter="60" ng-if="vm.isLogginIn"></md-progress-circular>
+                            <md-progress-circular md-mode="indeterminate" md-diameter="60" ng-if="vm.isLoggingIn"></md-progress-circular>
                         </div>
                     </form>
                 </md-card-content>

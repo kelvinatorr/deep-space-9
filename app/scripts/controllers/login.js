@@ -33,7 +33,7 @@
             }
         };
 
-        vm.isLogginIn = false;
+        vm.isLoggingIn = false;
 
         vm.failed = false;
 
@@ -52,7 +52,7 @@
         //}
 
         function login(loginData) {
-            vm.isLogginIn = true;
+            vm.isLoggingIn = true;
             vm.failed = false;
             ref.authWithPassword({
                 email : loginData.email,
@@ -61,7 +61,7 @@
                 if (error) {
                     //console.log("Login Failed!", error);
                     $timeout(function() {
-                        vm.isLogginIn = false;
+                        vm.isLoggingIn = false;
                         vm.failed = true;
                     });
                 } else {

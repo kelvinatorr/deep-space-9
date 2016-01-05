@@ -92,12 +92,12 @@ angular.module('deepspace9App')
 
       // Create a callback which logs the current auth state
       function authDataCallback(authData) {
-          console.log(authData);
+          //console.log(authData);
           if (authData) {
               self.loggedInAs = $firebaseObject(ref.child('users/' + authData.uid));
-              console.log("User " + authData.uid + " is logged in with " + authData.provider);
+              //console.log("User " + authData.uid + " is logged in with " + authData.provider);
           } else {
-              console.log("User is logged out");
+              //console.log("User is logged out");
           }
       }
     // Register the callback to be fired every time auth state changes

@@ -1,22 +1,36 @@
 'use strict';
 
 describe('Controller: LoginCtrl', function () {
+    var $timeout;
 
-  // load the controller's module
-  beforeEach(module('deepspace9App'));
+    var loginData = {
+        email: '',
+        password: ''
+    };
 
-  var LoginCtrl,
-    scope;
+    // load the controller's module
+    beforeEach(module('deepspace9App'));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    LoginCtrl = $controller('LoginCtrl', {
-      $scope: scope
+    var LoginCtrl,
+        scope;
+
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function ($controller, $rootScope, _$injector_) {
+        scope = $rootScope.$new();
+        $timeout = _$injector_.get('$timeout');
+        LoginCtrl = $controller('LoginCtrl', {
+            $timeout: $timeout
+            //APIEndpoint: ''
+        });
+    }));
+
+    it('should set isLoggingIn to true when login is called', function () {
+        LoginCtrl.login(loginData);
+        expect(LoginCtrl.isLoggingIn).toBe(true);
     });
-  }));
 
-  //it('should attach a list of awesomeThings to the scope', function () {
-  //  expect(scope.awesomeThings.length).toBe(3);
-  //});
+    it('should set failed to false when login is called', function () {
+        LoginCtrl.login(loginData);
+        expect(LoginCtrl.failed).toBe(false);
+    });
 });
