@@ -33,9 +33,17 @@
               controllerAs: 'ctrl'
           })
           .state('admin', {
+              abstract: true,
               url: '/admin',
-              templateUrl: 'views/admin.html',
-              controller: 'AdminCtrl',
+              template: '<ui-view></ui-view>'
+              //controller: 'AdminCtrl',
+              //controllerAs: 'ctrl'
+          })
+          .state('users', {
+              parent: 'admin',
+              url: '/users',
+              templateUrl: 'views/users.html',
+              controller: 'UsersCtrl',
               controllerAs: 'ctrl'
           })
           .state('login', {
