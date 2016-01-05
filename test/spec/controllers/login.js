@@ -8,6 +8,14 @@ describe('Controller: LoginCtrl', function () {
         password: ''
     };
 
+    var loginError = true;
+
+    var fire = {
+        authWithPassword: function(data, callback) {
+            callback(loginError);
+        }
+    };
+
     // load the controller's module
     beforeEach(module('deepspace9App'));
 
@@ -19,9 +27,10 @@ describe('Controller: LoginCtrl', function () {
         scope = $rootScope.$new();
         $timeout = _$injector_.get('$timeout');
         LoginCtrl = $controller('LoginCtrl', {
-            $timeout: $timeout
-            //APIEndpoint: ''
+            $timeout: $timeout,
+            fire: fire
         });
+        loginError = true;
     }));
 
     it('should set isLoggingIn to true when login is called', function () {
@@ -29,8 +38,14 @@ describe('Controller: LoginCtrl', function () {
         expect(LoginCtrl.isLoggingIn).toBe(true);
     });
 
-    it('should set failed to false when login is called', function () {
+    it('should set failed to false initially when login is called', function () {
         LoginCtrl.login(loginData);
         expect(LoginCtrl.failed).toBe(false);
+    });
+
+    it('should set failed to true when login is called and it fails', function () {
+        LoginCtrl.login(loginData);
+        $timeout.flush();
+        expect(LoginCtrl.failed).toBe(true);
     });
 });

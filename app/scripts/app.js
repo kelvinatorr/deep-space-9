@@ -50,7 +50,12 @@
               url: '/login',
               templateUrl: 'views/login.html',
               controller: 'LoginCtrl',
-              controllerAs: 'vm'
+              controllerAs: 'vm',
+              resolve: {
+                  fire: ['APIEndpoint', function(APIEndpoint) {
+                      return new Firebase(APIEndpoint);
+                  }]
+              }
           })
           .state('testauth', {
               url: '/testauth',

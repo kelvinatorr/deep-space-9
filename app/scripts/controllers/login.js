@@ -12,11 +12,11 @@
     angular.module('deepspace9App')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($timeout, APIEndpoint) {
+    function LoginCtrl($timeout, fire) {
 
         var vm = this;
 
-        var ref = new Firebase(APIEndpoint);
+        var ref = fire;
 
         vm.loginFormModel = {
             email: '',
@@ -59,7 +59,6 @@
                 password : loginData.password
             }, function(error, authData) {
                 if (error) {
-                    //console.log("Login Failed!", error);
                     $timeout(function() {
                         vm.isLoggingIn = false;
                         vm.failed = true;
