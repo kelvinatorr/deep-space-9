@@ -3,8 +3,11 @@
 
     <section layout="column" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-            <md-toolbar class="md-theme-indigo">
+            <md-toolbar class="md-theme-indigo" layout="row">
                 <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                <md-button ng-click="toggleLeft()">
+                    <md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>
+                </md-button>
             </md-toolbar>
             <md-list>
                 <md-list-item >
@@ -57,7 +60,11 @@
             </md-list>
         </md-sidenav>
 
-        <md-toolbar class="md-theme-indigo">
+        <md-toolbar class="md-theme-indigo" layout="row">
+            <md-button ng-click="toggleLeft()">
+                <md-icon md-svg-icon="menu" aria-label="Menu Icon"></md-icon>
+            </md-button>
+
             <h1 class="md-toolbar-tools">Deepspace9</h1>
         </md-toolbar>
         <md-content flex layout-padding>
