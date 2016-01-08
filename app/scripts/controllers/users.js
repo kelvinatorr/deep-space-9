@@ -13,6 +13,7 @@
     angular.module('deepspace9App')
         .controller('UsersCtrl', UsersCtrl);
 
+    function UsersCtrl($mdSidenav) {
         var vm = this;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
