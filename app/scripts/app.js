@@ -44,7 +44,7 @@
               url: '/users',
               templateUrl: 'views/users.html',
               controller: 'UsersCtrl',
-              controllerAs: 'ctrl'
+              controllerAs: 'vm'
           })
           .state('login', {
               url: '/login',

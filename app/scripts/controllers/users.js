@@ -14,6 +14,8 @@
         .controller('UsersCtrl', UsersCtrl);
 
     function UsersCtrl($scope, $timeout, $mdSidenav, $log) {
+        var vm = this;
+
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -22,11 +24,11 @@
 
         document.getElementById('testSubList').style.height = 0 + 'px';
 
-        var subListShowing = false;
+        vm.subListShowing = false;
 
         $scope.toggleSublist = function() {
             console.log('changing!');
-            if(!subListShowing) {
+            if(!vm.subListShowing) {
                 var height = 0;
                 for(var i = 0; i < 48 * 2; i++) {
                     height += i;
@@ -36,7 +38,7 @@
             } else {
                 document.getElementById('testSubList').style.height = 0 + 'px';
             }
-            subListShowing = !subListShowing;
+            vm.subListShowing = !vm.subListShowing;
             //$scope.$apply();
         };
 

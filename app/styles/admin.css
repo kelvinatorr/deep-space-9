@@ -1,0 +1,18 @@
+.txt-align-start {
+    text-align: start;
+}
+
+.nav-sub-list {
+    overflow: hidden;
+    padding: 0px 0px 0px 25px;
+    background-color: #fafafa;
+}
+
+.nav-chevron-icon {
+    transition: transform ease 0.1s;
+    transform: rotate(0deg);
+}
+
+.sub-list-open {
+    transform: rotate(90deg);
+}
