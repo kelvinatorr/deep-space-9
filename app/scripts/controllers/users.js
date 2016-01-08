@@ -13,20 +13,19 @@
     angular.module('deepspace9App')
         .controller('UsersCtrl', UsersCtrl);
 
-    function UsersCtrl($scope, $timeout, $mdSidenav, $log) {
         var vm = this;
-
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
 
         document.getElementById('testSubList').style.height = 0 + 'px';
 
         vm.subListShowing = false;
 
-        $scope.toggleSublist = function() {
+        vm.toggleSublist = toggleSublist;
+
+        vm.toggleSideNav = toggleSideNav;
+
+        vm.isOpenLeft = isOpenLeft;
+
+        function toggleSublist() {
             console.log('changing!');
             if(!vm.subListShowing) {
                 var height = 0;
@@ -40,14 +39,15 @@
             }
             vm.subListShowing = !vm.subListShowing;
             //$scope.$apply();
-        };
+        }
 
-        //$scope.toggleLeft = buildDelayedToggler('left');
-        $scope.toggleLeft = buildToggler('left');
-        $scope.isOpenLeft = function(){
+        function isOpenLeft(){
             return $mdSidenav('left').isOpen();
-        };
+        }
 
+        function toggleSideNav() {
+            $mdSidenav('left').toggle();
+        }
         /**
          * Supplies a function that will continue to operate until the
          * time is up.
@@ -77,15 +77,6 @@
         //            });
         //    }, 200);
         //}
-        function buildToggler(navID) {
-            return function() {
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
-                    });
-            };
-        }
     }
 
 })();

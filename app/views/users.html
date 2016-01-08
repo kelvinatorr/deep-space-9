@@ -4,15 +4,15 @@
     <section layout="column" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
             <md-toolbar class="md-theme-indigo" layout="row">
-                <h1 class="md-toolbar-tools">Sidenav Left</h1>
-                <md-button ng-click="toggleLeft()">
+                <h1 class="md-toolbar-tools">Admin</h1>
+                <md-button ng-click="vm.toggleSideNav()">
                     <md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>
                 </md-button>
             </md-toolbar>
             <md-list>
-                <md-list-item >
+                <md-list-item>
                     <div layout="column" flex>
-                        <md-button flex="100" layout="row" ng-click="toggleSublist()">
+                        <md-button flex="100" layout="row" ng-click="vm.toggleSublist()">
                             <div layout="row">
                                 <div class="txt-align-start" flex layout-align="start start">
                                     <md-icon md-svg-icon="action:supervisor_account"></md-icon>
@@ -25,12 +25,12 @@
                         </md-button>
                         <md-list id="testSubList" flex class="nav-sub-list">
                             <md-list-item>
-                                <md-button class="txt-align-start" flex>
-                                    Admins
+                                <md-button class="txt-align-start">
+                                    <div flex>Admins</div>
                                 </md-button>
                             </md-list-item>
                             <md-list-item>
-                                <md-button class="txt-align-start" flex>
+                                <md-button class="txt-align-start" flex="100">
                                     Clients
                                 </md-button>
                             </md-list-item>
@@ -61,7 +61,7 @@
         </md-sidenav>
 
         <md-toolbar class="md-theme-indigo" layout="row">
-            <md-button ng-click="toggleLeft()">
+            <md-button ng-click="vm.toggleSideNav()">
                 <md-icon md-svg-icon="menu" aria-label="Menu Icon"></md-icon>
             </md-button>
 
@@ -76,7 +76,7 @@
                     The right sidenav will focus on a specific child element.
                 </p>
                 <div>
-                    <md-button ng-click="toggleLeft()"
+                    <md-button ng-click="vm.toggleSideNav()"
                                class="md-primary">
                         Toggle left
                     </md-button>
