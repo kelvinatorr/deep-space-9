@@ -17,6 +17,7 @@
         var vm = this;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
+        document.getElementById('testSubList').style.display = 'none';
 
         vm.subListShowing = false;
 
@@ -29,14 +30,16 @@
         function toggleSublist() {
             console.log('changing!');
             if(!vm.subListShowing) {
+                document.getElementById('testSubList').style.display = 'block';
                 var height = 0;
                 for(var i = 0; i < 48 * 2; i++) {
                     height += i;
-                    console.log(height);
                     document.getElementById('testSubList').style.height = i + 'px';
                 }
             } else {
+                document.getElementById('testSubList').style.display = 'none';
                 document.getElementById('testSubList').style.height = 0 + 'px';
+
             }
             vm.subListShowing = !vm.subListShowing;
             //$scope.$apply();
