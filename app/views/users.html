@@ -4,10 +4,12 @@
     <section layout="column" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
             <md-toolbar class="md-theme-indigo" layout="row">
-                <h1 class="md-toolbar-tools">Admin</h1>
-                <md-button ng-click="vm.toggleSideNav()">
-                    <md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>
-                </md-button>
+                <a role="button" ng-href="" ng-click="vm.toggleSideNav()" class="md-toolbar-tools">
+                    Admin
+                </a>
+                <!--<md-button ng-click="vm.toggleSideNav()">-->
+                    <!--<md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>-->
+                <!--</md-button>-->
             </md-toolbar>
             <md-list>
                 <md-list-item>

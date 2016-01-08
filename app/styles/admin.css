@@ -16,3 +16,7 @@
 .sub-list-open {
     transform: rotate(90deg);
 }
+
+a[role="button"] {
+    cursor: pointer;
+}
