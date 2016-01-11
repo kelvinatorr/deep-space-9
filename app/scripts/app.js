@@ -11,7 +11,7 @@
    * Main module of the application.
    */
   var app = angular.module('deepspace9App', [
-      'ngAnimate', 'ui.router', 'firebase','ngMaterial','ngMessages'
+      'ngAnimate', 'ui.router', 'firebase','ngMaterial','ngMessages', 'md.data.table'
     ]);
 
 
