@@ -70,28 +70,14 @@
             <h1 class="md-toolbar-tools">Deepspace9</h1>
         </md-toolbar>
         <md-content flex layout-padding>
-            <!--<div layout="column" layout-fill layout-align="top center">-->
-                <!--<p>-->
-                    <!--The left sidenav will 'lock open' on a medium (>=960px wide) device.-->
-                <!--</p>-->
-                <!--<p>-->
-                    <!--The right sidenav will focus on a specific child element.-->
-                <!--</p>-->
-                <!--<div>-->
-                    <!--<md-button ng-click="vm.toggleSideNav()"-->
-                               <!--class="md-primary">-->
-                        <!--Toggle left-->
-                    <!--</md-button>-->
-                <!--</div>-->
-            <!--</div>-->
             <md-toolbar class="md-table-toolbar md-default">
                 <div class="md-toolbar-tools">
-                    <span>Nutrition</span>
+                    <span>Users</span>
                 </div>
             </md-toolbar>
             <md-table-container>
-                <table md-table md-row-select ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="query.order" md-on-reorder="onReorder">
+                <table md-table md-row-select ng-model="vm.selected" md-progress="vm.promise">
+                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
                     <tr md-row>
                         <th md-column md-order-by="name"><span>Name</span></th>
                         <th md-column md-order-by="email"><span>Email</span></th>
@@ -99,19 +85,19 @@
                     </tr>
                     </thead>
                     <tbody md-body>
-                    <tr md-row md-select="dessert" md-select-id="{{dessert.name}}" md-auto-select ng-repeat="dessert in desserts">
-                        <td md-cell>{{dessert.name}}</td>
-                        <td md-cell ng-click="editComment($event, dessert)">{{dessert.email}}</td>
-                        <td md-cell>{{dessert.role}}</td>
+                    <tr md-row md-select="u" md-select-id="{{u.name}}" md-auto-select ng-repeat="u in vm.users">
+                        <td md-cell>{{u.name}}</td>
+                        <td md-cell ng-click="vm.editComment($event, u)">{{u.email}}</td>
+                        <td md-cell>{{u.role}}</td>
                     </tr>
                     </tbody>
                 </table>
             </md-table-container>
 
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{desserts.length}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
-            {{query | json}}
+            <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.users.length}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
+            {{vm.query | json}}
             <br>
-            {{selected | json}}
+            {{vm.selected | json}}
         </md-content>
 
     </section>

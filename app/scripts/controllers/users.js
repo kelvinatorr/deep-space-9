@@ -14,14 +14,8 @@
         .controller('UsersCtrl', UsersCtrl);
 
 
-    function UsersCtrl($mdSidenav, $scope, $q, $timeout, $mdEditDialog, initQuery, users) {
+    function UsersCtrl($mdSidenav, $mdEditDialog, initQuery, users) {
         var vm = this;
-
-        /**
-         * Used to determine if the controller is first initialized
-         * @type {boolean}
-         */
-        var init = true;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
         document.getElementById('testSubList').style.display = 'none';
@@ -34,159 +28,37 @@
 
         vm.isOpenLeft = isOpenLeft;
 
-        function toggleSublist() {
-            console.log('changing!');
-            if(!vm.subListShowing) {
-                document.getElementById('testSubList').style.display = 'block';
-                var height = 0;
-                for(var i = 0; i < 48 * 2; i++) {
-                    height += i;
-                    document.getElementById('testSubList').style.height = i + 'px';
-                }
-            } else {
-                document.getElementById('testSubList').style.display = 'none';
-                document.getElementById('testSubList').style.height = 0 + 'px';
+        vm.selected = [];
 
-            }
-            vm.subListShowing = !vm.subListShowing;
-            //$scope.$apply();
+        vm.query = initQuery;
+
+        vm.onPaginate = onPaginate;
+
+        vm.onReorder = onReorder;
+
+        vm.editComment = editComment;
+
+        vm.users = users.data;
+
+        vm.promise = new Promise(function(resolve) {resolve();});
+
+        function getData(query) {
+            vm.promise = users.getUsers(query).then(function() {
+                vm.users = users.data;
+            });
         }
 
-        function isOpenLeft(){
-            return $mdSidenav('left').isOpen();
+        function onPaginate(page, limit) {
+            console.log('calling paginate');
+            getData(angular.extend({}, vm.query, {page: page, limit: limit}));
         }
 
-        function toggleSideNav() {
-            $mdSidenav('left').toggle();
+        function onReorder(order) {
+            vm.query.order = order;
+            getData(vm.query);
         }
 
-
-        $scope.selected = [];
-
-        $scope.query = initQuery;
-
-        function getDesserts(query) {
-            console.log('Get desserts called with:');
-            console.log(query);
-            //$scope.promise = $nutrition.desserts.get(query, success).$promise;
-            var gets = function(query, successCallback) {
-                return $q(function(resolve) {
-                    $timeout(function() {
-                        var data = [
-                            {
-                                name: 'Peach',
-                                calories: 100,
-                                fat: 100,
-                                carbs: 150,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Strawberry',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Strawberry',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Strawberry',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Strawberry',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Watermelons',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            },
-                            {
-                                name: 'Strawberry22',
-                                calories: 223,
-                                fat: 6598,
-                                carbs: 1500,
-                                protein: 200,
-                                sodium: 10,
-                                calcium: 10,
-                                iron: 5
-                            }
-                        ];
-                        //console.log('hi timeout done');
-                        successCallback(data);
-                        resolve();
-                    }, 2000);
-                });
-            };
-
-            //$scope.promise = gets(query, success);
-            //$scope.promise = $firebaseArray(fire.child('users')).$loaded(function(x) {
-            //    $scope.desserts = x;
-            //});
-            if(init) {
-                $scope.desserts = users.data;
-                init = false;
-            } else {
-                $scope.promise = users.getUsers(query).then(function() {
-                    //console.log('no effin way');
-                    $scope.desserts = users.data;
-                });
-            }
-
-        }
-
-        getDesserts($scope.query);
-
-        //function success(desserts) {
-        //    $scope.desserts = $firebaseArray(fire.child('users'));
-        //    console.log($scope.desserts);
-        //}
-
-        $scope.onPaginate = function (page, limit) {
-            getDesserts(angular.extend({}, $scope.query, {page: page, limit: limit}));
-        };
-
-        $scope.onReorder = function (order) {
-            console.log('on reorder called with ' + order);
-            $scope.query.order = order;
-            console.log($scope.query);
-            getDesserts($scope.query);
-            //getDesserts(angular.extend({}, $scope.query, {order: order}));
-        };
-
-        $scope.editComment = function (event, dessert) {
+        function editComment(event, dessert) {
             // if auto selection is enabled you will want to stop the event
             // from propagating and selecting the row
             event.stopPropagation();
@@ -222,7 +94,31 @@
                     input.$setValidity('test', input.$modelValue !== 'test');
                 });
             });
-        };
+        }
+
+        function toggleSublist() {
+            if(!vm.subListShowing) {
+                document.getElementById('testSubList').style.display = 'block';
+                var height = 0;
+                for(var i = 0; i < 48 * 2; i++) {
+                    height += i;
+                    document.getElementById('testSubList').style.height = i + 'px';
+                }
+            } else {
+                document.getElementById('testSubList').style.display = 'none';
+                document.getElementById('testSubList').style.height = 0 + 'px';
+
+            }
+            vm.subListShowing = !vm.subListShowing;
+        }
+
+        function isOpenLeft(){
+            return $mdSidenav('left').isOpen();
+        }
+
+        function toggleSideNav() {
+            $mdSidenav('left').toggle();
+        }
 
         /**
          * Supplies a function that will continue to operate until the
