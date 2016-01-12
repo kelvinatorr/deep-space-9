@@ -46,8 +46,17 @@
               controller: 'UsersCtrl',
               controllerAs: 'vm',
               resolve: {
-                  fire: ['APIEndpoint', function(APIEndpoint) {
-                      return new Firebase(APIEndpoint);
+                  initQuery: function() {
+                      return {
+                          order: 'name',
+                          limit: 5,
+                          page: 1
+                      };
+                  },
+                  users: ['initQuery', 'Users','$state', function(initQuery, Users, $state) {
+                      return Users.getUsers(initQuery).catch(function() {
+                          $state.go('login');
+                      });
                   }]
               }
           })

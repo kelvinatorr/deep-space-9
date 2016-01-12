@@ -13,8 +13,15 @@
     angular.module('deepspace9App')
         .controller('UsersCtrl', UsersCtrl);
 
-    function UsersCtrl($mdSidenav, $scope, $q, $timeout, $mdEditDialog, fire, $firebaseArray) {
+
+    function UsersCtrl($mdSidenav, $scope, $q, $timeout, $mdEditDialog, initQuery, users) {
         var vm = this;
+
+        /**
+         * Used to determine if the controller is first initialized
+         * @type {boolean}
+         */
+        var init = true;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
         document.getElementById('testSubList').style.display = 'none';
@@ -56,11 +63,7 @@
 
         $scope.selected = [];
 
-        $scope.query = {
-            order: 'name',
-            limit: 5,
-            page: 1
-        };
+        $scope.query = initQuery;
 
         function getDesserts(query) {
             console.log('Get desserts called with:');
@@ -152,19 +155,24 @@
             //$scope.promise = $firebaseArray(fire.child('users')).$loaded(function(x) {
             //    $scope.desserts = x;
             //});
-            var ref = fire.child('users').orderByChild(query.order).limitToLast(query.limit);
+            if(init) {
+                $scope.desserts = users.data;
+                init = false;
+            } else {
+                $scope.promise = users.getUsers(query).then(function() {
+                    //console.log('no effin way');
+                    $scope.desserts = users.data;
+                });
+            }
 
-            $scope.promise = $firebaseArray(ref).$loaded().then(function(x) {
-                $scope.desserts = x;
-            });
         }
 
         getDesserts($scope.query);
 
-        function success(desserts) {
-            $scope.desserts = $firebaseArray(fire.child('users'));
-            console.log($scope.desserts);
-        }
+        //function success(desserts) {
+        //    $scope.desserts = $firebaseArray(fire.child('users'));
+        //    console.log($scope.desserts);
+        //}
 
         $scope.onPaginate = function (page, limit) {
             getDesserts(angular.extend({}, $scope.query, {page: page, limit: limit}));
