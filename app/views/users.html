@@ -93,26 +93,16 @@
                 <table md-table md-row-select ng-model="selected" md-progress="promise">
                     <thead md-head md-order="query.order" md-on-reorder="onReorder">
                     <tr md-row>
-                        <th md-column md-order-by="nameToLower"><span>Dessert (100g serving)</span></th>
-                        <th md-column md-numeric md-order-by="calories"><span>Calories</span></th>
-                        <th md-column md-numeric>Fat (g)</th>
-                        <th md-column md-numeric>Carbs (g)</th>
-                        <th md-column md-numeric md-order-by="protein">Protein (g)</th>
-                        <th md-column md-numeric>Sodium (mg)</th>
-                        <th md-column md-numeric>Calcium (%)</th>
-                        <th md-column md-numeric>Iron (%)</th>
+                        <th md-column md-order-by="name"><span>Name</span></th>
+                        <th md-column md-order-by="email"><span>Email</span></th>
+                        <th md-column md-order-by="role"><span>Role</span></th>
                     </tr>
                     </thead>
                     <tbody md-body>
                     <tr md-row md-select="dessert" md-select-id="{{dessert.name}}" md-auto-select ng-repeat="dessert in desserts">
                         <td md-cell>{{dessert.name}}</td>
-                        <td md-cell ng-click="editComment($event, dessert)">{{dessert.calories}}</td>
-                        <td md-cell>{{dessert.fat | number: 1}}</td>
-                        <td md-cell>{{dessert.carbs}}</td>
-                        <td md-cell>{{dessert.protein | number: 1}}</td>
-                        <td md-cell>{{dessert.sodium}}</td>
-                        <td md-cell>{{dessert.calcium}}{{dessert.calcium.unit}}</td>
-                        <td md-cell>{{dessert.iron}}{{dessert.iron.unit}}</td>
+                        <td md-cell ng-click="editComment($event, dessert)">{{dessert.email}}</td>
+                        <td md-cell>{{dessert.role}}</td>
                     </tr>
                     </tbody>
                 </table>

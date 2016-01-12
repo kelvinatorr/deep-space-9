@@ -44,7 +44,12 @@
               url: '/users',
               templateUrl: 'views/users.html',
               controller: 'UsersCtrl',
-              controllerAs: 'vm'
+              controllerAs: 'vm',
+              resolve: {
+                  fire: ['APIEndpoint', function(APIEndpoint) {
+                      return new Firebase(APIEndpoint);
+                  }]
+              }
           })
           .state('login', {
               url: '/login',

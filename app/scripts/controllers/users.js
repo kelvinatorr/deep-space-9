@@ -13,7 +13,7 @@
     angular.module('deepspace9App')
         .controller('UsersCtrl', UsersCtrl);
 
-    function UsersCtrl($mdSidenav, $scope, $q, $timeout, $mdEditDialog) {
+    function UsersCtrl($mdSidenav, $scope, $q, $timeout, $mdEditDialog, fire, $firebaseArray) {
         var vm = this;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
@@ -121,7 +121,7 @@
                                 iron: 5
                             },
                             {
-                                name: 'Pepe',
+                                name: 'Watermelons',
                                 calories: 223,
                                 fat: 6598,
                                 carbs: 1500,
@@ -148,13 +148,21 @@
                 });
             };
 
-            $scope.promise = gets(query, success);
+            //$scope.promise = gets(query, success);
+            //$scope.promise = $firebaseArray(fire.child('users')).$loaded(function(x) {
+            //    $scope.desserts = x;
+            //});
+            var ref = fire.child('users').orderByChild(query.order).limitToLast(query.limit);
+
+            $scope.promise = $firebaseArray(ref).$loaded().then(function(x) {
+                $scope.desserts = x;
+            });
         }
 
         getDesserts($scope.query);
 
         function success(desserts) {
-            $scope.desserts = desserts;
+            $scope.desserts = $firebaseArray(fire.child('users'));
             console.log($scope.desserts);
         }
 
@@ -164,6 +172,7 @@
 
         $scope.onReorder = function (order) {
             console.log('on reorder called with ' + order);
+            $scope.query.order = order;
             console.log($scope.query);
             getDesserts($scope.query);
             //getDesserts(angular.extend({}, $scope.query, {order: order}));
