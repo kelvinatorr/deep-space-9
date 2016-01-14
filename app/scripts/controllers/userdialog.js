@@ -22,7 +22,8 @@
             lastName: '',
             email: '',
             temporaryPassword: '',
-            hasTemporaryPassword: true
+            hasTemporaryPassword: true,
+            role: 'clients'
         };
 
         vm.cancel = function(ev) {

@@ -44,6 +44,17 @@
                             </div>
                         </div>
                     </md-input-container>
+                    <md-input-container>
+                        <label>Role</label>
+                        <md-select ng-model="vm.user.role">
+                            <md-option value="clients">
+                                A Client
+                            </md-option>
+                            <md-option value="users">
+                                A User
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
                 </div>
 
                 <div layout="row">
