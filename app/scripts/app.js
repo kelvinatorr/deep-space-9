@@ -92,7 +92,7 @@
 
       $mdThemingProvider.theme('default')
           .primaryPalette('light-blue')
-          .accentPalette('deep-purple')
+          .accentPalette('light-green')
           .warnPalette('red');
 
       $mdIconProvider
