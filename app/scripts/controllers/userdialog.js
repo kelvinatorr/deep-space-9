@@ -21,7 +21,8 @@
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            temporaryPassword: '',
+            hasTemporaryPassword: true
         };
 
         vm.cancel = function(ev) {
@@ -30,8 +31,7 @@
             $mdDialog.cancel();
         };
         vm.save = function(user) {
-            console.log('saving');
-            //$mdDialog.hide(user);
+            $mdDialog.hide(user);
         };
     }
 })();

@@ -126,7 +126,8 @@
             ev.preventDefault();
             ev.stopPropagation();
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-            $mdDialog.show({
+            var dialogPromise = $mdDialog.show(
+                {
                     controller: 'UserDialogCtrl',
                     controllerAs: 'vm',
                     locals: {
@@ -138,14 +139,15 @@
                     targetEvent: ev,
                     clickOutsideToClose:true,
                     fullscreen: useFullScreen
-                })
-                .then(function(user) {
-                    //$scope.status = 'You said the information was "' + answer + '".';
-                    console.log(user);
-                }, function() {
-                    //$scope.status = 'You cancelled the dialog.';
-                    console.log('cancelled');
+                }
+            );
+
+            dialogPromise.then(function(user) {
+                users.createUser(user).catch(function(error) {
+                    alert(error);
                 });
+            });
+
             //$scope.$watch(function() {
             //    return $mdMedia('xs') || $mdMedia('sm');
             //}, function(wantsFullScreen) {
