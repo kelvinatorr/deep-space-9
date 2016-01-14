@@ -79,7 +79,8 @@
                 <table md-table md-row-select ng-model="vm.selected" md-progress="vm.promise">
                     <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
                     <tr md-row>
-                        <th md-column md-order-by="name"><span>Name</span></th>
+                        <th md-column md-order-by="name"><span>First Name</span></th>
+                        <th md-column md-order-by="lastName"><span>Last Name</span></th>
                         <th md-column md-order-by="email"><span>Email</span></th>
                         <th md-column md-order-by="role"><span>Role</span></th>
                     </tr>
@@ -87,6 +88,7 @@
                     <tbody md-body>
                     <tr md-row md-select="u" md-select-id="{{u.name}}" md-auto-select ng-repeat="u in vm.users">
                         <td md-cell>{{u.name}}</td>
+                        <td md-cell>{{u.lastName}}</td>
                         <td md-cell ng-click="vm.editComment($event, u)">{{u.email}}</td>
                         <td md-cell>{{u.role}}</td>
                     </tr>
