@@ -14,7 +14,7 @@
         .controller('UsersCtrl', UsersCtrl);
 
 
-    function UsersCtrl($mdSidenav, $mdEditDialog, initQuery, users) {
+    function UsersCtrl($mdSidenav, $mdEditDialog, initQuery, users, $mdDialog, $mdMedia) {
         var vm = this;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
@@ -41,6 +41,8 @@
         vm.users = users.data;
 
         vm.promise = new Promise(function(resolve) {resolve();});
+
+        vm.addUser = addUser;
 
         function getData(query) {
             vm.promise = users.getUsers(query).then(function() {
@@ -118,6 +120,42 @@
 
         function toggleSideNav() {
             $mdSidenav('left').toggle();
+        }
+
+        function addUser(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+            $mdDialog.show({
+                    controller: function ($scope, $mdDialog) {
+                        $scope.hide = function() {
+                            $mdDialog.hide();
+                        };
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                        $scope.answer = function(answer) {
+                            $mdDialog.hide(answer);
+                        };
+                    },
+                    templateUrl: 'views/user-form.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose:true,
+                    fullscreen: useFullScreen
+                })
+                .then(function(answer) {
+                    //$scope.status = 'You said the information was "' + answer + '".';
+                    console.log(answer);
+                }, function() {
+                    //$scope.status = 'You cancelled the dialog.';
+                    console.log('cancelled');
+                });
+            //$scope.$watch(function() {
+            //    return $mdMedia('xs') || $mdMedia('sm');
+            //}, function(wantsFullScreen) {
+            //    $scope.customFullscreen = (wantsFullScreen === true);
+            //});
         }
 
         /**
