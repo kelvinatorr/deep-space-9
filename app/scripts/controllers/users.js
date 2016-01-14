@@ -125,7 +125,6 @@
         function addUser(ev) {
             ev.preventDefault();
             ev.stopPropagation();
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
             var dialogPromise = $mdDialog.show(
                 {
                     controller: 'UserDialogCtrl',
@@ -138,7 +137,7 @@
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true,
-                    fullscreen: useFullScreen
+                    fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
                 }
             );
 

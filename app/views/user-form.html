@@ -34,7 +34,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Email</label>
-                        <input name="email" type="email" ng-model="vm.user.email" required>
+                        <input name="email" type="email" ng-model="vm.user.email" required ng-model-options="{debounce: {'default': 500, 'blur': 0}}">
                         <div ng-messages="vm.userForm.email.$error" multiple md-auto-hide="false" ng-if="vm.userForm.email.$dirty">
                             <div ng-message="required">
                                 An email address is required
