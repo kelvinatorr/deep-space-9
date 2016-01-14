@@ -127,26 +127,21 @@
             ev.stopPropagation();
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
             $mdDialog.show({
-                    controller: function ($scope, $mdDialog) {
-                        $scope.hide = function() {
-                            $mdDialog.hide();
-                        };
-                        $scope.cancel = function() {
-                            $mdDialog.cancel();
-                        };
-                        $scope.answer = function(answer) {
-                            $mdDialog.hide(answer);
-                        };
+                    controller: 'UserDialogCtrl',
+                    controllerAs: 'vm',
+                    locals: {
+                        action: 'Add'
                     },
+                    bindToController: true,
                     templateUrl: 'views/user-form.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true,
                     fullscreen: useFullScreen
                 })
-                .then(function(answer) {
+                .then(function(user) {
                     //$scope.status = 'You said the information was "' + answer + '".';
-                    console.log(answer);
+                    console.log(user);
                 }, function() {
                     //$scope.status = 'You cancelled the dialog.';
                     console.log('cancelled');
