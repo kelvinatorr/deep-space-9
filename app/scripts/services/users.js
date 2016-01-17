@@ -74,7 +74,7 @@
         function getUsers(query) {
             /*jshint validthis: true */
             var self = this;
-            var users = fire.orderByChild(query.order).limitToLast(query.limit);
+            var users = fire.orderByChild(query.order);
             return $q(function(resolve, reject) {
                 $firebaseArray(users).$loaded().then(function(data) {
                     self.data = data;

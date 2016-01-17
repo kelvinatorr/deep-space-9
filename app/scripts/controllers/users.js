@@ -59,7 +59,8 @@
 
         function onReorder(order) {
             vm.query.order = order;
-            getData(vm.query);
+
+            //getData(vm.query);
         }
 
         function editComment(event, dessert) {
