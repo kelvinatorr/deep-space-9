@@ -22,13 +22,24 @@
         return {
             data: [],
             getUsers: getUsers,
-            createUser: createUser
+            createUser: createUser,
+            deleteUser: deleteUser
         };
+
+        function deleteUser(deleteList) {
+            return $q(function(resolve, reject) {
+                angular.forEach(deleteList, function(val) {
+                    console.log(val);
+                });
+                resolve();
+            });
+        }
 
         function createUser(newUser) {
             // generate a temporary password, remember january is 0
             var today = new Date();
             newUser.temporaryPassword = newUser.lastName.toLowerCase() + today.getMonth() + today.getDate();
+            newUser.isDisabled = false;
             return $q(function(resolve, reject) {
                 ref.createUser({
                     email: newUser.email,

@@ -17,4 +17,9 @@
     transform: rotate(90deg);
 }
 
+md-toolbar.md-table-toolbar.alternate {
+    /*color: #1e88e5;*/
+    font-size: 16px;
+    background-color: #E1F5FE;
+}
 

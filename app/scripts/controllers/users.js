@@ -44,6 +44,8 @@
 
         vm.addUser = addUser;
 
+        vm.deleteUser = deleteUser;
+
         function getData(query) {
             vm.promise = users.getUsers(query).then(function() {
                 vm.users = users.data;
@@ -152,6 +154,13 @@
             //}, function(wantsFullScreen) {
             //    $scope.customFullscreen = (wantsFullScreen === true);
             //});
+        }
+
+        function deleteUser(ev) {
+            // TODO show confirmation alert
+            users.deleteUser(vm.selected).catch(function(error) {
+                alert(error);
+            });
         }
 
         /**

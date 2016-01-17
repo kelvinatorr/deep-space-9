@@ -48,7 +48,7 @@
               resolve: {
                   initQuery: function() {
                       return {
-                          order: 'name',
+                          order: 'lastName',
                           limit: 5,
                           page: 1
                       };
