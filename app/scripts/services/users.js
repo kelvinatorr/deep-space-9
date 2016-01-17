@@ -28,10 +28,17 @@
 
         function deleteUser(deleteList) {
             return $q(function(resolve, reject) {
+                var updateObj = {};
                 angular.forEach(deleteList, function(val) {
-                    console.log(val);
+                    updateObj[val.$id + '/isDisabled'] = true;
                 });
-                resolve();
+                fire.update(updateObj, function(error){
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                });
             });
         }
 
