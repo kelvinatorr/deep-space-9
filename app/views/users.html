@@ -74,6 +74,9 @@
                 <div class="md-toolbar-tools">
                     <span flex>Users</span>
                     <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add User">
+                        <md-tooltip md-direction="left">
+                            Add a new user
+                        </md-tooltip>
                         <md-icon md-svg-icon="content:add"></md-icon>
                     </md-button>
                     <!--<md-button class="md-fab md-mini" aria-label="Eat cake" ng-click="vm.addUser($event)">-->
@@ -87,6 +90,9 @@
                     <span flex>{{vm.selected.length}} User<span ng-if="vm.selected.length > 1">s</span> Selected</span>
                     <!--<a role="button" ng-click="vm.addUser($event)"><md-icon md-svg-icon="content:add_circle"></md-icon></a>-->
                     <md-button class="md-icon-button" aria-label="Trash Can" ng-click="vm.deleteUser($event)">
+                        <md-tooltip md-direction="left">
+                            Disable Selected
+                        </md-tooltip>
                         <md-icon md-svg-icon="action:delete"></md-icon>
                     </md-button>
                 </div>
@@ -101,6 +107,7 @@
                         <th md-column md-order-by="role"><span>Role</span></th>
                         <th md-column md-order-by="hasTemporaryPassword"><span>Has Temporary Password</span></th>
                         <th md-column md-order-by="temporaryPassword"><span>Temporary Password</span></th>
+                        <th md-column md-order-by="isDisabled"><span>Disabled</span></th>
                     </tr>
                     </thead>
                     <tbody md-body>
@@ -111,6 +118,7 @@
                         <td md-cell>{{u.role}}</td>
                         <td md-cell>{{u.hasTemporaryPassword}}</td>
                         <td md-cell>{{u.temporaryPassword}}</td>
+                        <td md-cell>{{u.isDisabled}}</td>
                     </tr>
                     </tbody>
                 </table>
