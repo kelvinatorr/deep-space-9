@@ -38,7 +38,7 @@
 
         vm.editComment = editComment;
 
-        vm.users = users.data;
+        vm.users = users;
 
         vm.promise = new Promise(function(resolve) {resolve();});
 
@@ -48,13 +48,16 @@
 
         function getData(query) {
             vm.promise = users.getUsers(query).then(function() {
-                vm.users = users.data;
+                //vm.users = users.tableData;
             });
         }
 
         function onPaginate(page, limit) {
             console.log('calling paginate');
-            getData(angular.extend({}, vm.query, {page: page, limit: limit}));
+            console.log(page);
+            console.log(limit);
+            console.log(vm.query);
+            //getData(vm.query);
         }
 
         function onReorder(order) {

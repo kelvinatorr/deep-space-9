@@ -111,7 +111,7 @@
                     </tr>
                     </thead>
                     <tbody md-body>
-                    <tr md-row md-select="u" md-select-id="{{u.email}}" md-auto-select ng-repeat="u in vm.users">
+                    <tr md-row md-select="u" md-select-id="{{u.email}}" md-auto-select ng-repeat="u in vm.users.tableData">
                         <td md-cell>{{u.firstName}}</td>
                         <td md-cell>{{u.lastName}}</td>
                         <td md-cell>{{u.email}}</td>
@@ -124,7 +124,7 @@
                 </table>
             </md-table-container>
 
-            <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.users.length}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
+            <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.users.totalUsers}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
             <!--{{vm.query | json}}-->
             <!--<br>-->
             <!--{{vm.selected | json}}-->

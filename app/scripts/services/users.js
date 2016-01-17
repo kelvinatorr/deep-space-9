@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .factory('Users', Users);
 
-    function Users(APIEndpoint, $firebaseArray, $q) {
+    function Users(APIEndpoint, $firebaseArray, $q, $filter) {
 
         var ref = new Firebase(APIEndpoint);
 
@@ -21,6 +21,8 @@
         // Public API here
         return {
             data: [],
+            tableData: [],
+            totalUsers: 0,
             getUsers: getUsers,
             createUser: createUser,
             deleteUser: deleteUser
@@ -74,10 +76,14 @@
         function getUsers(query) {
             /*jshint validthis: true */
             var self = this;
-            var users = fire.orderByChild(query.order).limitToLast(query.limit);
+            console.log(query);
+            var users = fire.orderByChild(query.order);
             return $q(function(resolve, reject) {
                 $firebaseArray(users).$loaded().then(function(data) {
+                    self.totalUsers = data.length;
                     self.data = data;
+                    //self.tableData = self.data.slice(0, query.limit);
+                    self.tableData = data;
                     resolve(self);
                 }).catch(function(response) {
                     console.log('rejected!');
