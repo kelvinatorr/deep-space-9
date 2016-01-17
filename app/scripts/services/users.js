@@ -70,7 +70,6 @@
                     }
                 });
             });
-
         }
 
         function getUsers(query) {
@@ -81,9 +80,8 @@
             return $q(function(resolve, reject) {
                 $firebaseArray(users).$loaded().then(function(data) {
                     self.totalUsers = data.length;
-                    self.data = data;
-                    //self.tableData = self.data.slice(0, query.limit);
-                    self.tableData = data;
+                    self.data = $filter('orderBy')(data, query.order);
+                    self.tableData = self.data.slice(query.limit * (query.page - 1), query.limit * query.page);
                     resolve(self);
                 }).catch(function(response) {
                     console.log('rejected!');

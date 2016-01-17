@@ -54,14 +54,14 @@
 
         function onPaginate(page, limit) {
             console.log('calling paginate');
-            console.log(page);
-            console.log(limit);
-            console.log(vm.query);
-            //getData(vm.query);
+            vm.query.page = page;
+            vm.query.limit = limit;
+            getData(vm.query);
         }
 
         function onReorder(order) {
             vm.query.order = order;
+            //vm.users.reOrder(vm.query);
             getData(vm.query);
         }
 
