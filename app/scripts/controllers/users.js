@@ -38,7 +38,7 @@
 
         vm.editComment = editComment;
 
-        vm.users = users.data;
+        vm.users = users;
 
         vm.promise = new Promise(function(resolve) {resolve();});
 
@@ -46,21 +46,25 @@
 
         vm.deleteUser = deleteUser;
 
+        vm.users.data.$watch(function(event) {
+            vm.users.reSyncTableData(vm.query);
+        });
+
         function getData(query) {
             vm.promise = users.getUsers(query).then(function() {
-                vm.users = users.data;
+                //vm.users = users.tableData;
             });
         }
 
         function onPaginate(page, limit) {
-            console.log('calling paginate');
-            getData(angular.extend({}, vm.query, {page: page, limit: limit}));
+            vm.query.page = page;
+            vm.query.limit = limit;
+            getData(vm.query);
         }
 
         function onReorder(order) {
             vm.query.order = order;
-
-            //getData(vm.query);
+            getData(vm.query);
         }
 
         function editComment(event, dessert) {
