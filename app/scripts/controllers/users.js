@@ -46,6 +46,10 @@
 
         vm.deleteUser = deleteUser;
 
+        vm.users.data.$watch(function(event) {
+            vm.users.reSyncTableData(vm.query);
+        });
+
         function getData(query) {
             vm.promise = users.getUsers(query).then(function() {
                 //vm.users = users.tableData;
@@ -53,7 +57,6 @@
         }
 
         function onPaginate(page, limit) {
-            console.log('calling paginate');
             vm.query.page = page;
             vm.query.limit = limit;
             getData(vm.query);

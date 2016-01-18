@@ -20,12 +20,14 @@
 
         // Public API here
         return {
+            fArray: {},
             data: [],
             tableData: [],
             totalUsers: 0,
             getUsers: getUsers,
             createUser: createUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            reSyncTableData: reSyncTableData
         };
 
         function deleteUser(deleteList) {
@@ -72,22 +74,33 @@
             });
         }
 
+        function reSyncTableData(query) {
+            /*jshint validthis: true */
+            var self = this;
+            self.totalUsers = self.data.length;
+            self.data = $filter('orderBy')(self.data, query.order);
+            self.tableData = self.data.slice(query.limit * (query.page - 1), query.limit * query.page);
+        }
+
         function getUsers(query) {
             /*jshint validthis: true */
             var self = this;
-            console.log(query);
             var users = fire.orderByChild(query.order);
             return $q(function(resolve, reject) {
-                $firebaseArray(users).$loaded().then(function(data) {
+                //self.fArray = $firebaseArray(users);
+                self.data = $firebaseArray(users);
+                self.data.$loaded().then(function(data) {
                     self.totalUsers = data.length;
-                    self.data = $filter('orderBy')(data, query.order);
-                    self.tableData = self.data.slice(query.limit * (query.page - 1), query.limit * query.page);
+                    //self.data = $filter('orderBy')(data, query.order);
+                    self.tableData = $filter('orderBy')(self.data, query.order).slice(query.limit * (query.page - 1), query.limit * query.page);
                     resolve(self);
                 }).catch(function(response) {
                     console.log('rejected!');
                     console.log(response);
                     reject();
                 });
+
+
             });
         }
     }
