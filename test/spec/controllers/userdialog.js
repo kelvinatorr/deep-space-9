@@ -2,21 +2,40 @@
 
 describe('Controller: UserDialogCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('deepspace9App'));
+    // load the controller's module
+    beforeEach(module('deepspace9App'));
 
-  var UserDialogCtrl,
-    scope;
+    var UserDialogCtrl,
+        scope;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    UserDialogCtrl = $controller('UserDialogCtrl', {
-      //$scope: scope
+    var $mdDialog = {
+        hide: function() {},
+        cancel: function() {}
+    };
+
+    var mockClickEvent = {
+        preventDefault: function() {},
+        stopPropagation: function() {}
+    };
+
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        spyOn($mdDialog, 'hide');
+        spyOn($mdDialog, 'cancel');
+        UserDialogCtrl = $controller('UserDialogCtrl', {
+            $mdDialog: $mdDialog
+        });
+    }));
+
+    it('should call hide when save is called', function () {
+        var user = 123;
+        UserDialogCtrl.save(user);
+        expect($mdDialog.hide).toHaveBeenCalledWith(user);
     });
-  }));
 
-  //it('should attach a list of awesomeThings to the scope', function () {
-  //  expect(scope.awesomeThings.length).toBe(3);
-  //});
+    it('should call cancel when cancel is called', function () {
+        UserDialogCtrl.cancel(mockClickEvent);
+        expect($mdDialog.cancel).toHaveBeenCalled();
+    });
 });
