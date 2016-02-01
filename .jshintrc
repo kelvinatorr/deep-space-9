@@ -11,14 +11,16 @@
   "latedef": "nofunc",
   "newcap": true,
   "noarg": true,
-  "quotmark": "single",
+  //"quotmark": "single",
   "undef": true,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false,
-    "$": true
+      "angular": false,
+      "$": true,
+      "Firebase": true,
+      "alert": true
   }
 }

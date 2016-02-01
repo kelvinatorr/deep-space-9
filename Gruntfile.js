@@ -108,7 +108,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          open: true,
+          open: false,
           base: '<%= yeoman.dist %>'
         }
       }
@@ -205,7 +205,8 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+            '!<%= yeoman.dist %>/images/material-icons/{,*/}*.svg',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -348,7 +349,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+              'images/material-icons/{,*/}*.svg'
           ]
         }, {
           expand: true,
@@ -361,7 +363,7 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            'images/{,*/}*.{png,jpg,jpeg,gif}'
+            'images/{,*/}*.{png,jpg,jpeg,gif,svg}'
           ]
         }]
       },
@@ -382,9 +384,9 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'copy:styles',
+        'copy:styles'
         //'imagemin',
-        'svgmin'
+        //'svgmin'
       ]
     },
 
