@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/angular-material-data-table/dist/md-data-table.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+        'node_modules/babel-polyfill/dist/polyfill.js',
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
