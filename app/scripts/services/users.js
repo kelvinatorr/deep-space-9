@@ -12,9 +12,9 @@
     angular.module('deepspace9App')
         .factory('Users', Users);
 
-    function Users(APIEndpoint, $firebaseArray, $q, $filter) {
+    function Users(FirebaseRef, $firebaseArray, $q, $filter) {
 
-        var ref = new Firebase(APIEndpoint);
+        var ref = FirebaseRef.ref;
 
         var fire = ref.child('users');
 
