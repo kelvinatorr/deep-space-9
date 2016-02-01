@@ -64,9 +64,9 @@
                         vm.failed = true;
                     });
                 } else {
-                    console.log("Authenticated successfully with payload:", authData);
                     console.log(authData);
                     // go to next state
+                    alert('Authenticated successfully');
                 }
             });
         }
