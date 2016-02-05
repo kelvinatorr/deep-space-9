@@ -35,35 +35,34 @@ describe('Service: Users', function () {
             deferred = $q.defer();
             var promise = deferred.promise;
 
-            //var obj = {
-            //
-            //};
+            function $loaded() {
+                return promise;
+            }
 
             function firebaseArray() {
                 if( !(this instanceof firebaseArray) ) {
                     return new firebaseArray();
                 }
-                //return obj;
-                var self = this;
+
+                //var self = this;
                 //this._observers = [];
                 this.$list = [];
                 //console.log($firebaseUtils);
-                $firebaseUtils.getPublicMethods(self, function(fn, key) {
-                    self.$list[key] = fn.bind(self);
-                });
+                //$firebaseUtils.getPublicMethods(self, function(fn, key) {
+                //    self.$list[key] = fn.bind(self);
+                //});
+
+                this.$list.$loaded = $loaded.bind(this);
 
                 this.$list.push.apply(this.$list, usersResult);
                 return this.$list;
             }
 
-            firebaseArray.prototype = {
-                $loaded: function() {
-                    return promise.then(function(data) {
-                        //obj = data;
-                        return data;
-                    });
-                }
-            };
+            //firebaseArray.prototype = {
+            //    $loaded: function() {
+            //        return promise;
+            //    }
+            //};
             return firebaseArray;
         });
     }));
