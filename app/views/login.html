@@ -13,7 +13,7 @@
                     <form layout="column" name="vm.loginForm" ng-submit="vm.loginForm.$valid && vm.login(vm.loginFormModel)">
                         <md-input-container>
                             <label for="email">Email</label>
-                            <input id="email" name="email" type="email" ng-model="vm.loginFormModel.email" required/>
+                            <input id="email" name="email" type="email" ng-model="vm.loginFormModel.email" required autofocus/>
                             <div ng-messages="vm.loginForm.email.$error">
                                 <div ng-message="required"><span>Please enter an email address</span></div>
                                 <div ng-message="email"><span>This email is invalid</span></div>
