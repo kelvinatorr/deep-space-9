@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($timeout, fire) {
+    function LoginCtrl($timeout, fire, $state) {
 
         var vm = this;
 
@@ -66,7 +66,8 @@
                 } else {
                     console.log(authData);
                     // go to next state
-                    alert('Authenticated successfully');
+                    //alert('Authenticated successfully');
+                    $state.go('users');
                 }
             });
         }

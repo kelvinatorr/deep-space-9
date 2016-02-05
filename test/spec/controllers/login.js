@@ -28,7 +28,10 @@ describe('Controller: LoginCtrl', function () {
         $timeout = _$injector_.get('$timeout');
         LoginCtrl = $controller('LoginCtrl', {
             $timeout: $timeout,
-            fire: fire
+            fire: fire,
+            $state: {
+                go: function() {}
+            }
         });
         loginError = true;
     }));
