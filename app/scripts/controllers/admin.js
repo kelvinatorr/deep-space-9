@@ -12,73 +12,23 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($scope, $firebaseArray) {
-        var self = this;
+    function AdminCtrl($mdSidenav) {
+        var vm = this;
 
         var ref = new Firebase('https://deepspace9.firebaseio.com/');
 
-        self.userFormModel = {
-            email: '',
-            password: '',
-            name: '',
-            role: 'users'
-        };
+        ref.onAuth(authDataCallback);
 
-        self.users =  $firebaseArray(ref.child('users'));
+        document.getElementById('testSubList').style.height = 0 + 'px';
+        document.getElementById('testSubList').style.display = 'none';
 
-        self.users.$loaded()
-            .then(function() {
-                console.log(self.users);
-            })
-            .catch(function(err) {
-                console.error(err);
-            });
+        vm.subListShowing = false;
 
-        //ref.set({
-        //    'users': {
-        //        'mchen': {
-        //            'name': 'Mary Chen',
-        //            // index Mary's groups in her profile
-        //            'groups': {
-        //                // the value here doesn't matter, just that the key exists
-        //                'alpha': true,
-        //                'charlie': true
-        //            }
-        //        }
-        //    }
-        //});
+        vm.toggleSublist = toggleSublist;
 
-        self.createUser = function() {
-            ref.createUser({
-                email: self.userFormModel.email,
-                password: self.userFormModel.password
-            }, function(error, userData) {
-                if(error) {
-                    console.log('Error creating user:', error);
-                } else {
-                    console.log('Successfully created user with uid:', userData.uid);
-                    // create the user in the firebase db
-                    console.log(userData);
-                    ref.child('users').child(userData.uid).set({
-                        name: self.userFormModel.name,
-                        email: self.userFormModel.email,
-                        role: self.userFormModel.role
-                    });
-                    // reset the form
-                    $scope.$apply(self.userFormModel = {
-                        email: '',
-                        password: '',
-                        name: '',
-                        role: 'users'
-                    });
-                }
-            });
-        };
+        vm.toggleSideNav = toggleSideNav;
 
-        self.testEdit = function(user) {
-            user.name = 'Pepe';
-            self.users.$save(user);
-        };
+        vm.isOpenLeft = isOpenLeft;
 
         function authDataCallback(authData) {
             if (authData) {
@@ -87,16 +37,32 @@
                 console.log('User is logged out');
             }
         }
-        ref.onAuth(authDataCallback);
 
-        self.writeTest = function () {
-            console.log('writing');
 
-        };
+        function toggleSublist() {
+            if(!vm.subListShowing) {
+                document.getElementById('testSubList').style.display = 'block';
+                var height = 0;
+                for(var i = 0; i < 48 * 2; i++) {
+                    height += i;
+                    document.getElementById('testSubList').style.height = i + 'px';
+                }
+            } else {
+                document.getElementById('testSubList').style.display = 'none';
+                document.getElementById('testSubList').style.height = 0 + 'px';
 
-        self.readTest = function() {
+            }
+            vm.subListShowing = !vm.subListShowing;
+        }
 
-        };
+        function isOpenLeft(){
+            return $mdSidenav('left').isOpen();
+        }
+
+        function toggleSideNav() {
+            $mdSidenav('left').toggle();
+        }
+
 
         //TODO: Test Authentication
         //TODO: Figure out how to have a dev database (seperate firebase or just different tree?);

@@ -1,147 +1,59 @@
-
-<div layout="row" flex="100" ng-cloak>
-
-    <section layout="column" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-            <md-toolbar class="md-theme-indigo" layout="row">
-                <a role="button" ng-href="" ng-click="vm.toggleSideNav()" class="md-toolbar-tools">
-                    Admin
-                </a>
-                <!--<md-button ng-click="vm.toggleSideNav()">-->
-                    <!--<md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>-->
-                <!--</md-button>-->
-            </md-toolbar>
-            <md-list>
-                <md-list-item>
-                    <div layout="column" flex>
-                        <md-button class="full-width" layout="row" ng-click="vm.toggleSublist()">
-                            <div layout="row">
-                                <div class="txt-align-start" flex layout-align="start start">
-                                    <md-icon md-svg-icon="action:supervisor_account"></md-icon>
-                                    Users
-                                </div>
-                                <div flex="20" layout-align="end center">
-                                    <md-icon class="nav-chevron-icon" ng-class="{'sub-list-open': vm.subListShowing}" md-svg-icon="navigation:chevron_right"></md-icon>
-                                </div>
-                            </div>
-                        </md-button>
-                        <md-list id="testSubList" flex class="nav-sub-list">
-                            <md-list-item>
-                                <md-button class="txt-align-start full-width">
-                                    Admins
-                                </md-button>
-                            </md-list-item>
-                            <md-list-item>
-                                <md-button class="txt-align-start full-width">
-                                    Clients
-                                </md-button>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-
-                </md-list-item>
-
-                <!--<md-list-item>-->
-                    <!--<md-button>-->
-                        <!--<md-icon md-svg-icon="action:supervisor_account"></md-icon>-->
-                        <!--Lol-->
-                    <!--</md-button>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item>-->
-                    <!--<md-button>-->
-                        <!--<md-icon md-svg-icon="share"></md-icon>-->
-                        <!--Lol-->
-                    <!--</md-button>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item>-->
-                    <!--<md-button>-->
-                        <!--<md-icon md-svg-icon="share"></md-icon>-->
-                        <!--Lol-->
-                    <!--</md-button>-->
-                <!--</md-list-item>-->
-            </md-list>
-        </md-sidenav>
-
-        <md-toolbar class="md-theme-indigo" layout="row">
-            <md-button ng-click="vm.toggleSideNav()">
-                <md-icon md-svg-icon="menu" aria-label="Menu Icon"></md-icon>
+<md-content flex layout-padding>
+    <md-toolbar class="md-table-toolbar md-default" ng-show="vm.selected.length === 0">
+        <div class="md-toolbar-tools">
+            <span flex>Users</span>
+            <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add User">
+                <md-tooltip md-direction="left">
+                    Add a new user
+                </md-tooltip>
+                <md-icon md-svg-icon="content:add"></md-icon>
             </md-button>
+            <!--<md-button class="md-fab md-mini" aria-label="Eat cake" ng-click="vm.addUser($event)">-->
+            <!--<md-icon md-svg-icon="content:add"></md-icon>-->
+            <!--</md-button>-->
+        </div>
 
-            <h1 class="md-toolbar-tools" flex>Deepspace9</h1>
-            <md-menu md-position-mode="target-right target">
-                <md-button aria-label="Open user menu" ng-click="$mdOpenMenu()">
-                    <md-icon md-svg-icon="action:account_circle"></md-icon>
-                    <span hide-xs>Kelvin Dealca</span>
-                </md-button>
-                <md-menu-content width="3">
-                    <md-menu-item>
-                        <md-button ng-click="vm.logout()" aria-label="side navigation">
-                            Logout
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </md-toolbar>
-        <md-content flex layout-padding>
-            <md-toolbar class="md-table-toolbar md-default" ng-show="vm.selected.length === 0">
-                <div class="md-toolbar-tools">
-                    <span flex>Users</span>
-                    <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add User">
-                        <md-tooltip md-direction="left">
-                            Add a new user
-                        </md-tooltip>
-                        <md-icon md-svg-icon="content:add"></md-icon>
-                    </md-button>
-                    <!--<md-button class="md-fab md-mini" aria-label="Eat cake" ng-click="vm.addUser($event)">-->
-                        <!--<md-icon md-svg-icon="content:add"></md-icon>-->
-                    <!--</md-button>-->
-                </div>
-
-            </md-toolbar>
-            <md-toolbar class="md-table-toolbar alternate" ng-show="vm.selected.length > 0">
-                <div class="md-toolbar-tools">
-                    <span flex>{{vm.selected.length}} User<span ng-if="vm.selected.length > 1">s</span> Selected</span>
-                    <!--<a role="button" ng-click="vm.addUser($event)"><md-icon md-svg-icon="content:add_circle"></md-icon></a>-->
-                    <md-button class="md-icon-button" aria-label="Trash Can" ng-click="vm.deleteUser($event)">
-                        <md-tooltip md-direction="left">
-                            Disable Selected
-                        </md-tooltip>
-                        <md-icon md-svg-icon="action:delete"></md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
-            <md-table-container>
-                <table md-table md-row-select ng-model="vm.selected" md-progress="vm.promise">
-                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
-                    <tr md-row>
-                        <th md-column md-order-by="firstName"><span>First Name</span></th>
-                        <th md-column md-order-by="lastName"><span>Last Name</span></th>
-                        <th md-column md-order-by="email"><span>Email</span></th>
-                        <th md-column md-order-by="role"><span>Role</span></th>
-                        <th md-column md-order-by="hasTemporaryPassword"><span>Has Temporary Password</span></th>
-                        <th md-column md-order-by="temporaryPassword"><span>Temporary Password</span></th>
-                        <th md-column md-order-by="isDisabled"><span>Disabled</span></th>
-                    </tr>
-                    </thead>
-                    <tbody md-body>
-                    <tr md-row md-select="u" md-select-id="{{u.email}}" md-auto-select ng-repeat="u in vm.users.tableData">
-                        <td md-cell>{{u.firstName}}</td>
-                        <td md-cell>{{u.lastName}}</td>
-                        <td md-cell>{{u.email}}</td>
-                        <td md-cell>{{u.role}}</td>
-                        <td md-cell>{{u.hasTemporaryPassword}}</td>
-                        <td md-cell>{{u.temporaryPassword}}</td>
-                        <td md-cell>{{u.isDisabled}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </md-table-container>
-            <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.users.totalUsers}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
-            <!--{{vm.query | json}}-->
-            <!--<br>-->
-            <!--{{vm.selected | json}}-->
-        </md-content>
-
-    </section>
-</div>
-
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar alternate" ng-show="vm.selected.length > 0">
+        <div class="md-toolbar-tools">
+            <span flex>{{vm.selected.length}} User<span ng-if="vm.selected.length > 1">s</span> Selected</span>
+            <!--<a role="button" ng-click="vm.addUser($event)"><md-icon md-svg-icon="content:add_circle"></md-icon></a>-->
+            <md-button class="md-icon-button" aria-label="Trash Can" ng-click="vm.deleteUser($event)">
+                <md-tooltip md-direction="left">
+                    Disable Selected
+                </md-tooltip>
+                <md-icon md-svg-icon="action:delete"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-table-container>
+        <table md-table md-row-select ng-model="vm.selected" md-progress="vm.promise">
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
+            <tr md-row>
+                <th md-column md-order-by="firstName"><span>First Name</span></th>
+                <th md-column md-order-by="lastName"><span>Last Name</span></th>
+                <th md-column md-order-by="email"><span>Email</span></th>
+                <th md-column md-order-by="role"><span>Role</span></th>
+                <th md-column md-order-by="hasTemporaryPassword"><span>Has Temporary Password</span></th>
+                <th md-column md-order-by="temporaryPassword"><span>Temporary Password</span></th>
+                <th md-column md-order-by="isDisabled"><span>Disabled</span></th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="u" md-select-id="{{u.email}}" md-auto-select ng-repeat="u in vm.users.tableData">
+                <td md-cell>{{u.firstName}}</td>
+                <td md-cell>{{u.lastName}}</td>
+                <td md-cell>{{u.email}}</td>
+                <td md-cell>{{u.role}}</td>
+                <td md-cell>{{u.hasTemporaryPassword}}</td>
+                <td md-cell>{{u.temporaryPassword}}</td>
+                <td md-cell>{{u.isDisabled}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.users.totalUsers}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
+    <!--{{vm.query | json}}-->
+    <!--<br>-->
+    <!--{{vm.selected | json}}-->
+</md-content>

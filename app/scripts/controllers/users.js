@@ -17,16 +17,16 @@
     function UsersCtrl($mdSidenav, $mdEditDialog, initQuery, users, $mdDialog, $mdMedia) {
         var vm = this;
 
-        document.getElementById('testSubList').style.height = 0 + 'px';
-        document.getElementById('testSubList').style.display = 'none';
-
-        vm.subListShowing = false;
-
-        vm.toggleSublist = toggleSublist;
-
-        vm.toggleSideNav = toggleSideNav;
-
-        vm.isOpenLeft = isOpenLeft;
+        //document.getElementById('testSubList').style.height = 0 + 'px';
+        //document.getElementById('testSubList').style.display = 'none';
+        //
+        //vm.subListShowing = false;
+        //
+        //vm.toggleSublist = toggleSublist;
+        //
+        //vm.toggleSideNav = toggleSideNav;
+        //
+        //vm.isOpenLeft = isOpenLeft;
 
         vm.selected = [];
 
