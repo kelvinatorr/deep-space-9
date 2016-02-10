@@ -22,10 +22,10 @@ describe('Controller: UsersCtrl', function () {
             return true;
         },
         createUser: function() {
-            return {'catch': function() { return 'Error'}}
+            return {'catch': function() { return 'Error';}};
         },
         deleteUser: function() {
-            return {'catch': function() { return 'Error'}}
+            return {'catch': function() { return 'Error';}};
         }
     };
 

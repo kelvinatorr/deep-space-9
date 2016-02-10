@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 'use strict';
 
 describe('Service: Users', function () {
@@ -31,7 +32,7 @@ describe('Service: Users', function () {
             ref: mockRef
         });
 
-        $provide.factory('$firebaseArray', function($q, $firebaseUtils) {
+        $provide.factory('$firebaseArray', function($q) {
             deferred = $q.defer();
             var promise = deferred.promise;
 
@@ -154,3 +155,4 @@ describe('Service: Users', function () {
 
 
 });
+/* jshint ignore:end */

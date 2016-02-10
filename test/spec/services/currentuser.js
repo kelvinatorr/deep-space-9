@@ -2,17 +2,21 @@
 
 describe('Service: CurrentUser', function () {
 
-  // load the service's module
-  beforeEach(module('deepspace9App'));
+    // load the service's module
+    beforeEach(module('deepspace9App'));
 
-  // instantiate service
-  var CurrentUser;
-  beforeEach(inject(function (_CurrentUser_) {
-      CurrentUser = _CurrentUser_;
-  }));
+    // instantiate service
+    var CurrentUser;
+    beforeEach(inject(function (_CurrentUser_) {
+        CurrentUser = _CurrentUser_;
+    }));
 
-  it('should do something', function () {
-    expect(!!CurrentUser).toBe(true);
-  });
+    it('should do something', function () {
+        expect(!!CurrentUser).toBe(true);
+    });
+
+
+
+
 
 });
