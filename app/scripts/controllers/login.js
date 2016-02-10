@@ -57,16 +57,14 @@
             ref.authWithPassword({
                 email : loginData.email,
                 password : loginData.password
-            }, function(error, authData) {
+            }, function(error) {
                 if (error) {
                     $timeout(function() {
                         vm.isLoggingIn = false;
                         vm.failed = true;
                     });
                 } else {
-                    console.log(authData);
                     // go to next state
-                    //alert('Authenticated successfully');
                     $state.go('users');
                 }
             });

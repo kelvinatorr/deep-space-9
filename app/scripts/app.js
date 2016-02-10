@@ -37,7 +37,12 @@
               url: '/admin',
               templateUrl: 'views/admin.html',
               controller: 'AdminCtrl',
-              controllerAs: 'vm'
+              controllerAs: 'vm',
+              resolve: {
+                  currentUser: ['CurrentUser', function(CurrentUser) {
+                      return CurrentUser.getCurrentUser();
+                  }]
+              }
           })
           .state('users', {
               parent: 'admin',

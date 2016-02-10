@@ -12,12 +12,8 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($mdSidenav) {
+    function AdminCtrl($mdSidenav, currentUser) {
         var vm = this;
-
-        var ref = new Firebase('https://deepspace9.firebaseio.com/');
-
-        ref.onAuth(authDataCallback);
 
         document.getElementById('testSubList').style.height = 0 + 'px';
         document.getElementById('testSubList').style.display = 'none';
@@ -30,14 +26,9 @@
 
         vm.isOpenLeft = isOpenLeft;
 
-        function authDataCallback(authData) {
-            if (authData) {
-                console.log('User ' + authData.uid + ' is logged in with ' + authData.provider);
-            } else {
-                console.log('User is logged out');
-            }
-        }
+        vm.displayName = currentUser.data.firstName + ' ' + currentUser.data.lastName;
 
+        vm.logout = logout;
 
         function toggleSublist() {
             if(!vm.subListShowing) {
@@ -61,6 +52,10 @@
 
         function toggleSideNav() {
             $mdSidenav('left').toggle();
+        }
+
+        function logout() {
+
         }
 
 
