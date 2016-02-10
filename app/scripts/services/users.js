@@ -20,14 +20,14 @@
 
         // Public API here
         return {
-            fArray: {},
             data: [],
             tableData: [],
             totalUsers: 0,
             getUsers: getUsers,
             createUser: createUser,
             deleteUser: deleteUser,
-            reSyncTableData: reSyncTableData
+            reSyncTableData: reSyncTableData,
+            getAllUsers: getAllUsers
         };
 
         function deleteUser(deleteList) {
@@ -99,8 +99,28 @@
                     console.log(response);
                     reject();
                 });
+            });
+        }
 
-
+        /**
+         * Get all users, no filters, or pagination
+         * @returns {*}
+         */
+        function getAllUsers() {
+            /*jshint validthis: true */
+            var self = this;
+            self.data = [];
+            self.tableData = [];
+            return $q(function(resolve, reject) {
+                self.data = $firebaseArray(fire);
+                self.data.$loaded().then(function(data) {
+                    self.totalUsers = data.length;
+                    resolve(self);
+                }).catch(function(response) {
+                    console.log('rejected!');
+                    console.log(response);
+                    reject();
+                });
             });
         }
     }

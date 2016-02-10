@@ -70,14 +70,14 @@
               url: '/usermembership',
               templateUrl: 'views/user-membership.html',
               controller: 'UserMembershipCtrl',
-              controllerAs: 'vm'
-              //resolve: {
-              //    users: ['initQuery', 'Users','$state', function(initQuery, Users, $state) {
-              //        return Users.getUsers(initQuery).catch(function() {
-              //            $state.go('login');
-              //        });
-              //    }]
-              //}
+              controllerAs: 'vm',
+              resolve: {
+                  users: ['Users','$state', function(Users, $state) {
+                      return Users.getAllUsers().catch(function() {
+                          $state.go('login');
+                      });
+                  }]
+              }
           })
           .state('login', {
               url: '/login',

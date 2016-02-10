@@ -12,8 +12,11 @@
     angular.module('deepspace9App')
         .controller('UserMembershipCtrl', UserMembershipCtrl);
 
-    function UserMembershipCtrl() {
+    function UserMembershipCtrl(users) {
+        var vm = this;
 
+        vm.users =  users;
+        console.log(users.data);
     }
 })();
 
