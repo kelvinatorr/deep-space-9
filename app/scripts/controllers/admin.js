@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($mdSidenav, currentUser) {
+    function AdminCtrl($mdSidenav, currentUser, $state) {
         var vm = this;
 
         document.getElementById('testSubList').style.height = 0 + 'px';
@@ -55,7 +55,8 @@
         }
 
         function logout() {
-
+            currentUser.logout();
+            $state.go('login');
         }
 
 

@@ -17,7 +17,8 @@
         // Public API here
         return {
             data: {},
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            logout: logout
         };
 
         function getCurrentUser() {
@@ -37,6 +38,10 @@
                 }
 
             });
+        }
+
+        function logout() {
+            FirebaseRef.ref.unauth();
         }
     }
 })();
