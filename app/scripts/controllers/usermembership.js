@@ -16,7 +16,16 @@
         var vm = this;
 
         vm.users =  users;
-        console.log(users.data);
+
+        vm.selectedUser = vm.users.data[0];
+
+        vm.selectUser = selectUser;
+
+        function selectUser(u) {
+            vm.selectedUser = u;
+        }
+
+
     }
 })();
 

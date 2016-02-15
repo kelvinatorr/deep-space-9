@@ -10,7 +10,9 @@
 
                 <md-card-content>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="u in vm.users.data">
+                        <md-list-item class="md-2-line" ng-repeat="u in vm.users.data"
+                            ng-class="{'active': u.$id === vm.selectedUser.$id}"
+                            ng-click="vm.selectUser(u);">
                             <md-icon md-svg-icon="social:person"></md-icon>
                             <div class="md-list-item-text">
                                 <h3>{{u.firstName}} {{u.lastName}}</h3>
