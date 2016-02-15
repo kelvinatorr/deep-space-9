@@ -26,13 +26,13 @@
                         </md-button>
                         <md-list id="testSubList" flex class="nav-sub-list">
                             <md-list-item>
-                                <md-button class="txt-align-start full-width">
-                                    Admins
+                                <md-button class="txt-align-start full-width" ui-sref="users" ng-click="vm.toggleSideNav()">
+                                    Users
                                 </md-button>
                             </md-list-item>
                             <md-list-item>
-                                <md-button class="txt-align-start full-width">
-                                    Clients
+                                <md-button class="txt-align-start full-width" ui-sref="usermembership" ng-click="vm.toggleSideNav()">
+                                    User Membership
                                 </md-button>
                             </md-list-item>
                         </md-list>
