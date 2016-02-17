@@ -76,6 +76,11 @@
                       return Users.getAllUsers().catch(function() {
                           $state.go('login');
                       });
+                  }],
+                  clients: ['AdminClients', function(AdminClients, $state) {
+                      return AdminClients.getData().catch(function() {
+                          $state.go('login');
+                      });
                   }]
               }
           })

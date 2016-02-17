@@ -35,11 +35,11 @@
 
                 <md-card-content flex layout="column">
                     <md-list flex>
-                        <md-list-item class="md-2-line">
-                            <md-icon md-svg-icon="social:person"></md-icon>
+                        <md-list-item ng-repeat="c in vm.clients.data">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
                             <div class="md-list-item-text">
-                                <h3> Kelvin Dealca</h3>
-                                <p> 702-480-1990</p>
+                                <h3>{{c.$value}}</h3>
+                                <!--<p> 702-480-1990</p>-->
                             </div>
                         </md-list-item>
                     </md-list>
