@@ -34,18 +34,25 @@
 
         function selectUser(u) {
             vm.selectedUserMembership = $firebaseObject(FirebaseRef.ref.child('userMembership/' + u.$id));
-            console.log(vm.selectedUserMembership);
             vm.selectedUser = u;
         }
 
+        /**
+         * Saves a users membership to firebase
+         */
         function addMembership() {
             $timeout(function() {
-                vm.selectedUserMembership.$save();
+                // Remove all false keys from the userMembership object before saving it
+                angular.forEach(vm.clients.data, function(val) {
+                    if(!vm.selectedUserMembership[val.$id]) {
+                        delete vm.selectedUserMembership[val.$id];
+                    }
+                });
+                vm.selectedUserMembership.$save().catch(function(error) {
+                    alert('An error occured while saving to firebase!');
+                });
             });
-
         }
-
-
     }
 })();
 
