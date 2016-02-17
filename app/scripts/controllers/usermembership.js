@@ -18,11 +18,15 @@
         vm.users =  users;
 
         vm.clients = clients;
-        console.log(vm.clients);
 
-        vm.selectedUser = vm.users.data[0];
+        vm.selectedUser = {};
 
         vm.selectUser = selectUser;
+
+        /**
+         * select the top user at the start
+         */
+        vm.selectUser(vm.users.data[0]);
 
         function selectUser(u) {
             vm.selectedUser = u;

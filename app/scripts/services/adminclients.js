@@ -27,7 +27,7 @@
             var self = this;
             self.data = [];
             return $q(function(resolve, reject) {
-                self.data = $firebaseArray(ref.child('clients'));
+                self.data = $firebaseArray(ref.child('clients').orderByKey());
                 self.data.$loaded().then(function() {
                     resolve(self);
                 }).catch(function(response) {

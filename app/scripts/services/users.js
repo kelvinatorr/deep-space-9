@@ -112,7 +112,7 @@
             self.data = [];
             self.tableData = [];
             return $q(function(resolve, reject) {
-                self.data = $firebaseArray(fire);
+                self.data = $firebaseArray(fire.orderByChild('firstName'));
                 self.data.$loaded().then(function(data) {
                     self.totalUsers = data.length;
                     resolve(self);
