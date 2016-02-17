@@ -36,11 +36,8 @@
                 <md-card-content flex layout="column">
                     <md-list flex>
                         <md-list-item ng-repeat="c in vm.clients.data">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <div class="md-list-item-text">
-                                <h3>{{c.$value}}</h3>
-                                <!--<p> 702-480-1990</p>-->
-                            </div>
+                            <md-checkbox ng-model="message.selected"></md-checkbox>
+                            <p>{{c.$value}}</p>
                         </md-list-item>
                     </md-list>
                 </md-card-content>
