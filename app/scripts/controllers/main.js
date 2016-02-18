@@ -12,9 +12,10 @@
   angular.module('deepspace9App')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl($state) {
+  function MainCtrl($state, currentUser) {
       var vm = this;
 
+      vm.displayName = currentUser.data.firstName;
 
       vm.logout = logout;
 
