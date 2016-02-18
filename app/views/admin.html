@@ -1,82 +1,85 @@
-<p>This is the admin view.</p>
+<div layout="row" flex="100" ng-cloak>
 
-<div class="row">
-    <div class="col-xs-12">
-        <button ng-click="ctrl.writeTest()">Write Test</button>
-        <br/>
-        <button ng-click="ctrl.readTest()">Read Test</button>
-    </div>
+    <section layout="column" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+            <md-toolbar class="md-theme-indigo" layout="row">
+                <a role="button" ng-href="" ng-click="vm.toggleSideNav()" class="md-toolbar-tools">
+                    Admin
+                </a>
+                <!--<md-button ng-click="vm.toggleSideNav()">-->
+                <!--<md-icon md-svg-icon="navigation:close" aria-label="Close Icon"></md-icon>-->
+                <!--</md-button>-->
+            </md-toolbar>
+            <md-list>
+                <md-list-item>
+                    <div layout="column" flex>
+                        <md-button class="full-width" layout="row" ng-click="vm.toggleSublist()">
+                            <div layout="row">
+                                <div class="txt-align-start" flex layout-align="start start">
+                                    <md-icon md-svg-icon="action:supervisor_account"></md-icon>
+                                    Users
+                                </div>
+                                <div flex="20" layout-align="end center">
+                                    <md-icon class="nav-chevron-icon" ng-class="{'sub-list-open': vm.subListShowing}" md-svg-icon="navigation:chevron_right"></md-icon>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-list id="testSubList" flex class="nav-sub-list">
+                            <md-list-item>
+                                <md-button class="txt-align-start full-width" ui-sref="users" ng-click="vm.toggleSideNav()">
+                                    Users
+                                </md-button>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-button class="txt-align-start full-width" ui-sref="usermembership" ng-click="vm.toggleSideNav()">
+                                    User Membership
+                                </md-button>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+
+                </md-list-item>
+
+                <!--<md-list-item>-->
+                <!--<md-button>-->
+                <!--<md-icon md-svg-icon="action:supervisor_account"></md-icon>-->
+                <!--Lol-->
+                <!--</md-button>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<md-button>-->
+                <!--<md-icon md-svg-icon="share"></md-icon>-->
+                <!--Lol-->
+                <!--</md-button>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<md-button>-->
+                <!--<md-icon md-svg-icon="share"></md-icon>-->
+                <!--Lol-->
+                <!--</md-button>-->
+                <!--</md-list-item>-->
+            </md-list>
+        </md-sidenav>
+        <md-toolbar class="md-theme-indigo" layout="row">
+            <md-button ng-click="vm.toggleSideNav()">
+                <md-icon md-svg-icon="menu" aria-label="Menu Icon"></md-icon>
+            </md-button>
+
+            <h1 class="md-toolbar-tools" flex>Deepspace9</h1>
+            <md-menu md-position-mode="target-right target">
+                <md-button aria-label="Open user menu" ng-click="$mdOpenMenu()">
+                    <md-icon md-svg-icon="action:account_circle"></md-icon>
+                    <span hide-xs>{{::vm.displayName}}</span>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-click="vm.logout()" aria-label="side navigation">
+                            Logout
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-toolbar>
+        <div ui-view></div>
+    </section>
 </div>
-
-<br>
-<div class="row">
-    <div class="col-xs-12">
-        <form name="userForm" novalidate ng-submit="userForm.$valid && ctrl.createUser()">
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required
-                    ng-model="ctrl.userFormModel.email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
-                       ng-model="ctrl.userFormModel.password">
-            </div>
-            <div class="form-group">
-                <label for="password">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required
-                       ng-model="ctrl.userFormModel.name">
-            </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="ctrl.userFormModel.role" value="admins">
-                        Admin
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="ctrl.userFormModel.role" value="users">
-                        User
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="ctrl.userFormModel.role" value="clients">
-                        Client
-                    </label>
-                </div>
-
-            </div>
-
-            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
-        </form>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-xs-12">
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Test Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="u in ctrl.users">
-                        <td>{{u.name}}</td>
-                        <td>{{u.email}}</td>
-                        <td>
-                            <button ng-click="ctrl.testEdit(u)">Test Edit</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-

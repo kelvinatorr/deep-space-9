@@ -23,3 +23,6 @@ md-toolbar.md-table-toolbar.alternate {
     background-color: #E1F5FE;
 }
 
+md-list-item.active {
+    background-color: lightgrey;
+}

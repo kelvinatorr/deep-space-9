@@ -35,9 +35,14 @@
           .state('admin', {
               abstract: true,
               url: '/admin',
-              template: '<ui-view></ui-view>'
-              //controller: 'AdminCtrl',
-              //controllerAs: 'ctrl'
+              templateUrl: 'views/admin.html',
+              controller: 'AdminCtrl',
+              controllerAs: 'vm',
+              resolve: {
+                  currentUser: ['CurrentUser', function(CurrentUser) {
+                      return CurrentUser.getCurrentUser();
+                  }]
+              }
           })
           .state('users', {
               parent: 'admin',
@@ -55,6 +60,25 @@
                   },
                   users: ['initQuery', 'Users','$state', function(initQuery, Users, $state) {
                       return Users.getUsers(initQuery).catch(function() {
+                          $state.go('login');
+                      });
+                  }]
+              }
+          })
+          .state('usermembership', {
+              parent: 'admin',
+              url: '/usermembership',
+              templateUrl: 'views/user-membership.html',
+              controller: 'UserMembershipCtrl',
+              controllerAs: 'vm',
+              resolve: {
+                  users: ['Users','$state', function(Users, $state) {
+                      return Users.getAllUsers().catch(function() {
+                          $state.go('login');
+                      });
+                  }],
+                  clients: ['AdminClients', function(AdminClients, $state) {
+                      return AdminClients.getData().catch(function() {
                           $state.go('login');
                       });
                   }]

@@ -12,91 +12,53 @@
     angular.module('deepspace9App')
         .controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($scope, $firebaseArray) {
-        var self = this;
+    function AdminCtrl($mdSidenav, currentUser, $state) {
+        var vm = this;
 
-        var ref = new Firebase('https://deepspace9.firebaseio.com/');
+        document.getElementById('testSubList').style.height = 0 + 'px';
+        document.getElementById('testSubList').style.display = 'none';
 
-        self.userFormModel = {
-            email: '',
-            password: '',
-            name: '',
-            role: 'users'
-        };
+        vm.subListShowing = false;
 
-        self.users =  $firebaseArray(ref.child('users'));
+        vm.toggleSublist = toggleSublist;
 
-        self.users.$loaded()
-            .then(function() {
-                console.log(self.users);
-            })
-            .catch(function(err) {
-                console.error(err);
-            });
+        vm.toggleSideNav = toggleSideNav;
 
-        //ref.set({
-        //    'users': {
-        //        'mchen': {
-        //            'name': 'Mary Chen',
-        //            // index Mary's groups in her profile
-        //            'groups': {
-        //                // the value here doesn't matter, just that the key exists
-        //                'alpha': true,
-        //                'charlie': true
-        //            }
-        //        }
-        //    }
-        //});
+        vm.isOpenLeft = isOpenLeft;
 
-        self.createUser = function() {
-            ref.createUser({
-                email: self.userFormModel.email,
-                password: self.userFormModel.password
-            }, function(error, userData) {
-                if(error) {
-                    console.log('Error creating user:', error);
-                } else {
-                    console.log('Successfully created user with uid:', userData.uid);
-                    // create the user in the firebase db
-                    console.log(userData);
-                    ref.child('users').child(userData.uid).set({
-                        name: self.userFormModel.name,
-                        email: self.userFormModel.email,
-                        role: self.userFormModel.role
-                    });
-                    // reset the form
-                    $scope.$apply(self.userFormModel = {
-                        email: '',
-                        password: '',
-                        name: '',
-                        role: 'users'
-                    });
+        vm.displayName = currentUser.data.firstName + ' ' + currentUser.data.lastName;
+
+        vm.logout = logout;
+
+        function toggleSublist() {
+            if(!vm.subListShowing) {
+                document.getElementById('testSubList').style.display = 'block';
+                var height = 0;
+                for(var i = 0; i < 48 * 2; i++) {
+                    height += i;
+                    document.getElementById('testSubList').style.height = i + 'px';
                 }
-            });
-        };
-
-        self.testEdit = function(user) {
-            user.name = 'Pepe';
-            self.users.$save(user);
-        };
-
-        function authDataCallback(authData) {
-            if (authData) {
-                console.log('User ' + authData.uid + ' is logged in with ' + authData.provider);
             } else {
-                console.log('User is logged out');
+                document.getElementById('testSubList').style.display = 'none';
+                document.getElementById('testSubList').style.height = 0 + 'px';
+
             }
+            vm.subListShowing = !vm.subListShowing;
         }
-        ref.onAuth(authDataCallback);
 
-        self.writeTest = function () {
-            console.log('writing');
+        function isOpenLeft(){
+            return $mdSidenav('left').isOpen();
+        }
 
-        };
+        function toggleSideNav() {
+            $mdSidenav('left').toggle();
+        }
 
-        self.readTest = function() {
+        function logout() {
+            currentUser.logout();
+            $state.go('login');
+        }
 
-        };
 
         //TODO: Test Authentication
         //TODO: Figure out how to have a dev database (seperate firebase or just different tree?);

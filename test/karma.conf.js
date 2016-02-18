@@ -36,12 +36,26 @@ module.exports = function(config) {
         'node_modules/babel-polyfill/dist/polyfill.js',
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
-      "test/spec/**/*.js"
+      "test/spec/**/*.js",
+        "app/views/**/*.html"
     ],
 
     // list of files / patterns to exclude
     exclude: [
     ],
+
+      // preprocess matching files before serving them to the browser
+      // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+      preprocessors: {
+          "app/views/**/*.html": ['ng-html2js']
+      },
+      //
+      ngHtml2JsPreprocessor: {
+          // prepend this to the
+          //prependPrefix: 'views/',
+          stripPrefix: 'app/',
+          moduleName: "templates"
+      },
 
     // web server port
     port: 8080,
@@ -61,7 +75,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+        "karma-ng-html2js-preprocessor"
     ],
 
     // Continuous Integration mode
