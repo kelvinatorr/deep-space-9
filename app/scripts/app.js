@@ -25,12 +25,19 @@
       // ignore trailing slashes.
       $urlMatcherFactoryProvider.strictMode(false);
 
+      var resolveCurrentUser = ['CurrentUser', function(CurrentUser) {
+          return CurrentUser.getCurrentUser();
+      }];
+
       $stateProvider
           .state('main', {
               url: '/main',
               templateUrl: 'views/main.html',
               controller: 'MainCtrl',
-              controllerAs: 'ctrl'
+              controllerAs: 'vm',
+              resolve: {
+                  currentUser: resolveCurrentUser
+              }
           })
           .state('admin', {
               abstract: true,
@@ -39,9 +46,7 @@
               controller: 'AdminCtrl',
               controllerAs: 'vm',
               resolve: {
-                  currentUser: ['CurrentUser', function(CurrentUser) {
-                      return CurrentUser.getCurrentUser();
-                  }]
+                  currentUser: resolveCurrentUser
               }
           })
           .state('users', {
