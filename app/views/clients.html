@@ -1,1 +1,56 @@
-<p>This is the clients view.</p>
+<div layout="row" flex>
+    <div flex layout="row" layout-xs="column">
+        <div layout="row">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">United Federation of Planets Starfleet</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content layout="column">
+                    <md-list>
+                        <md-subheader class="md-no-sticky">Positions</md-subheader>
+                        <md-list-item ng-click="vm.goToPosition()">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
+                            <p>Captain</p>
+                        </md-list-item>
+                        <md-list-item ng-click="vm.goToPosition()">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
+                            <p>Fry Cook</p>
+                        </md-list-item>
+                        <md-list-item ng-click="vm.goToPosition()">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
+                            <p>First Officer</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">House Lannister</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content layout="column">
+                    <md-list>
+                        <md-subheader class="md-no-sticky">Positions</md-subheader>
+                        <md-list-item ng-click="vm.goToPosition()">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
+                            <p>Champion</p>
+                        </md-list-item>
+                        <md-list-item ng-click="vm.goToPosition()">
+                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
+                            <p>Dish Washer</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+
+
+    </div>
+</div>
