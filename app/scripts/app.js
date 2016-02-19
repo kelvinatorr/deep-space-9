@@ -31,6 +31,7 @@
 
       $stateProvider
           .state('main', {
+              abstract: true,
               url: '/main',
               templateUrl: 'views/main.html',
               controller: 'MainCtrl',
@@ -38,6 +39,16 @@
               resolve: {
                   currentUser: resolveCurrentUser
               }
+          })
+          .state('clients', {
+              parent: 'main',
+              url: '/clients',
+              templateUrl: 'views/clients.html',
+              controller: 'ClientsCtrl',
+              controllerAs: 'vm'
+              //resolve: {
+              //    currentUser: resolveCurrentUser
+              //}
           })
           .state('admin', {
               abstract: true,
@@ -113,7 +124,7 @@
               controllerAs: 'ctrl'
           });
 
-      $urlRouterProvider.otherwise('/login');
+      $urlRouterProvider.otherwise('/main/clients');
       // Remove debug info when in production.
       if(window.location.host.split(':')[0] !== 'localhost') {
           $compileProvider.debugInfoEnabled(false);
