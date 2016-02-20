@@ -1,5 +1,9 @@
-.dp9-card {
-    width: 340px;
-    /*height: 344px;*/
+@media (min-width: 600px) {
+
+    .dp9-card {
+        width: 340px;
+        /*height: 344px;*/
+    }
 }
+
 
