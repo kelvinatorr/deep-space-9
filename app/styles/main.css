@@ -10,4 +10,7 @@
     }
 }
 
+.dp9-list-item-p {
+    width: 276px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+}
 
