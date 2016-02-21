@@ -25,8 +25,10 @@
       // ignore trailing slashes.
       $urlMatcherFactoryProvider.strictMode(false);
 
-      var resolveCurrentUser = ['CurrentUser', function(CurrentUser) {
-          return CurrentUser.getCurrentUser();
+      var resolveCurrentUser = ['CurrentUser','$state', function(CurrentUser, $state) {
+          return CurrentUser.getCurrentUser().catch(function() {
+              $state.go('login');
+          });
       }];
 
       $stateProvider
