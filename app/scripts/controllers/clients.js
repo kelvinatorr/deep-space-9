@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('ClientsCtrl', ClientsCtrl);
 
-    function ClientsCtrl($scope) {
+    function ClientsCtrl() {
 
     }
 
