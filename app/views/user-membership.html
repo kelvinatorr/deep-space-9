@@ -36,7 +36,7 @@
                 <md-card-content flex layout="column">
                     <md-list flex>
                         <md-list-item ng-repeat="c in vm.clients.data">
-                            <md-checkbox ng-model="vm.selectedUserMembership[c.$id]" ng-click="vm.addMembership()"></md-checkbox>
+                            <md-checkbox ng-model="vm.selectedUserMembership[c.$id]" ng-click="vm.addMembership(c)"></md-checkbox>
                             <p>{{c.name}}</p>
                         </md-list-item>
                     </md-list>
