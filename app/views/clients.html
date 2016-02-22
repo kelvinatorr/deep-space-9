@@ -1,12 +1,12 @@
 <div layout="row" flex>
     <div flex layout="row" layout-xs="column" layout-wrap>
-        <div>
+        <div ng-repeat="c in vm.clients.data | orderBy : 'name'">
             <md-card class="dp9-card md-whiteframe-3dp">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">
-                            United Federation of Planets Starfleet
-                            <md-tooltip md-delay="300">United Federation of Planets Starfleet</md-tooltip>
+                            {{c.name}}
+                            <md-tooltip md-delay="300">{{c.name}}</md-tooltip>
                         </span>
                     </md-card-title-text>
                 </md-card-title>
@@ -39,42 +39,42 @@
                 </md-card-content>
             </md-card>
         </div>
-        <div>
-            <md-card class="dp9-card md-whiteframe-3dp">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">House Lannister</span>
-                        <md-tooltip>House Lannister</md-tooltip>
-                    </md-card-title-text>
-                </md-card-title>
+        <!--<div>-->
+            <!--<md-card class="dp9-card md-whiteframe-3dp">-->
+                <!--<md-card-title>-->
+                    <!--<md-card-title-text>-->
+                        <!--<span class="md-headline">House Lannister</span>-->
+                        <!--<md-tooltip>House Lannister</md-tooltip>-->
+                    <!--</md-card-title-text>-->
+                <!--</md-card-title>-->
 
-                <md-card-content layout="column">
-                    <md-list>
-                        <md-subheader class="md-no-sticky">Top Positions</md-subheader>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <p>Champion</p>
-                        </md-list-item>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <!--<p>Dish Washer of Lower Westeros and The Seven Kingdoms Defender</p>-->
-                            <p class="dp9-list-item-p">
-                                Dish Washer of Lower Westeros and The Seven Kingdoms Defender
-                            </p>
-                        </md-list-item>
+                <!--<md-card-content layout="column">-->
+                    <!--<md-list>-->
+                        <!--<md-subheader class="md-no-sticky">Top Positions</md-subheader>-->
                         <!--<md-list-item ng-click="vm.goToPosition()">-->
                             <!--&lt;!&ndash;<md-icon md-svg-icon="social:person"></md-icon>&ndash;&gt;-->
-                            <!--<p>Dish Washer</p>-->
+                            <!--<p>Champion</p>-->
                         <!--</md-list-item>-->
                         <!--<md-list-item ng-click="vm.goToPosition()">-->
                             <!--&lt;!&ndash;<md-icon md-svg-icon="social:person"></md-icon>&ndash;&gt;-->
-                            <!--<p>Dish Washer</p>-->
+                            <!--&lt;!&ndash;<p>Dish Washer of Lower Westeros and The Seven Kingdoms Defender</p>&ndash;&gt;-->
+                            <!--<p class="dp9-list-item-p">-->
+                                <!--Dish Washer of Lower Westeros and The Seven Kingdoms Defender-->
+                            <!--</p>-->
                         <!--</md-list-item>-->
-                    </md-list>
-                    <!--<md-button class="md-raised">View All Positions</md-button>-->
-                </md-card-content>
-            </md-card>
-        </div>
+                        <!--&lt;!&ndash;<md-list-item ng-click="vm.goToPosition()">&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<md-icon md-svg-icon="social:person"></md-icon>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p>Dish Washer</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</md-list-item>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<md-list-item ng-click="vm.goToPosition()">&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<md-icon md-svg-icon="social:person"></md-icon>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p>Dish Washer</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</md-list-item>&ndash;&gt;-->
+                    <!--</md-list>-->
+                    <!--&lt;!&ndash;<md-button class="md-raised">View All Positions</md-button>&ndash;&gt;-->
+                <!--</md-card-content>-->
+            <!--</md-card>-->
+        <!--</div>-->
 
 
 

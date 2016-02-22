@@ -47,10 +47,13 @@
               url: '/clients',
               templateUrl: 'views/clients.html',
               controller: 'ClientsCtrl',
-              controllerAs: 'vm'
-              //resolve: {
-              //    currentUser: resolveCurrentUser
-              //}
+              controllerAs: 'vm',
+              resolve: {
+                  clients: ['currentUser','Clients', function(currentUser, Clients) {
+                      //console.log('huh');
+                      return Clients.getData(currentUser.data.$id);
+                  }]
+              }
           })
           .state('admin', {
               abstract: true,

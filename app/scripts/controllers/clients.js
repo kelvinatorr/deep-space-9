@@ -12,7 +12,10 @@
     angular.module('deepspace9App')
         .controller('ClientsCtrl', ClientsCtrl);
 
-    function ClientsCtrl() {
+    function ClientsCtrl(clients) {
+        var vm = this;
+
+        vm.clients =  clients;
 
     }
 
