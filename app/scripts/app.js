@@ -50,7 +50,6 @@
               controllerAs: 'vm',
               resolve: {
                   clients: ['currentUser','Clients', function(currentUser, Clients) {
-                      //console.log('huh');
                       return Clients.getData(currentUser.data.$id);
                   }]
               }

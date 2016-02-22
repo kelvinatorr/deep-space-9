@@ -32,11 +32,9 @@
                 membership.$loaded().then(function() {
                     // get the client names
                     angular.forEach(membership, function(val, key) {
-                        console.log(key);
                         var client = $firebaseObject(ref.child('clients/' + key));
                         self.data.push(client);
                     });
-                    console.log(self.data);
                     resolve(self);
                 }).catch(function(response) {
                     console.log(response);
