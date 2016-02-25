@@ -11,9 +11,17 @@ describe('Filter: orderObjectBy', function () {
     orderObjectBy = $filter('orderObjectBy');
   }));
 
-  //it('should return the input prefixed with "orderObjectBy filter:"', function () {
-  //  var text = 'angularjs';
-  //  expect(orderObjectBy(text)).toBe('orderObjectBy filter: ' + text);
-  //});
+  it('should return an array', function () {
+    var data = {
+        kelvin: {name: 'Kelvin'},
+        tiffany: {name: 'Tiffany'},
+        mandeep: {name: 'Mandeep'}
+    };
+    expect(orderObjectBy(data)).toEqual([
+        {name: 'Mandeep'},
+        {name: 'Tiffany'},
+        {name: 'Kelvin'}
+    ]);
+  });
 
 });

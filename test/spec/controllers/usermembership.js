@@ -69,7 +69,6 @@ describe('Controller: UserMembershipCtrl', function () {
                 whiteHouse: true,
                 ibm: false,
                 $save: function() {
-                    //return new Promise();
                     return {
                         then: function() {
                             return {
