@@ -14,7 +14,7 @@
                 <md-card-content layout="column">
                     <md-list>
                         <md-subheader class="md-no-sticky">Top Positions</md-subheader>
-                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions">
+                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions | orderObjectBy: 'priority' : false">
                             <p>{{p.name}} {{p.priority}}</p>
                         </md-list-item>
                         <!--4 ITEMS MAX-->
