@@ -14,23 +14,10 @@
                 <md-card-content layout="column">
                     <md-list>
                         <md-subheader class="md-no-sticky">Top Positions</md-subheader>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <p>Captain</p>
+                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions">
+                            <p>{{p.name}} {{p.priority}}</p>
                         </md-list-item>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <p>Fry Cook</p>
-                        </md-list-item>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <p>First Officer</p>
-                        </md-list-item>
-                        <md-list-item ng-click="vm.goToPosition()">
-                            <!--<md-icon md-svg-icon="social:person"></md-icon>-->
-                            <p>First Officer</p>
-                        </md-list-item>
-
+                        <!--4 ITEMS MAX-->
                     </md-list>
                     <md-button class="md-raised">
                         View All Positions
