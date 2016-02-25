@@ -13,15 +13,19 @@
 
                 <md-card-content layout="column">
                     <md-list>
-                        <md-subheader class="md-no-sticky">Top Positions</md-subheader>
-                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions | orderObjectBy: 'priority' : false">
-                            <p>{{p.name}} {{p.priority}}</p>
+                        <md-subheader class="md-no-sticky">
+                            <span ng-if="c.positions.length > 4">Top</span>
+                            Positions
+                        </md-subheader>
+                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions | orderObjectBy: 'priority' : false | limitTo:4">
+                            <p>{{p.name}}</p>
                         </md-list-item>
                         <!--4 ITEMS MAX-->
                     </md-list>
                     <md-button class="md-raised">
-                        View All Positions
-                        <md-tooltip md-direction="top" md-delay="400">3 additional positions not shown</md-tooltip>
+                        View
+                        <span ng-if="c.positions.length > 4">All Positions</span>
+                        <md-tooltip md-direction="top" md-delay="400" ng-if="c.positions.length > 4">{{c.positions.length - 4}} additional positions not shown</md-tooltip>
                     </md-button>
                 </md-card-content>
             </md-card>
