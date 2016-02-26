@@ -54,6 +54,18 @@
                   }]
               }
           })
+          .state('positions', {
+              parent: 'main',
+              url: '/positions/:clientId',
+              templateUrl: 'views/positions.html',
+              controller: 'PositionsCtrl',
+              controllerAs: 'vm'
+              //resolve: {
+              //    clients: ['currentUser','Clients', function(currentUser, Clients) {
+              //        return Clients.getData(currentUser.data.$id);
+              //    }]
+              //}
+          })
           .state('admin', {
               abstract: true,
               url: '/admin',
