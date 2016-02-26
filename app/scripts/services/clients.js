@@ -12,14 +12,13 @@
     angular.module('deepspace9App')
         .factory('Clients', Clients);
 
-    function Clients(FirebaseRef, $firebaseObject, $q) {
+    function Clients(FirebaseRef, $firebaseObject, $q, CurrentUser) {
 
         var ref = FirebaseRef.ref;
 
         // Public API here
         return {
             data: [],
-            //positions: [],
             getData: getData
         };
 
@@ -28,17 +27,14 @@
             var self = this;
             self.data = [];
             return $q(function(resolve, reject) {
-                var membership = $firebaseObject(ref.child('userMembership/' + uid));
-                membership.$loaded().then(function() {
-                    // get the client names
+                CurrentUser.getMembership(uid).then(function(membership) {
                     angular.forEach(membership, function(val, key) {
                         var client = $firebaseObject(ref.child('clients/' + key));
                         self.data.push(client);
                     });
                     resolve(self);
                 }).catch(function(response) {
-                    console.log(response);
-                    reject();
+                    reject(response);
                 });
             });
         }
