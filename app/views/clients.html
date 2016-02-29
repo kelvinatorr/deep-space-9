@@ -22,7 +22,7 @@
                         </md-list-item>
                         <!--4 ITEMS MAX-->
                     </md-list>
-                    <md-button class="md-raised">
+                    <md-button class="md-raised" ui-sref="positions({'clientId': c.$id})">
                         View
                         <span ng-if="c.positions.length > 4">All Positions</span>
                         <md-tooltip md-direction="top" md-delay="400" ng-if="c.positions.length > 4">{{c.positions.length - 4}} additional positions not shown</md-tooltip>
