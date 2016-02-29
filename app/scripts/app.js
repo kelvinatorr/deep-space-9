@@ -66,6 +66,18 @@
                   }]
               }
           })
+          .state('positionDetail', {
+              parent: 'main',
+              url: '/positions/:clientId/:positionsId',
+              templateUrl: 'views/position-detail.html',
+              controller: 'PositionDetailCtrl',
+              controllerAs: 'vm'
+              //resolve: {
+              //    positions: ['Positions','$stateParams', function(Positions, $stateParams) {
+              //        return Positions.getData($stateParams.clientId);
+              //    }]
+              //}
+          })
           .state('admin', {
               abstract: true,
               url: '/admin',
