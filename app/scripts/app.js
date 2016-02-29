@@ -59,12 +59,12 @@
               url: '/positions/:clientId',
               templateUrl: 'views/positions.html',
               controller: 'PositionsCtrl',
-              controllerAs: 'vm'
-              //resolve: {
-              //    clients: ['currentUser','Clients', function(currentUser, Clients) {
-              //        return Clients.getData(currentUser.data.$id);
-              //    }]
-              //}
+              controllerAs: 'vm',
+              resolve: {
+                  positions: ['Positions','$stateParams', function(Positions, $stateParams) {
+                      return Positions.getData($stateParams.clientId);
+                  }]
+              }
           })
           .state('admin', {
               abstract: true,
