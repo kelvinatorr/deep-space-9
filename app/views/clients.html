@@ -1,4 +1,4 @@
-<div layout="row" flex>
+<div layout="row" flex class="dp9-clients-view">
     <div flex layout="row" layout-xs="column" layout-wrap>
         <div ng-repeat="c in vm.clients.data | orderBy : 'name'">
             <md-card class="dp9-card md-whiteframe-3dp">
@@ -17,7 +17,7 @@
                             <span ng-if="c.positions.length > 4">Top</span>
                             Positions
                         </md-subheader>
-                        <md-list-item ng-click="vm.goToPosition()" ng-repeat="p in c.positions | orderObjectBy: 'priority' : false | limitTo:4">
+                        <md-list-item class="dp9-card-list-item" ui-sref="positionDetail({'clientId': c.$id, 'positionId': p.$id})" ng-repeat="p in c.positions | orderObjectBy: 'priority' : false | limitTo:4">
                             <p>{{p.name}}</p>
                         </md-list-item>
                         <!--4 ITEMS MAX-->

@@ -16,7 +16,8 @@
     function orderObjectBy() {
         return function(items, field, reverse) {
             var filtered = [];
-            angular.forEach(items, function(item) {
+            angular.forEach(items, function(item, key) {
+                item.$id = key;
                 filtered.push(item);
             });
             filtered.sort(function (a, b) {

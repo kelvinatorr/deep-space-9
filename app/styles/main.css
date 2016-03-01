@@ -14,3 +14,8 @@
     width: 276px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 }
 
+/*Allows us to put a ui-sref on the card list item and have it still look the same when you just have an ng-click on it*/
+.dp9-clients-view .dp9-card .dp9-card-list-item>.md-button {
+    margin: 0;
+    font-weight: normal;
+}

@@ -18,9 +18,9 @@ describe('Filter: orderObjectBy', function () {
         mandeep: {name: 'Mandeep'}
     };
     expect(orderObjectBy(data)).toEqual([
-        {name: 'Mandeep'},
-        {name: 'Tiffany'},
-        {name: 'Kelvin'}
+        {name: 'Mandeep',  $id: 'mandeep'},
+        {name: 'Tiffany',  $id: 'tiffany'},
+        {name: 'Kelvin',  $id: 'kelvin'}
     ]);
   });
 

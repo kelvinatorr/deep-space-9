@@ -68,7 +68,7 @@
           })
           .state('positionDetail', {
               parent: 'main',
-              url: '/positions/:clientId/:positionsId',
+              url: '/positions/:clientId/:positionId',
               templateUrl: 'views/position-detail.html',
               controller: 'PositionDetailCtrl',
               controllerAs: 'vm'
