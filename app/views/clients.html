@@ -1,6 +1,15 @@
-<div layout="row" flex class="dp9-clients-view">
-    <div flex layout="row" layout-xs="column" layout-wrap>
-        <div ng-repeat="c in vm.clients.data | orderBy : 'name'">
+<div layout="column" flex class="dp9-clients-view">
+    <div layout="row">
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <h1 style="font-size: 30px;">
+                    Clients
+                </h1>
+            </div>
+        </md-toolbar>
+    </div>
+    <div flex layout="row" layout-xs="column" layout-wrap layout-padding>
+        <div ng-repeat="c in vm.clients.data | orderBy : 'name'" style="padding: 4px;">
             <md-card class="dp9-card md-whiteframe-3dp">
                 <md-card-title>
                     <md-card-title-text>
