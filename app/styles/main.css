@@ -19,3 +19,9 @@
     margin: 0;
     font-weight: normal;
 }
+
+.dp9-card-link,.dp9-card-link:hover, .dp9-card-link:visited, .dp9-card-link:active {
+    text-decoration: none;
+    color: rgba(0,0,0,0.87);
+    padding: 0;
+}
