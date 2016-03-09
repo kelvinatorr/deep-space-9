@@ -12,10 +12,12 @@
     angular.module('deepspace9App')
         .controller('PositionsCtrl', PositionsCtrl);
 
-    function PositionsCtrl(positions) {
+    function PositionsCtrl(positions, client) {
         var vm = this;
 
         vm.positions = positions;
+
+        vm.client = client;
 
     }
 })();

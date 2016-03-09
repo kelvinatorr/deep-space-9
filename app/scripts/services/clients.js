@@ -19,7 +19,8 @@
         // Public API here
         return {
             data: [],
-            getData: getData
+            getData: getData,
+            getClient: getClient
         };
 
         function getData(uid) {
@@ -33,6 +34,18 @@
                         self.data.push(client);
                     });
                     resolve(self);
+                }).catch(function(response) {
+                    reject(response);
+                });
+            });
+        }
+
+        function getClient(clientId) {
+            return $q(function(resolve, reject) {
+                console.log(clientId);
+                var client = $firebaseObject(ref.child('clients/' + clientId));
+                client.$loaded().then(function() {
+                    resolve(client);
                 }).catch(function(response) {
                     reject(response);
                 });

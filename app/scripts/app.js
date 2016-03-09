@@ -63,6 +63,9 @@
               resolve: {
                   positions: ['Positions','$stateParams', function(Positions, $stateParams) {
                       return Positions.getData($stateParams.clientId);
+                  }],
+                  client: ['Clients','$stateParams', function(Clients, $stateParams) {
+                      return Clients.getClient($stateParams.clientId);
                   }]
               }
           })
