@@ -42,7 +42,6 @@
 
         function getClient(clientId) {
             return $q(function(resolve, reject) {
-                console.log(clientId);
                 var client = $firebaseObject(ref.child('clients/' + clientId));
                 client.$loaded().then(function() {
                     resolve(client);

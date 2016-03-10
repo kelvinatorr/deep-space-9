@@ -2,27 +2,32 @@
     <div layout="row">
         <md-toolbar class="md-table-toolbar md-default">
             <div class="md-toolbar-tools">
+                <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients" ui-sref="clients" hide-xs>
+                    <md-tooltip md-direction="top" md-delay="400">
+                        Back to client list
+                    </md-tooltip>
+                    <md-icon md-svg-icon="navigation:arrow_back"></md-icon>
+                </md-button>
                 <div flex-xs>
                     <h1 id="cardListH1">
                         <!--United Federation of Planets Starfleet Super Long Client Positions-->
-                        {{vm.client.name}}
+                        {{vm.client.name}} Positions
                     </h1>
                 </div>
 
-                <!--<div>-->
-                    <md-button class="md-fab md-mini" ng-click="vm.addUser($event)" aria-label="Add Position">
-                        <md-tooltip md-direction="top" md-delay="400">
-                            Add Position
-                        </md-tooltip>
-                        <md-icon md-svg-icon="content:add"></md-icon>
-                    </md-button>
-                <!--</div>-->
+                <md-button class="md-fab md-mini md-primary" ng-click="vm.addUser($event)" aria-label="Add Position">
+                    <md-tooltip md-direction="top" md-delay="400">
+                        Add Position
+                    </md-tooltip>
+                    <md-icon md-svg-icon="content:add"></md-icon>
+                </md-button>
 
             </div>
         </md-toolbar>
+
     </div>
     <md-content flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
-        <a class="dp9-card-link" href="http://www.theatlantic.com" layout="column" flex-xs="100"
+        <a class="dp9-card-link" ui-sref="positionDetail({'clientId': '{{::vm.client.$id}}', 'positionId': '{{::p.$id}}' })" layout="column" flex-xs="100"
             ng-repeat="p in vm.positions.data">
             <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
                 <md-card-title style="flex-basis: auto; flex-grow: 0;">
@@ -38,7 +43,7 @@
                     <!--<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>-->
                     <div>
                         <p style="overflow-wrap: break-word">
-                            {{p.description}}
+                            {{p.description}} {{vm.client.$id}}
                         </p>
 
                         <p ng-repeat="c in p.candidates | orderObjectBy: 'rank' : false | limitTo:1">
