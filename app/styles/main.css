@@ -5,9 +5,9 @@
         /*height: 344px;*/
     }
 
-    .dp9-card >md-card-title > md-card-title-text> .md-headline {
-        width: 308px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
-    }
+    /*.dp9-card >md-card-title > md-card-title-text> .md-headline {*/
+        /*width: 308px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;*/
+    /*}*/
 
     #cardListH1 {
         font-size: 30px;
