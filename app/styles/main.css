@@ -21,6 +21,10 @@
     }
 }
 
+#cardListH1 {
+    margin: 0; font-weight: 400; box-sizing: border-box;
+}
+
 .dp9-list-item-p {
     width: 276px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 }
@@ -37,6 +41,17 @@
     padding: 0;
 }
 
-.dp9-back-button {
-    margin-right: 13px;
+.md-button.md-icon-button.dp9-back-button {
+    /*margin-right: 13px;*/
+    margin: 0 0 0 -12px;
 }
+
+/*Style for card list header*/
+#cardListDiv {
+    min-height: 64px;
+}
+
+.dp9-card-list-title {
+    align-items: center; letter-spacing: 0.005em; padding: 0 24px; font-size: 20px;
+}
+/*End styles for card list header*/

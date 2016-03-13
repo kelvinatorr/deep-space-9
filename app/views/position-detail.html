@@ -1,17 +1,16 @@
 <div layout="column" flex class="dp9-position-detail-view">
     <div layout="row">
-        <div layout="column" style="min-height: 64px;">
+        <div layout="column" id="cardListDiv">
             <!--<div class="md-toolbar-tools" layout="column">-->
-                <div layout="row" flex="100" style="align-items: center; letter-spacing: 0.005em; padding: 0 24px; font-size: 20px;">
-                    <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients" ui-sref="clients" hide-xs
-                        style="margin: 0 0 0 -12px;">
+                <div layout="row" flex="100" class="dp9-card-list-title">
+                    <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients" ui-sref="clients" hide-xs>
                         <md-tooltip md-direction="top" md-delay="400">
                             Back to positions list
                         </md-tooltip>
                         <md-icon md-svg-icon="navigation:arrow_back"></md-icon>
                     </md-button>
                     <div flex-xs>
-                        <h1 id="cardListH1" style="margin: 0; font-weight: 400; box-sizing: border-box">
+                        <h1 id="cardListH1">
                             <!--Kung Fu Grand Master-->
                             United Federation of Planets Starfleet Positions
                         </h1>
