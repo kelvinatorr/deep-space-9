@@ -1,7 +1,7 @@
 <div layout="column" flex class="dp9-positions-view">
     <div layout="row">
-        <md-toolbar class="md-table-toolbar md-default">
-            <div class="md-toolbar-tools">
+        <div layout="column" id="cardListDiv">
+            <div layout="row" flex="100" class="dp9-card-list-title">
                 <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients" ui-sref="clients" hide-xs>
                     <md-tooltip md-direction="top" md-delay="400">
                         Back to client list
@@ -23,10 +23,10 @@
                 </md-button>
 
             </div>
-        </md-toolbar>
+        </div>
 
     </div>
-    <md-content flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
+    <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
         <a class="dp9-card-link" ui-sref="positionDetail({'clientId': '{{::vm.client.$id}}', 'positionId': '{{::p.$id}}' })" layout="column" flex-xs="100"
             ng-repeat="p in vm.positions.data">
             <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
@@ -56,6 +56,7 @@
                 </md-card-content>
             </md-card>
         </a>
+
 
         <!--<a class="dp9-card-link" href="http://www.theatlantic.com" layout="column" flex-xs="100"-->
            <!--&gt;-->
@@ -114,6 +115,6 @@
         <!--</md-card>-->
 
 
-    </md-content>
+    </div>
 </div>
 
