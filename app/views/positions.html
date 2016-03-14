@@ -1,0 +1,120 @@
+<div layout="column" flex class="dp9-positions-view">
+    <div layout="row">
+        <div layout="column" id="cardListDiv">
+            <div layout="row" flex="100" class="dp9-card-list-title">
+                <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients" ui-sref="clients" hide-xs>
+                    <md-tooltip md-direction="top" md-delay="400">
+                        Back to client list
+                    </md-tooltip>
+                    <md-icon md-svg-icon="navigation:arrow_back"></md-icon>
+                </md-button>
+                <div flex-xs>
+                    <h1 id="cardListH1">
+                        <!--United Federation of Planets Starfleet Super Long Client Positions-->
+                        {{vm.client.name}} Positions
+                    </h1>
+                </div>
+
+                <md-button class="md-fab md-mini md-primary" ng-click="vm.addUser($event)" aria-label="Add Position">
+                    <md-tooltip md-direction="top" md-delay="400">
+                        Add Position
+                    </md-tooltip>
+                    <md-icon md-svg-icon="content:add"></md-icon>
+                </md-button>
+
+            </div>
+        </div>
+
+    </div>
+    <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
+        <a class="dp9-card-link" ui-sref="positionDetail({'clientId': '{{::vm.client.$id}}', 'positionId': '{{::p.$id}}' })" layout="column" flex-xs="100"
+            ng-repeat="p in vm.positions.data">
+            <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
+                <md-card-title style="flex-basis: auto; flex-grow: 0;">
+                    <md-card-title-text>
+                        <span class="md-headline">
+                            {{p.name}}
+                            <md-tooltip md-delay="400">{{p.name}}</md-tooltip>
+                        </span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content layout="column">
+                    <!--<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>-->
+                    <div>
+                        <p style="overflow-wrap: break-word">
+                            {{p.description}} {{vm.client.$id}}
+                        </p>
+
+                        <p ng-repeat="c in p.candidates | orderObjectBy: 'rank' : false | limitTo:1">
+                            <strong>Top Candidate</strong>: {{c.name}}
+                        </p>
+                        <p><strong>Latest Update</strong>: {{p.latestUpdate}}</p>
+                    </div>
+
+
+                </md-card-content>
+            </md-card>
+        </a>
+
+
+        <!--<a class="dp9-card-link" href="http://www.theatlantic.com" layout="column" flex-xs="100"-->
+           <!--&gt;-->
+            <!--<md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100">-->
+                <!--<md-card-title style="flex: inherit">-->
+                    <!--<md-card-title-text>-->
+                        <!--<span class="md-headline">-->
+                            <!--Captain-->
+                            <!--<md-tooltip md-delay="400">Captain</md-tooltip>-->
+                        <!--</span>-->
+                    <!--</md-card-title-text>-->
+                <!--</md-card-title>-->
+
+                <!--<md-card-content layout="column">-->
+                    <!--&lt;!&ndash;<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>&ndash;&gt;-->
+                    <!--<div>-->
+                        <!--<p style="overflow-wrap: break-word">-->
+                            <!--Must complete all tests-->
+                        <!--</p>-->
+
+                        <!--<p>-->
+                            <!--<strong>Top Candidate</strong>: Gordon Ramsey-->
+                        <!--</p>-->
+                        <!--<p><strong>Latest Update</strong>: Works</p>-->
+                    <!--</div>-->
+
+
+                <!--</md-card-content>-->
+            <!--</md-card>-->
+        <!--</a>-->
+
+
+        <!--<md-card class="dp9-card md-whiteframe-3dp" flex-xs="100">-->
+            <!--<md-card-title style="flex: inherit">-->
+                <!--<md-card-title-text>-->
+                        <!--<span class="md-headline">-->
+                            <!--Head Chef-->
+                            <!--<md-tooltip md-delay="400">Head Chef</md-tooltip>-->
+                        <!--</span>-->
+                <!--</md-card-title-text>-->
+            <!--</md-card-title>-->
+
+            <!--<md-card-content layout="column" flex>-->
+                <!--<div>-->
+                    <!--<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>-->
+                    <!--&lt;!&ndash;<p style="overflow-wrap: break-word">&ndash;&gt;-->
+                    <!--&lt;!&ndash;To be sure, there has never been a fully free economy. By that measure, both communism and capitalism refer to ideals that have never existed in practice. All governments play some economic role. It is, however, possible to ascertain relative levels of economic freedom, which is to say that we can measure how different countries stack up against each other. The Economic Freedom of the World index, for example, measure ssssssssssssssssssssssssss HelooHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH WWWWWW&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+                    <!--<p><strong>Top Candidate</strong>: Joel White</p>-->
+                    <!--<p><strong>Latest Update</strong>: Joel White resume uploaded</p>-->
+                <!--</div>-->
+
+
+            <!--</md-card-content>-->
+        <!--</md-card>-->
+
+
+    </div>
+</div>
+

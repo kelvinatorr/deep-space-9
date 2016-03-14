@@ -26,7 +26,7 @@
 
         vm.isOpenLeft = isOpenLeft;
 
-        vm.displayName = currentUser.data.firstName + ' ' + currentUser.data.lastName;
+        vm.displayName = currentUser.data.firstName;
 
         vm.logout = logout;
 

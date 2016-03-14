@@ -1,7 +1,66 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+@media (min-width: 600px) {
+
+    .dp9-card {
+        width: 340px;
+        /*height: 344px;*/
+    }
+
+    /*.dp9-card >md-card-title > md-card-title-text> .md-headline {*/
+        /*width: 308px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;*/
+    /*}*/
+
+    #cardListH1 {
+        font-size: 30px;
+    }
 }
 
+@media (max-width: 600px) {
+
+    #cardListH1 {
+        font-size: 24px;
+    }
+}
+
+#cardListH1 {
+    margin: 0; font-weight: 400; box-sizing: border-box;
+}
+
+.dp9-list-item-p {
+    width: 276px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+}
+
+/*Allows us to put a ui-sref on the card list item and have it still look the same when you just have an ng-click on it*/
+.dp9-clients-view .dp9-card .dp9-card-list-item>.md-button {
+    margin: 0;
+    font-weight: normal;
+}
+
+.dp9-card-link,.dp9-card-link:hover, .dp9-card-link:visited, .dp9-card-link:active {
+    text-decoration: none;
+    color: rgba(0,0,0,0.87);
+    padding: 0;
+}
+
+.md-button.md-icon-button.dp9-back-button {
+    /*margin-right: 13px;*/
+    margin: 0 0 0 -12px;
+}
+
+/*Style for card list header*/
+#cardListDiv {
+    min-height: 64px;
+}
+
+.dp9-card-list-title {
+    align-items: center; letter-spacing: 0.005em; padding: 0 24px; font-size: 20px;
+}
+
+#cardListSubSpan {
+    font-size: 15px;
+}
+/*End styles for card list header*/
+
+/*Style the h3 tags that are the labels for the sections in position detail*/
+.dp9-section-label {
+    margin-bottom: 0;
+}

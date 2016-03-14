@@ -18,8 +18,26 @@
         return {
             data: {},
             getCurrentUser: getCurrentUser,
-            logout: logout
+            logout: logout,
+            getMembership: getMembership
         };
+
+        /**
+         * Get which clients the current user is a member of
+         * @param uid
+         * @returns {*}
+         */
+        function getMembership(uid) {
+            return $q(function(resolve, reject) {
+                var membership = $firebaseObject(FirebaseRef.ref.child('userMembership/' + uid));
+                membership.$loaded().then(function() {
+                    resolve(membership);
+                }).catch(function(response) {
+                    console.log(response);
+                    reject();
+                });
+            });
+        }
 
         function getCurrentUser() {
             /*jshint validthis: true */

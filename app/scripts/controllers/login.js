@@ -65,7 +65,7 @@
                     });
                 } else {
                     // go to next state
-                    $state.go('users');
+                    $state.go('clients');
                 }
             });
         }

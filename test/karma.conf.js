@@ -21,6 +21,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
       // bower:js
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.js',

@@ -25,12 +25,61 @@
       // ignore trailing slashes.
       $urlMatcherFactoryProvider.strictMode(false);
 
+      var resolveCurrentUser = ['CurrentUser','$state', function(CurrentUser, $state) {
+          return CurrentUser.getCurrentUser().catch(function() {
+              $state.go('login');
+          });
+      }];
+
       $stateProvider
           .state('main', {
+              abstract: true,
               url: '/main',
               templateUrl: 'views/main.html',
               controller: 'MainCtrl',
-              controllerAs: 'ctrl'
+              controllerAs: 'vm',
+              resolve: {
+                  currentUser: resolveCurrentUser
+              }
+          })
+          .state('clients', {
+              parent: 'main',
+              url: '/clients',
+              templateUrl: 'views/clients.html',
+              controller: 'ClientsCtrl',
+              controllerAs: 'vm',
+              resolve: {
+                  clients: ['currentUser','Clients', function(currentUser, Clients) {
+                      return Clients.getData(currentUser.data.$id);
+                  }]
+              }
+          })
+          .state('positions', {
+              parent: 'main',
+              url: '/positions/:clientId',
+              templateUrl: 'views/positions.html',
+              controller: 'PositionsCtrl',
+              controllerAs: 'vm',
+              resolve: {
+                  positions: ['Positions','$stateParams', function(Positions, $stateParams) {
+                      return Positions.getData($stateParams.clientId);
+                  }],
+                  client: ['Clients','$stateParams', function(Clients, $stateParams) {
+                      return Clients.getClient($stateParams.clientId);
+                  }]
+              }
+          })
+          .state('positionDetail', {
+              parent: 'main',
+              url: '/positions/:clientId/:positionId',
+              templateUrl: 'views/position-detail.html',
+              controller: 'PositionDetailCtrl',
+              controllerAs: 'vm'
+              //resolve: {
+              //    positions: ['Positions','$stateParams', function(Positions, $stateParams) {
+              //        return Positions.getData($stateParams.clientId);
+              //    }]
+              //}
           })
           .state('admin', {
               abstract: true,
@@ -39,9 +88,7 @@
               controller: 'AdminCtrl',
               controllerAs: 'vm',
               resolve: {
-                  currentUser: ['CurrentUser', function(CurrentUser) {
-                      return CurrentUser.getCurrentUser();
-                  }]
+                  currentUser: resolveCurrentUser
               }
           })
           .state('users', {
@@ -108,7 +155,7 @@
               controllerAs: 'ctrl'
           });
 
-      $urlRouterProvider.otherwise('/login');
+      $urlRouterProvider.otherwise('/main/clients');
       // Remove debug info when in production.
       if(window.location.host.split(':')[0] !== 'localhost') {
           $compileProvider.debugInfoEnabled(false);

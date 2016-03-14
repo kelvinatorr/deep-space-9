@@ -40,15 +40,23 @@
         /**
          * Saves a users membership to firebase
          */
-        function addMembership() {
+        function addMembership(client) {
             $timeout(function() {
+
+                var userId = vm.selectedUserMembership.$id;
+                var updateObj = {};
+                updateObj[userId] = vm.selectedUserMembership[client.$id];
+
                 // Remove all false keys from the userMembership object before saving it
                 angular.forEach(vm.clients.data, function(val) {
                     if(!vm.selectedUserMembership[val.$id]) {
                         delete vm.selectedUserMembership[val.$id];
                     }
                 });
-                vm.selectedUserMembership.$save().catch(function(error) {
+                vm.selectedUserMembership.$save().then(function() {
+                    // update the members
+                    FirebaseRef.ref.child('members/' + client.$id).update(updateObj);
+                }).catch(function(error) {
                     alert('An error occured while saving to firebase!');
                 });
             });

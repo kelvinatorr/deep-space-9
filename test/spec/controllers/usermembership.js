@@ -10,7 +10,9 @@ describe('Controller: UserMembershipCtrl', function () {
 
     var mockFirebaseRef = {
         ref: {
-            child: function(arg) {}
+            child: function(arg) { return {
+                update: function() {}
+            }}
         }
     };
 
@@ -68,12 +70,19 @@ describe('Controller: UserMembershipCtrl', function () {
                 ibm: false,
                 $save: function() {
                     return {
-                        catch: function() {}
+                        then: function() {
+                            return {
+                                catch: function() {}
+                            }
+                        }
                     }
                 }
             };
             spyOn(UserMembershipCtrl.selectedUserMembership, '$save').and.callThrough();
-            UserMembershipCtrl.addMembership();
+            var client = {
+                $id: '020f73c4-98cd-4d76-8fdb-d378e00be66d'
+            };
+            UserMembershipCtrl.addMembership(client);
             timeout.flush();
         });
 

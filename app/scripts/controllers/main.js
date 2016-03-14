@@ -12,13 +12,17 @@
   angular.module('deepspace9App')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl($scope) {
-      $scope.awesomeThings = [
-          'HTML5 Boilerplate',
-          'AngularJS',
-          'Karma'
-      ];
+  function MainCtrl($state, currentUser) {
+      var vm = this;
 
+      vm.displayName = currentUser.data.firstName;
+
+      vm.logout = logout;
+
+      function logout() {
+          currentUser.logout();
+          $state.go('login');
+      }
 
   }
 })();
