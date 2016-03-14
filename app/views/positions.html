@@ -30,7 +30,7 @@
         <a class="dp9-card-link" ui-sref="positionDetail({'clientId': '{{::vm.client.$id}}', 'positionId': '{{::p.$id}}' })" layout="column" flex-xs="100"
             ng-repeat="p in vm.positions.data">
             <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
-                <md-card-title style="flex-basis: auto; flex-grow: 0;">
+                <md-card-title class="dp9-card-title">
                     <md-card-title-text>
                         <span class="md-headline">
                             {{p.name}}
