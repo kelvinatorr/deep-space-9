@@ -54,4 +54,8 @@
 .dp9-card-list-title {
     align-items: center; letter-spacing: 0.005em; padding: 0 24px; font-size: 20px;
 }
+
+#cardListSubSpan {
+    font-size: 15px;
+}
 /*End styles for card list header*/
