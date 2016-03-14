@@ -25,7 +25,6 @@
 
             element.on('mouseleave', function() {
                 element.removeClass('md-whiteframe-9dp');
-                //element.addClass('md-whiteframe-3dp');
             });
         }
     }
