@@ -63,4 +63,5 @@
 /*Style the h3 tags that are the labels for the sections in position detail*/
 .dp9-section-label {
     margin-bottom: 0;
+    font-weight: 400;
 }
