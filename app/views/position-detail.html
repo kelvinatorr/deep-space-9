@@ -47,22 +47,28 @@
                 </md-card-title>
 
                 <md-card-content layout="column">
-                    <!--<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>-->
                     <div>
                         <p style="overflow-wrap: break-word">
-                            {{p.description}} {{vm.client.$id}}
+                            brucewhydoyouhavesuchalongemailaddress.lee@gmail.com
+                        </p>
+                        <p>
+                            (702) 889-2792
                         </p>
 
-                        <p ng-repeat="c in p.candidates | orderObjectBy: 'rank' : false | limitTo:1">
-                            <strong>Top Candidate</strong>: {{c.name}}
+                        <p>
+                            <strong>Average Rank</strong>: 2
                         </p>
-                        <p><strong>Latest Update</strong>: {{p.latestUpdate}}</p>
                     </div>
 
+                    <md-button class="md-raised" ng-disabled="false">
+                        <span ng-if="true">Download Resume</span>
+                        <span ng-if="false">No Resume Available</span>
+                    </md-button>
 
                 </md-card-content>
             </md-card>
         </a>
+        
 
 
 
