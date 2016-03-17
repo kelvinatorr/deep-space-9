@@ -19,7 +19,7 @@
                 </md-card-title-text>
             </md-card-title>
 
-            <md-card-content layout="column">
+            <md-card-content layout="column" flex>
                 <md-list>
                     <md-subheader class="md-no-sticky">
                         <span ng-if="c.positions.length > 4">Top</span>
@@ -30,12 +30,15 @@
                     </md-list-item>
                     <!--4 ITEMS MAX-->
                 </md-list>
-                <md-button class="md-raised" ui-sref="positions({'clientId': c.$id})">
+
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+                <md-button class="" ui-sref="positions({'clientId': c.$id})" flex>
                     View
                     <span ng-if="c.positions.length > 4">All Positions</span>
                     <md-tooltip md-direction="top" md-delay="400" ng-if="c.positions.length > 4">{{c.positions.length - 4}} additional positions not shown</md-tooltip>
                 </md-button>
-            </md-card-content>
+            </md-card-actions>
         </md-card>
 
 
