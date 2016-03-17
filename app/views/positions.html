@@ -43,7 +43,7 @@
                     <!--<p>Minimum 15 years of experience. Similar demeanor to Gordon Ramsey</p>-->
                     <div>
                         <p style="overflow-wrap: break-word">
-                            {{p.description}} {{vm.client.$id}}
+                            {{p.description}}
                         </p>
 
                         <p ng-repeat="c in p.candidates | orderObjectBy: 'rank' : false | limitTo:1">
