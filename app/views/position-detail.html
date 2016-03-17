@@ -17,11 +17,11 @@
                         </h1>
                     </div>
 
-                    <md-button class="md-fab md-mini md-primary" ng-click="vm.addUser($event)" aria-label="Add Position">
-                        <md-tooltip md-direction="top" md-delay="400">
-                            Add Position
+                    <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add Position">
+                        <md-tooltip md-direction="right" md-delay="400">
+                            Edit
                         </md-tooltip>
-                        <md-icon md-svg-icon="content:add"></md-icon>
+                        <md-icon md-svg-icon="editor:mode_edit"></md-icon>
                     </md-button>
 
                 </div>
@@ -31,8 +31,16 @@
             <!--</div>-->
         </div>
     </div>
-    <div layout="row" class="dp9-card-list-title">
-        <h3 class="dp9-section-label">Candidates</h3>
+    <div layout="row" class="dp9-card-list-title" style="margin-top: 1em;">
+        <div>
+            <h3 class="dp9-section-label" style="margin: 0;">Candidates</h3>
+        </div>
+        <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add Candidate">
+            <md-tooltip md-direction="right" md-delay="400">
+                Add A Candidate
+            </md-tooltip>
+            <md-icon md-svg-icon="content:add"></md-icon>
+        </md-button>
     </div>
     <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
         <a class="dp9-card-link" href="http://www.jalopnik.com" layout="column" flex-xs="100">
@@ -46,7 +54,7 @@
                     </md-card-title-text>
                 </md-card-title>
 
-                <md-card-content layout="column">
+                <md-card-content layout="column" flex>
                     <div>
                         <p style="overflow-wrap: break-word">
                             brucewhydoyouhavesuchalongemailaddress.lee@gmail.com
@@ -59,20 +67,15 @@
                             <strong>Average Rank</strong>: 2
                         </p>
                     </div>
-
-                    <md-button class="md-raised" ng-disabled="false">
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center">
+                    <md-button ng-disabled="false" flex>
                         <span ng-if="true">Download Resume</span>
                         <span ng-if="false">No Resume Available</span>
                     </md-button>
-
-                </md-card-content>
+                </md-card-actions>
             </md-card>
         </a>
-        
-
-
-
-
     </div>
 </div>
 
