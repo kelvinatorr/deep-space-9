@@ -10,7 +10,7 @@
     </div>
     <md-content flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
         <md-card class="dp9-card md-whiteframe-3dp" flex-xs="100" ng-repeat="c in vm.clients.data | orderBy : 'name'">
-            <md-card-title style="flex: inherit">
+            <md-card-title class="dp9-card-title">
                 <md-card-title-text>
                         <span class="md-headline">
                             {{c.name}}
@@ -19,7 +19,7 @@
                 </md-card-title-text>
             </md-card-title>
 
-            <md-card-content layout="column">
+            <md-card-content layout="column" flex>
                 <md-list>
                     <md-subheader class="md-no-sticky">
                         <span ng-if="c.positions.length > 4">Top</span>
@@ -30,12 +30,15 @@
                     </md-list-item>
                     <!--4 ITEMS MAX-->
                 </md-list>
-                <md-button class="md-raised" ui-sref="positions({'clientId': c.$id})">
+
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+                <md-button class="" ui-sref="positions({'clientId': c.$id})" flex>
                     View
                     <span ng-if="c.positions.length > 4">All Positions</span>
                     <md-tooltip md-direction="top" md-delay="400" ng-if="c.positions.length > 4">{{c.positions.length - 4}} additional positions not shown</md-tooltip>
                 </md-button>
-            </md-card-content>
+            </md-card-actions>
         </md-card>
 
 
