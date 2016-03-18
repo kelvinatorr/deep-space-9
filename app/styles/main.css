@@ -75,6 +75,7 @@
     width: 100%
 }
 
+/*Style for the notes section of position details*/
 .dp9-notes-div>md-list .md-list-item-text.dp9-note {
     margin: 15px 0 15px 0;
 }
@@ -82,3 +83,8 @@
 .dp9-notes-div>md-list .md-list-item-text.dp9-note>.dp9-notes-text {
     font-size: 16px; font-weight: 400; color: rgba(0,0,0,0.87);
 }
+
+.dp9-notes-div>.dp9-notes-list {
+    max-height: 900px; overflow-y: auto;
+}
+/*End styles for the notes section of position details*/
