@@ -70,3 +70,7 @@
     margin-bottom: 0;
     font-weight: 400;
 }
+
+.dp9-card>md-card-actions>.dp9-card-action-button {
+    width: 100%
+}
