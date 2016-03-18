@@ -74,3 +74,11 @@
 .dp9-card>md-card-actions>.dp9-card-action-button {
     width: 100%
 }
+
+.dp9-notes-div>md-list .md-list-item-text.dp9-note {
+    margin: 15px 0 15px 0;
+}
+
+.dp9-notes-div>md-list .md-list-item-text.dp9-note>.dp9-notes-text {
+    font-size: 16px; font-weight: 400; color: rgba(0,0,0,0.87);
+}
