@@ -108,7 +108,28 @@
                 </div>
             </md-list-item>
         </md-list>
+    </div>
+    <div layout="row" class="dp9-card-list-title" style="margin-top: 1em;">
+        <div>
+            <h3 class="dp9-section-label" style="margin: 0;">Files</h3>
+        </div>
+        <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add a file">
+            <md-tooltip md-direction="right" md-delay="400">
+                Add A File
+            </md-tooltip>
+            <md-icon md-svg-icon="content:add"></md-icon>
+        </md-button>
+    </div>
+    <div layout-padding class="dp9-files-div">
+        <md-list flex-xs="100" flex="75" class="md-whiteframe-2dp dp9-files-list">
+            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
+                <p>Headshot.jpg</p>
+            </md-list-item>
+            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
+                <p>Selected Works and Writings.pdf</p>
+            </md-list-item>
 
+        </md-list>
     </div>
 </div>
 

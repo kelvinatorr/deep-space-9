@@ -88,3 +88,9 @@
     max-height: 900px; overflow-y: auto;
 }
 /*End styles for the notes section of position details*/
+
+/*Styles for the files div in position detail and candidate detail*/
+.dp9-files-div>.dp9-files-list {
+    max-height: 600px; overflow-y: auto;
+}
+/*End styles for the files div*/
