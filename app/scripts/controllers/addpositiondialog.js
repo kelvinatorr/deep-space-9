@@ -18,7 +18,8 @@
 
         vm.newPosition = {
             name: '',
-            description: ''
+            description: '',
+            priority: 0
         };
 
         vm.cancel = cancel;
@@ -31,8 +32,8 @@
             $mdDialog.cancel();
         }
 
-        function save(user) {
-            $mdDialog.hide(user);
+        function save(newPosition) {
+            $mdDialog.hide(newPosition);
         }
 
     }

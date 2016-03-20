@@ -40,7 +40,7 @@
             );
 
             dialogPromise.then(function(newPosition) {
-                positions.createPosition(newPosition).catch(function(error) {
+                positions.createPosition(newPosition, vm.client.$id).catch(function(error) {
                     alert(error);
                 });
             });
