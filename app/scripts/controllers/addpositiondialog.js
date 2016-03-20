@@ -11,7 +11,29 @@
     angular.module('deepspace9App')
         .controller('AddPositionDialogCtrl', AddPositionDialogCtrl);
 
-    function AddPositionDialogCtrl() {
+    function AddPositionDialogCtrl($mdDialog) {
+        var vm = this;
+
+        vm.positionForm = {};
+
+        vm.newPosition = {
+            name: '',
+            description: ''
+        };
+
+        vm.cancel = cancel;
+
+        vm.save = save;
+
+        function cancel(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            $mdDialog.cancel();
+        }
+
+        function save(user) {
+            $mdDialog.hide(user);
+        }
 
     }
 
