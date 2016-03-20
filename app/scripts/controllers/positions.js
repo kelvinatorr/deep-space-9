@@ -29,7 +29,8 @@
                     controller: 'AddPositionDialogCtrl',
                     controllerAs: 'vm',
                     locals: {
-                        action: 'Add'
+                        action: 'Add',
+                        positions: vm.positions
                     },
                     bindToController: true,
                     templateUrl: 'views/add-position-dialog.html',

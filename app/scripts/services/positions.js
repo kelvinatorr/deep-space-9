@@ -36,7 +36,6 @@
 
         function createPosition(newPosition, clientId) {
             /*jshint validthis: true */
-            var self = this;
             var newPositionKey = newPosition.name.toLowerCase().replace(/\s/g, '');
             var clientsSaveObject = {
                 name : newPosition.name,

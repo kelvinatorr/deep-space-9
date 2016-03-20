@@ -22,9 +22,21 @@
             priority: 0
         };
 
+        vm.nameChangeWatcher = nameChangeWatcher;
+
         vm.cancel = cancel;
 
         vm.save = save;
+
+        function nameChangeWatcher(newName) {
+            if(newName) {
+                var newNameFormat = newName.toLowerCase().replace(/\s/g, '');
+                var testMatch = vm.positions.data.filter(function(e) {return e.$id.toLowerCase() === newNameFormat;});
+                vm.positionForm.name.$setValidity('unique', testMatch.length === 0);
+            } else {
+                vm.positionForm.name.$setValidity('unique', true);
+            }
+        }
 
         function cancel(ev) {
             ev.preventDefault();
