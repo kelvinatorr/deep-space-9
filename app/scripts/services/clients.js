@@ -44,7 +44,11 @@
             return $q(function(resolve, reject) {
                 var client = $firebaseObject(ref.child('clients/' + clientId));
                 client.$loaded().then(function() {
-                    resolve(client);
+                    if(client.name) {
+                        resolve(client);
+                    } else {
+                        reject();
+                    }
                 }).catch(function(response) {
                     reject(response);
                 });

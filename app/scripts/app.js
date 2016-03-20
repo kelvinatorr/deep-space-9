@@ -64,8 +64,10 @@
                   positions: ['Positions','$stateParams', function(Positions, $stateParams) {
                       return Positions.getData($stateParams.clientId);
                   }],
-                  client: ['Clients','$stateParams', function(Clients, $stateParams) {
-                      return Clients.getClient($stateParams.clientId);
+                  client: ['Clients','$stateParams','$state', function(Clients, $stateParams, $state) {
+                      return Clients.getClient($stateParams.clientId).catch(function() {
+                          $state.go('login');
+                      });
                   }]
               }
           })
