@@ -11,15 +11,20 @@
     angular.module('deepspace9App')
         .controller('AddPositionDialogCtrl', AddPositionDialogCtrl);
 
-    function AddPositionDialogCtrl($mdDialog) {
+    function AddPositionDialogCtrl($mdDialog, $filter) {
         var vm = this;
+
+        var newPriority =  0;
+        if(vm.positions.data.length > 0) {
+            newPriority = $filter('orderObjectBy')(vm.positions.data, 'priority', true)[0].priority + 1;
+        }
 
         vm.positionForm = {};
 
         vm.newPosition = {
             name: '',
             description: '',
-            priority: 0
+            priority: newPriority
         };
 
         vm.nameChangeWatcher = nameChangeWatcher;

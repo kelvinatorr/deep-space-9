@@ -1,10 +1,10 @@
-<md-dialog aria-label="Add A Position" ng-cloak flex="40">
+<md-dialog aria-label="Add A Position" ng-cloak flex="40" flex-xs flex-sm>
     <form name="vm.positionForm" novalidate ng-submit="vm.positionForm.$valid && vm.save(vm.newPosition)">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Add A Position</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
                     <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
@@ -14,7 +14,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Name</label>
-                        <input name="name" type="text" ng-model="vm.newPosition.name" required autofocus md-maxlength="32"
+                        <input name="name" type="text" ng-model="vm.newPosition.name" required md-autofocus md-maxlength="32"
                                ng-model-options="{debounce: {'default': 400, 'blur': 0}}"
                                 ng-change="vm.nameChangeWatcher(vm.newPosition.name)"/>
                         <div ng-messages="vm.positionForm.name.$error" md-auto-hide="false" ng-if="vm.positionForm.name.$dirty">
@@ -29,7 +29,19 @@
                             </div>
                         </div>
                     </md-input-container>
-
+                    <div flex="5"></div>
+                    <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
+                        <label>Priority</label>
+                        <input name="priority" type="number" ng-model="vm.newPosition.priority" required min="0"/>
+                        <div ng-messages="vm.positionForm.priority.$error" md-auto-hide="false" ng-if="vm.positionForm.priority.$dirty">
+                            <div ng-message="required">
+                                A priority is required
+                            </div>
+                            <div ng-message="min">
+                                Priority cannot be negative
+                            </div>
+                        </div>
+                    </md-input-container>
                 </div>
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex>
