@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('PositionsCtrl', PositionsCtrl);
 
-    function PositionsCtrl(positions, client, $mdDialog) {
+    function PositionsCtrl(positions, client, $mdDialog, $mdMedia) {
         var vm = this;
 
         vm.positions = positions;
@@ -36,7 +36,8 @@
                     templateUrl: 'views/add-position-dialog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
-                    clickOutsideToClose:true
+                    clickOutsideToClose:true,
+                    fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
                 }
             );
 
