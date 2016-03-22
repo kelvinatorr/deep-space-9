@@ -16,7 +16,7 @@
 
         var newPriority =  0;
         if(vm.positions.data.length > 0) {
-            newPriority = $filter('orderBy')(vm.positions.data, 'priority')[0].priority + 1;
+            newPriority = $filter('orderBy')(vm.positions.data, '-priority')[0].priority + 1;
         }
 
         vm.positionForm = {};
