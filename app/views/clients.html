@@ -33,7 +33,7 @@
 
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
-                <md-button class="" ui-sref="positions({'clientId': c.$id})" flex>
+                <md-button class="dp9-card-action-button" ui-sref="positions({'clientId': c.$id})">
                     View
                     <span ng-if="c.positions.length > 4">All Positions</span>
                     <md-tooltip md-direction="top" md-delay="400" ng-if="c.positions.length > 4">{{c.positions.length - 4}} additional positions not shown</md-tooltip>
