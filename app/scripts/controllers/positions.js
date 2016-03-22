@@ -12,7 +12,7 @@
     angular.module('deepspace9App')
         .controller('PositionsCtrl', PositionsCtrl);
 
-    function PositionsCtrl(positions, client, $mdDialog, $mdMedia) {
+    function PositionsCtrl(positions, client, $mdDialog, $mdMedia, CurrentUser) {
         var vm = this;
 
         vm.positions = positions;
@@ -30,7 +30,8 @@
                     controllerAs: 'vm',
                     locals: {
                         action: 'Add',
-                        positions: vm.positions
+                        positions: vm.positions,
+                        userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
                     },
                     bindToController: true,
                     templateUrl: 'views/add-position-dialog.html',

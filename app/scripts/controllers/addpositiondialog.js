@@ -24,7 +24,9 @@
         vm.newPosition = {
             name: '',
             description: '',
-            priority: newPriority
+            priority: newPriority,
+            latestUpdate: 'Created by ' + vm.userDisplayName + ', ',
+            latestUpdateDateTime: ''
         };
 
         vm.nameChangeWatcher = nameChangeWatcher;
@@ -50,6 +52,8 @@
         }
 
         function save(newPosition) {
+            var currentDate = new Date();
+            newPosition.latestUpdateDateTime = currentDate.toJSON();
             $mdDialog.hide(newPosition);
         }
 
