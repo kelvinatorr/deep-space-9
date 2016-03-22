@@ -2,13 +2,11 @@
     <div layout="row" flex="20" flex-lg="30" flex-md="70" flex-sm="100" flex-xs="100">
         <div flex="100" layout="column">
             <md-card>
-                <md-toolbar class="padding-20">
-                    <div flex layout="row" layout-align="center center">
-                        <!--<img ng-src="{{::vm.triSettings.logo}}" alt="{{vm.triSettings.name}}">-->
-                        <!--<a href="http://deepspace9.firebase.com">DeepSpace9</a>-->
-                        DeepSpace9
-                    </div>
-                </md-toolbar>
+                <md-card-title class="gl-toolbar-colors">
+                    <md-card-title-text layout-align="center center">
+                        <span class="md-headline">DeepSpace9</span>
+                    </md-card-title-text>
+                </md-card-title>
                 <md-card-content class="md-padding">
                     <form layout="column" name="vm.loginForm" ng-submit="vm.loginForm.$valid && vm.login(vm.loginFormModel)">
                         <md-input-container>

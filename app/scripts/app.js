@@ -163,6 +163,7 @@
           $compileProvider.debugInfoEnabled(false);
       }
 
+      // DON'T Forget to change the CSS Class 'gl-toolbar-colors' when you change this!
       $mdThemingProvider.theme('default')
           .primaryPalette('light-blue')
           .accentPalette('light-green')

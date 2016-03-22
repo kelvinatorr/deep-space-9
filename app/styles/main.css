@@ -94,3 +94,9 @@
     max-height: 600px; overflow-y: auto;
 }
 /*End styles for the files div*/
+
+/*Copies the colors normally associated with md-toolbar*/
+.gl-toolbar-colors {
+    background-color: rgb(3,169,244);
+    color: rgba(0,0,0,0.87);
+}
