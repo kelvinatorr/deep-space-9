@@ -49,8 +49,15 @@
               controller: 'ClientsCtrl',
               controllerAs: 'vm',
               resolve: {
-                  clients: ['currentUser','Clients', function(currentUser, Clients) {
-                      return Clients.getData(currentUser.data.$id);
+                  clients: ['currentUser','Clients','$state', function(currentUser, Clients, $state) {
+                      return Clients.getData(currentUser.data.$id).then(function(clients) {
+                          if(clients.data.length < 2) {
+                              //user goes straight to positions view if they only have one client
+                              $state.go('positions', {clientId: clients.data[0].$id});
+                              return;
+                          }
+                          return clients;
+                      });
                   }]
               }
           })
