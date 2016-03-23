@@ -11,10 +11,14 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl(positionDetail) {
+    function PositionDetailCtrl(positionDetail, $stateParams) {
         var vm = this;
 
+        vm.clientId = $stateParams.clientId;
+
         vm.positionDetail = positionDetail;
+        console.log(vm.positionDetail);
+        //console.log($stateParams);
 
         vm.edit = edit;
 

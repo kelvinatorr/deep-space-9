@@ -4,7 +4,7 @@
             <!--<div class="md-toolbar-tools" layout="column">-->
                 <div layout="row" flex="100" class="dp9-card-list-title">
                     <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients"
-                               ui-sref="positions({clientId: 'unfps'})" hide-xs>
+                               ui-sref="positions({clientId: '{{vm.clientId}}'})" hide-xs>
                         <md-tooltip md-direction="top" md-delay="400">
                             Back to positions list
                         </md-tooltip>
@@ -43,12 +43,19 @@
         </md-button>
     </div>
     <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
-        <a class="dp9-card-link" href="http://www.jalopnik.com" layout="column" flex-xs="100">
+        <!--<div>-->
+            <p ng-if="!vm.positionDetail.data.candidates" class="dp9-no-objects-hint">
+                There are no candidates for this position. Add one by clicking on the plus icon above
+            </p>
+        <!--</div>-->
+
+        <a class="dp9-card-link" href="http://www.jalopnik.com" layout="column" flex-xs="100"
+           ng-if="vm.positionDetail.data.candidates" ng-repeat="c in vm.positionDetail.data.candidates">
             <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
                 <md-card-title class="dp9-card-title">
                     <md-card-title-text>
                         <span class="md-headline">
-                            Bruce Lee
+                            {{c.name}}
                             <md-tooltip md-delay="400">Bruce Lee</md-tooltip>
                         </span>
                     </md-card-title-text>

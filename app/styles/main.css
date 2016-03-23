@@ -100,3 +100,8 @@
     background-color: rgb(3,169,244);
     color: rgba(0,0,0,0.87);
 }
+
+.dp9-no-objects-hint {
+    margin-top: 0;
+    padding-left: 16px;
+}
