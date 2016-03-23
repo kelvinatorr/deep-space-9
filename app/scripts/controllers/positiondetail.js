@@ -11,8 +11,11 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl($scope) {
+    function PositionDetailCtrl(positionDetail) {
+        var vm = this;
 
+        vm.positionDetail = positionDetail;
+        console.log(vm.positionDetail);
     }
 
 })();
