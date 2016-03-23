@@ -12,8 +12,8 @@
                     </md-button>
                     <div flex-xs>
                         <h1 id="cardListH1">
-                            Kung Fu Grand Master
-                            <!--United Federation of Planets Starfleet Positions-->
+                            {{vm.positionDetail.data.name}}
+
                         </h1>
                     </div>
 
@@ -26,7 +26,7 @@
 
                 </div>
                 <div layout="row" class="dp9-card-list-title">
-                    <span id="cardListSubSpan">Killer 2 inch punch required, must be able to juggle knives while on one knee</span>
+                    <span id="cardListSubSpan">{{vm.positionDetail.data.description}}</span>
                 </div>
             <!--</div>-->
         </div>
