@@ -17,6 +17,7 @@ describe('Service: CurrentUser', function () {
     var rootScope;
 
     function firebaseObject() {
+        /*jshint validthis: true */
         if( !(this instanceof firebaseObject) ) {
             return new firebaseObject();
         }
