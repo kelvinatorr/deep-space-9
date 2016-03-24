@@ -61,14 +61,14 @@
                 <md-card-content layout="column" flex>
                     <div>
                         <p style="overflow-wrap: break-word">
-                            brucewhydoyouhavesuchalongemailaddress.lee@gmail.com
+                            {{c.email}}
                         </p>
                         <p>
-                            (702) 889-2792
+                            {{c.phone}}
                         </p>
 
                         <p>
-                            <strong>Average Rank</strong>: 2
+                            <strong>Average Rank</strong>: {{c.averageRating | number: 0}}
                         </p>
                     </div>
                 </md-card-content>
