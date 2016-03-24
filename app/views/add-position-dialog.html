@@ -15,17 +15,13 @@
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Name</label>
                         <input name="name" type="text" ng-model="vm.newPosition.name" required md-autofocus md-maxlength="32"
-                               ng-model-options="{debounce: {'default': 400, 'blur': 0}}"
-                                ng-change="vm.nameChangeWatcher(vm.newPosition.name)"/>
+                               ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
                         <div ng-messages="vm.positionForm.name.$error" md-auto-hide="false" ng-if="vm.positionForm.name.$dirty">
                             <div ng-message="required">
                                 A name is required
                             </div>
                             <div ng-message="md-maxlength">
                                 This name is too long
-                            </div>
-                            <div ng-message="unique">
-                                This name already exists
                             </div>
                         </div>
                     </md-input-container>
