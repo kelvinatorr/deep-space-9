@@ -1,5 +1,5 @@
 <md-dialog aria-label="{{::vm.action}}" ng-cloak flex="40">
-    <form name="vm.positionForm" novalidate ng-submit="vm.positionForm.$valid && vm.save(vm.newPosition)">
+    <form name="vm.positionForm" novalidate ng-submit="vm.positionForm.$valid && vm.save(vm.position)">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>{{::vm.action}}</h2>
@@ -14,7 +14,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Name</label>
-                        <input name="name" type="text" ng-model="vm.newPosition.name" required md-autofocus md-maxlength="32"
+                        <input name="name" type="text" ng-model="vm.position.name" required md-autofocus md-maxlength="32"
                                ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
                         <div ng-messages="vm.positionForm.name.$error" md-auto-hide="false" ng-if="vm.positionForm.name.$dirty">
                             <div ng-message="required">
@@ -28,7 +28,7 @@
                     <div flex="5"></div>
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Priority</label>
-                        <input name="priority" type="number" ng-model="vm.newPosition.priority" required min="0"/>
+                        <input name="priority" type="number" ng-model="vm.position.priority" required min="0"/>
                         <div ng-messages="vm.positionForm.priority.$error" md-auto-hide="false" ng-if="vm.positionForm.priority.$dirty">
                             <div ng-message="required">
                                 A priority is required
@@ -42,7 +42,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex>
                         <label>Description</label>
-                        <textarea name="description" ng-model="vm.newPosition.description" required md-maxlength="256"></textarea>
+                        <textarea name="description" ng-model="vm.position.description" required md-maxlength="256"></textarea>
                         <div ng-messages="vm.positionForm.description.$error" md-auto-hide="false" ng-if="vm.positionForm.description.$dirty">
                             <div ng-message="required">
                                 An description is required

@@ -14,20 +14,23 @@
     function AddPositionDialogCtrl($mdDialog, $filter) {
         var vm = this;
 
-        var newPriority =  0;
-        if(vm.positions.data.length > 0) {
-            newPriority = $filter('orderBy')(vm.positions.data, '-priority')[0].priority + 1;
-        }
-
         vm.positionForm = {};
 
-        vm.newPosition = {
-            name: '',
-            description: '',
-            priority: newPriority,
-            latestUpdate: 'Created by ' + vm.userDisplayName + ', ',
-            latestUpdateDateTime: ''
-        };
+        // When adding a new position, we don't pass a position from the parent controller
+        if(!vm.position) {
+            var newPriority =  0;
+            if(vm.positions && vm.positions.data.length > 0) {
+                newPriority = $filter('orderBy')(vm.positions.data, '-priority')[0].priority + 1;
+            }
+
+            vm.position = {
+                name: '',
+                description: '',
+                priority: newPriority,
+                latestUpdate: 'Created by ' + vm.userDisplayName + ', ',
+                latestUpdateDateTime: ''
+            };
+        }
 
         vm.cancel = cancel;
 
@@ -39,10 +42,10 @@
             $mdDialog.cancel();
         }
 
-        function save(newPosition) {
+        function save(position) {
             var currentDate = new Date();
-            newPosition.latestUpdateDateTime = currentDate.toJSON();
-            $mdDialog.hide(newPosition);
+            position.latestUpdateDateTime = currentDate.toJSON();
+            $mdDialog.hide(position);
         }
 
     }

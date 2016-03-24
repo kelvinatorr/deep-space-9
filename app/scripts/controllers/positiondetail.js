@@ -34,30 +34,31 @@
          * Edit the name, description, or priority of the position
          */
         function edit(ev) {
-            //ev.preventDefault();
-            //ev.stopPropagation();
-            //var dialogPromise = $mdDialog.show(
-            //    {
-            //        controller: 'AddPositionDialogCtrl',
-            //        controllerAs: 'vm',
-            //        locals: {
-            //            action: 'Edit ' + vm.positionDetail.data.name,
-            //            userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
-            //        },
-            //        bindToController: true,
-            //        templateUrl: 'views/add-position-dialog.html',
-            //        parent: angular.element(document.body),
-            //        targetEvent: ev,
-            //        clickOutsideToClose:true,
-            //        fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
-            //    }
-            //);
-            //
-            //dialogPromise.then(function(newPosition) {
-            //    //positions.createPosition(newPosition, vm.client.$id).catch(function(error) {
-            //    //    alert(error);
-            //    //});
-            //});
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dialogPromise = $mdDialog.show(
+                {
+                    controller: 'AddPositionDialogCtrl',
+                    controllerAs: 'vm',
+                    locals: {
+                        action: 'Edit ' + vm.positionDetail.data.name,
+                        userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
+                        position: vm.positionDetail.data
+                    },
+                    bindToController: true,
+                    templateUrl: 'views/add-position-dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose:true,
+                    fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
+                }
+            );
+
+            dialogPromise.then(function(newPosition) {
+                //positions.createPosition(newPosition, vm.client.$id).catch(function(error) {
+                //    alert(error);
+                //});
+            });
         }
 
         function addCandidate() {
