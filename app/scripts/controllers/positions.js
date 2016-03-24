@@ -29,7 +29,7 @@
                     controller: 'AddPositionDialogCtrl',
                     controllerAs: 'vm',
                     locals: {
-                        action: 'Add',
+                        action: 'Add A Position',
                         positions: vm.positions,
                         userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
                     },

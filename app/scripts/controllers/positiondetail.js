@@ -11,7 +11,7 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl(positionDetail, $stateParams) {
+    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser) {
         var vm = this;
 
         vm.clientId = $stateParams.clientId;
@@ -33,8 +33,31 @@
         /**
          * Edit the name, description, or priority of the position
          */
-        function edit() {
-
+        function edit(ev) {
+            //ev.preventDefault();
+            //ev.stopPropagation();
+            //var dialogPromise = $mdDialog.show(
+            //    {
+            //        controller: 'AddPositionDialogCtrl',
+            //        controllerAs: 'vm',
+            //        locals: {
+            //            action: 'Edit ' + vm.positionDetail.data.name,
+            //            userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
+            //        },
+            //        bindToController: true,
+            //        templateUrl: 'views/add-position-dialog.html',
+            //        parent: angular.element(document.body),
+            //        targetEvent: ev,
+            //        clickOutsideToClose:true,
+            //        fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
+            //    }
+            //);
+            //
+            //dialogPromise.then(function(newPosition) {
+            //    //positions.createPosition(newPosition, vm.client.$id).catch(function(error) {
+            //    //    alert(error);
+            //    //});
+            //});
         }
 
         function addCandidate() {
