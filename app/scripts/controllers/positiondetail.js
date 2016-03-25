@@ -14,6 +14,20 @@
     function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser) {
         var vm = this;
 
+        var genericDialogOptions = {
+            controllerAs: 'vm',
+            //locals: {
+            //    action: 'Edit ' + vm.positionDetail.data.name,
+            //    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
+            //    position: angular.copy(vm.positionDetail.data)
+            //},
+            bindToController: true,
+            //templateUrl: 'views/add-position-dialog.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true,
+            fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
+        };
+
         vm.clientId = $stateParams.clientId;
 
         vm.positionDetail = positionDetail;
@@ -34,23 +48,18 @@
         function edit(ev) {
             ev.preventDefault();
             ev.stopPropagation();
-            var dialogPromise = $mdDialog.show(
-                {
-                    controller: 'AddPositionDialogCtrl',
-                    controllerAs: 'vm',
-                    locals: {
-                        action: 'Edit ' + vm.positionDetail.data.name,
-                        userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
-                        position: angular.copy(vm.positionDetail.data)
-                    },
-                    bindToController: true,
-                    templateUrl: 'views/add-position-dialog.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose:true,
-                    fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
-                }
-            );
+            var dialogOptions = $.extend({}, genericDialogOptions, {
+                templateUrl: 'views/add-position-dialog.html',
+                locals: {
+                    action: 'Edit ' + vm.positionDetail.data.name,
+                    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
+                    position: angular.copy(vm.positionDetail.data)
+                },
+                controller: 'AddPositionDialogCtrl',
+                targetEvent: ev
+            });
+
+            var dialogPromise = $mdDialog.show(dialogOptions);
 
             dialogPromise.then(function(position) {
                 vm.positionDetail.save(position).catch(function() {
