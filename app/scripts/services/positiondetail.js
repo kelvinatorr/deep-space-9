@@ -15,7 +15,8 @@
 
         return  {
             data: {},
-            getData: getData
+            getData: getData,
+            save: save
         };
 
         function getData(clientId, positionId) {
@@ -29,6 +30,15 @@
                     reject(response);
                 });
             });
+        }
+
+        function save(newData) {
+            /*jshint validthis: true */
+            var self = this;
+            angular.forEach(self.data, function(val, key) {
+                self.data[key] = newData[key];
+            });
+            return self.data.$save();
         }
     }
 

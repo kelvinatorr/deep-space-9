@@ -17,8 +17,6 @@
         vm.clientId = $stateParams.clientId;
 
         vm.positionDetail = positionDetail;
-        console.log(vm.positionDetail);
-        //console.log($stateParams);
 
         vm.edit = edit;
 
@@ -43,7 +41,7 @@
                     locals: {
                         action: 'Edit ' + vm.positionDetail.data.name,
                         userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
-                        position: vm.positionDetail.data
+                        position: angular.copy(vm.positionDetail.data)
                     },
                     bindToController: true,
                     templateUrl: 'views/add-position-dialog.html',
@@ -54,10 +52,10 @@
                 }
             );
 
-            dialogPromise.then(function(newPosition) {
-                //positions.createPosition(newPosition, vm.client.$id).catch(function(error) {
-                //    alert(error);
-                //});
+            dialogPromise.then(function(position) {
+                vm.positionDetail.save(position).catch(function() {
+                    alert('An error occured while saving your changes');
+                });
             });
         }
 
