@@ -52,7 +52,6 @@
                 templateUrl: 'views/add-position-dialog.html',
                 locals: {
                     action: 'Edit ' + vm.positionDetail.data.name,
-                    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
                     position: angular.copy(vm.positionDetail.data)
                 },
                 controller: 'AddPositionDialogCtrl',
@@ -68,8 +67,26 @@
             });
         }
 
-        function addCandidate() {
+        function addCandidate(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dialogOptions = $.extend({}, genericDialogOptions, {
+                templateUrl: 'views/candidate-dialog.html',
+                locals: {
+                    action: 'Add a Candidate for ' + vm.positionDetail.data.name,
+                    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
+                },
+                controller: 'CandidateDialogCtrl',
+                targetEvent: ev
+            });
 
+            var dialogPromise = $mdDialog.show(dialogOptions);
+
+            dialogPromise.then(function(position) {
+                //vm.positionDetail.save(position).catch(function() {
+                //    alert('An error occured while saving your changes');
+                //});
+            });
         }
 
         function addNote() {
