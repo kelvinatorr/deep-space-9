@@ -1,5 +1,5 @@
 <md-dialog aria-label="{{::vm.action}}" ng-cloak flex="40">
-    <form name="vm.positionForm" novalidate ng-submit="vm.positionForm.$valid && vm.save(vm.position)">
+    <form name="vm.candidateForm" novalidate ng-submit="vm.candidateForm.$valid && vm.save(vm.candidate)">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>{{::vm.action}}</h2>
@@ -13,41 +13,52 @@
             <div class="md-dialog-content">
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
-                        <label>Name</label>
-                        <input name="name" type="text" ng-model="vm.position.name" required md-autofocus md-maxlength="32"
+                        <label>First Name</label>
+                        <input name="firstName" type="text" ng-model="vm.candidate.firstName" required md-autofocus md-maxlength="32"
                                ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
-                        <div ng-messages="vm.positionForm.name.$error" md-auto-hide="false" ng-if="vm.positionForm.name.$dirty">
+                        <div ng-messages="vm.candidateForm.firstName.$error" md-auto-hide="false" ng-if="vm.candidateForm.firstName.$dirty">
                             <div ng-message="required">
-                                A name is required
+                                A first name is required
                             </div>
                             <div ng-message="md-maxlength">
-                                This name is too long
+                                This first name is too long
                             </div>
                         </div>
                     </md-input-container>
-                    <div flex="5"></div>
+                    <div hide-xs hide-sm flex="5"></div>
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
-                        <label>Priority</label>
-                        <input name="priority" type="number" ng-model="vm.position.priority" required min="0"/>
-                        <div ng-messages="vm.positionForm.priority.$error" md-auto-hide="false" ng-if="vm.positionForm.priority.$dirty">
+                        <label>Last Name</label>
+                        <input name="lastName" type="text" ng-model="vm.candidate.lastName" required md-maxlength="32"/>
+                        <div ng-messages="vm.candidateForm.lastName.$error" md-auto-hide="false" ng-if="vm.candidateForm.lastName.$dirty">
                             <div ng-message="required">
-                                A priority is required
+                                A last name is required
                             </div>
-                            <div ng-message="min">
-                                Priority cannot be negative
+                            <div ng-message="md-maxlength">
+                                This last name is too long
                             </div>
                         </div>
                     </md-input-container>
                 </div>
                 <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex>
-                        <label>Description</label>
-                        <textarea name="description" ng-model="vm.position.description" required md-maxlength="256"></textarea>
-                        <div ng-messages="vm.positionForm.description.$error" md-auto-hide="false" ng-if="vm.positionForm.description.$dirty">
+                    <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
+                        <label>Email</label>
+                        <input name="email" type="email" ng-model="vm.candidate.email"
+                               ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
+                        <div ng-messages="vm.candidateForm.email.$error" md-auto-hide="false" ng-if="vm.candidateForm.email.$dirty">
                             <div ng-message="required">
-                                An description is required
+                                An email is required
                             </div>
                         </div>
+                    </md-input-container>
+                    <div hide-xs hide-sm flex="5"></div>
+                    <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
+                        <label>Phone Number</label>
+                        <input name="phone" type="tel" ng-model="vm.candidate.phone"/>
+                        <!--<div ng-messages="vm.candidateForm.phone.$error" md-auto-hide="false" ng-if="vm.candidateForm.phone.$dirty">-->
+                            <!--<div ng-message="required">-->
+                                <!--A phone is required-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </md-input-container>
 
                 </div>
@@ -57,7 +68,7 @@
                     <md-button ng-click="vm.cancel($event)">
                         Cancel
                     </md-button>
-                    <md-button class="md-primary" type="submit" ng-disabled="vm.positionForm.$invalid">
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.candidateForm.$invalid">
                         Save
                     </md-button>
 
