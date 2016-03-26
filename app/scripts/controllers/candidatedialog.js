@@ -14,7 +14,7 @@
     function CandidateDialogCtrl($mdDialog) {
         var vm  = this;
 
-        vm.candidateForm = {};
+        //vm.candidateForm = {};
 
         vm.cancel = cancel;
 

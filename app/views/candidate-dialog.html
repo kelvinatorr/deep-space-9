@@ -61,12 +61,14 @@
                     <div hide-xs hide-sm flex="5"></div>
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Phone Number</label>
-                        <input name="phone" type="tel" ng-model="vm.candidate.phone"/>
-                        <!--<div ng-messages="vm.candidateForm.phone.$error" md-auto-hide="false" ng-if="vm.candidateForm.phone.$dirty">-->
-                        <!--<div ng-message="required">-->
-                        <!--A phone is required-->
-                        <!--</div>-->
-                        <!--</div>-->
+                        <input name="phone" type="tel" ng-model="vm.candidate.phone" input-phone-format country-code="US"
+                            data-form="vm.candidateForm" ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
+                        <div ng-messages="vm.candidateForm.phone.$error" md-auto-hide="false"
+                             ng-if="vm.candidateForm.phone.$dirty">
+                            <div ng-message="phoneNumber">
+                                This phone number is invalid
+                            </div>
+                        </div>
                     </md-input-container>
 
                 </div>
