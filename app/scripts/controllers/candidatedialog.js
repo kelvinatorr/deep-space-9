@@ -26,10 +26,10 @@
             $mdDialog.cancel();
         }
 
-        function save(position) {
+        function save(candidate) {
             //var currentDate = new Date();
             //position.latestUpdateDateTime = currentDate.toJSON();
-            $mdDialog.hide(position);
+            $mdDialog.hide(candidate);
         }
     }
 

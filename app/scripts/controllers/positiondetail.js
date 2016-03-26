@@ -11,7 +11,7 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser) {
+    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser, Candidate) {
         var vm = this;
 
         var genericDialogOptions = {
@@ -74,7 +74,8 @@
                 templateUrl: 'views/candidate-dialog.html',
                 locals: {
                     action: 'Add a Candidate for ' + vm.positionDetail.data.name,
-                    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName
+                    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
+                    candidate: Candidate.getTemplate()
                 },
                 controller: 'CandidateDialogCtrl',
                 targetEvent: ev
@@ -82,10 +83,8 @@
 
             var dialogPromise = $mdDialog.show(dialogOptions);
 
-            dialogPromise.then(function(position) {
-                //vm.positionDetail.save(position).catch(function() {
-                //    alert('An error occured while saving your changes');
-                //});
+            dialogPromise.then(function(newCandidate) {
+                Candidate.saveNew(vm.clientId, vm.positionDetail.data.$id, newCandidate);
             });
         }
 
