@@ -16,13 +16,7 @@
 
         var genericDialogOptions = {
             controllerAs: 'vm',
-            //locals: {
-            //    action: 'Edit ' + vm.positionDetail.data.name,
-            //    userDisplayName: CurrentUser.data.firstName + ' ' + CurrentUser.data.lastName,
-            //    position: angular.copy(vm.positionDetail.data)
-            //},
             bindToController: true,
-            //templateUrl: 'views/add-position-dialog.html',
             parent: angular.element(document.body),
             clickOutsideToClose: true,
             fullscreen: ($mdMedia('sm') || $mdMedia('xs'))
@@ -88,8 +82,21 @@
             });
         }
 
-        function addNote() {
+        function addNote(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dialogOptions = $.extend({}, genericDialogOptions, {
+                templateUrl: 'views/notes-dialog.html',
+                locals: {
+                    action: 'Add a Note'
+                },
+                controller: 'NotesDialogCtrl',
+                targetEvent: ev
+            });
 
+            $mdDialog.show(dialogOptions).then(function(newNote) {
+                console.log(newNote);
+            });
         }
 
         function addFile() {
