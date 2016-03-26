@@ -38,7 +38,7 @@
                             if(!candidateError) {
                                 resolve();
                             } else {
-                                reject(candidateError)
+                                reject(candidateError);
                             }
                         });
                     } else {
