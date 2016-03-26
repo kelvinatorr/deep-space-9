@@ -14,9 +14,11 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>First Name</label>
-                        <input name="firstName" type="text" ng-model="vm.candidate.firstName" required md-autofocus md-maxlength="32"
+                        <input name="firstName" type="text" ng-model="vm.candidate.firstName" required md-autofocus
+                               md-maxlength="32"
                                ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
-                        <div ng-messages="vm.candidateForm.firstName.$error" md-auto-hide="false" ng-if="vm.candidateForm.firstName.$dirty">
+                        <div ng-messages="vm.candidateForm.firstName.$error" md-auto-hide="false"
+                             ng-if="vm.candidateForm.firstName.$dirty">
                             <div ng-message="required">
                                 A first name is required
                             </div>
@@ -29,13 +31,15 @@
                     <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
                         <label>Last Name</label>
                         <input name="lastName" type="text" ng-model="vm.candidate.lastName" required md-maxlength="32"/>
-                        <div ng-messages="vm.candidateForm.lastName.$error" md-auto-hide="false" ng-if="vm.candidateForm.lastName.$dirty">
+                        <div ng-messages="vm.candidateForm.lastName.$error" md-auto-hide="false"
+                             ng-if="vm.candidateForm.lastName.$dirty">
                             <div ng-message="required">
                                 A last name is required
                             </div>
                             <div ng-message="md-maxlength">
                                 This last name is too long
                             </div>
+                            
                         </div>
                     </md-input-container>
                 </div>
@@ -44,7 +48,8 @@
                         <label>Email</label>
                         <input name="email" type="email" ng-model="vm.candidate.email"
                                ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
-                        <div ng-messages="vm.candidateForm.email.$error" md-auto-hide="false" ng-if="vm.candidateForm.email.$dirty">
+                        <div ng-messages="vm.candidateForm.email.$error" md-auto-hide="false"
+                             ng-if="vm.candidateForm.email.$dirty">
                             <div ng-message="required">
                                 An email is required
                             </div>
@@ -55,9 +60,9 @@
                         <label>Phone Number</label>
                         <input name="phone" type="tel" ng-model="vm.candidate.phone"/>
                         <!--<div ng-messages="vm.candidateForm.phone.$error" md-auto-hide="false" ng-if="vm.candidateForm.phone.$dirty">-->
-                            <!--<div ng-message="required">-->
-                                <!--A phone is required-->
-                            <!--</div>-->
+                        <!--<div ng-message="required">-->
+                        <!--A phone is required-->
+                        <!--</div>-->
                         <!--</div>-->
                     </md-input-container>
 
