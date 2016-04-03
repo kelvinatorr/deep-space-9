@@ -21,6 +21,8 @@
       "angular": false,
       "$": true,
       "Firebase": true,
-      "alert": true
+      "alert": true,
+      "formatLocal": true,
+      "isValidNumber": true
   }
 }

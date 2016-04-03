@@ -19,6 +19,7 @@ describe('Service: CurrentUser', function () {
     function firebaseObject() {
         /*jshint validthis: true */
         if( !(this instanceof firebaseObject) ) {
+            /*jshint validthis: true */
             return new firebaseObject();
         }
 
