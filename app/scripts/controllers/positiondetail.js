@@ -115,7 +115,7 @@
                 locals: {
                     action: 'Add a File',
                     fileModel: vm.positionDetail.getFileTemplate(),
-                    folderName: vm.clientId + '/' + vm.positionDetail.data.$id
+                    folderName: 'positions/' + vm.clientId + '/' + vm.positionDetail.data.$id
                 },
                 controller: 'FileDialogCtrl',
                 targetEvent: ev
