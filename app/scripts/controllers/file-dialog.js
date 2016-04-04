@@ -57,10 +57,10 @@
                     // add timestamp
                     var currentDate = new Date();
                     fileModel.uploadTimeStamp = currentDate.toJSON();
-                    console.log(response.data);
-                    console.log('Success!');
+                    fileModel.ndbId = response.data.id;
+                    fileModel.fileName = files[0].name;
                     // close and save to firebase
-                    //$mdDialog.hide(file);
+                    $mdDialog.hide(fileModel);
                 }).catch(function() {
                     alert('An error occurred while uploading the file');
                     vm.isUploading = false;

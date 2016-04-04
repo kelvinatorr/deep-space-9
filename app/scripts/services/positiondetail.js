@@ -17,7 +17,8 @@
             data: {},
             getData: getData,
             save: save,
-            getFileTemplate: getFileTemplate
+            getFileTemplate: getFileTemplate,
+            addFile: addFile
         };
 
         function getData(clientId, positionId) {
@@ -40,6 +41,19 @@
                 self.data[key] = newData[key];
             });
             return self.data.$save();
+        }
+
+        function addFile(clientId, positionId, newFileModel) {
+            return $q(function(resolve, reject) {
+                var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/files');
+                filesRef.push().set(newFileModel, function(error) {
+                    if(error) {
+                        reject();
+                    } else {
+                        resolve();
+                    }
+                });
+            });
         }
 
         /**

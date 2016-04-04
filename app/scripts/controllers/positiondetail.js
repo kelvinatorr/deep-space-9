@@ -120,10 +120,11 @@
                 controller: 'FileDialogCtrl',
                 targetEvent: ev
             });
+            // Set this to false so that they cannot dismiss the dialog when the spinner is running
             dialogOptions.clickOutsideToClose = false;
-            $mdDialog.show(dialogOptions).then(function(newFile) {
+            $mdDialog.show(dialogOptions).then(function(newFileModel) {
                 // save to firebase
-                console.log(newFile);
+                vm.positionDetail.addFile($stateParams.clientId, vm.positionDetail.data.$id, newFileModel);
             });
 
         }
