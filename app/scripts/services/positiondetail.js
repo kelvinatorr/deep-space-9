@@ -11,12 +11,13 @@
     angular.module('deepspace9App')
         .factory('PositionDetail', PositionDetail);
 
-    function PositionDetail(FirebaseRef, $firebaseObject, $q) {
+    function PositionDetail(FirebaseRef, $firebaseObject, $q, CurrentUser) {
 
         return  {
             data: {},
             getData: getData,
-            save: save
+            save: save,
+            getFileTemplate: getFileTemplate
         };
 
         function getData(clientId, positionId) {
@@ -39,6 +40,21 @@
                 self.data[key] = newData[key];
             });
             return self.data.$save();
+        }
+
+        /**
+         * Returns the firebase file model
+         * @returns {{fileName: string, userName: string, userId: *, uploadTimeStamp: null, ndbId: string}}
+         */
+        function getFileTemplate() {
+            return {
+                fileName: '',
+                userName: CurrentUser.data.firstName + ' ' +  CurrentUser.data.lastName,
+                userId: CurrentUser.data.$id,
+                uploadTimeStamp: null,
+                ndbId: ''
+            };
+
         }
     }
 

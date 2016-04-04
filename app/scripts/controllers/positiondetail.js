@@ -11,7 +11,7 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser, Candidate) {
+    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser, Candidate, $http) {
         var vm = this;
 
         var genericDialogOptions = {
@@ -35,6 +35,13 @@
         vm.addFile = addFile;
 
         vm.editNote = editNote;
+
+        vm.testDelete = function() {
+            var fileId = '5741031244955648';
+            $http.delete('https://deepspace9-1134.appspot.com//gcs?fileId=' + fileId, {headers: {'Firebase-User-Id': 'cb516b90-7a3f-4f76-aed7-236fac453bf2'}}).success(function() {
+                console.log('delete success!');
+            });
+        };
 
         /**
          * Edit the name, description, or priority of the position
@@ -99,7 +106,24 @@
             });
         }
 
-        function addFile() {
+        function addFile(ev) {
+            //show modal
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dialogOptions = $.extend({}, genericDialogOptions, {
+                templateUrl: 'views/file-dialog.html',
+                locals: {
+                    action: 'Add a File',
+                    fileModel: vm.positionDetail.getFileTemplate(),
+                    folderName: vm.clientId + '/' + vm.positionDetail.data.$id
+                },
+                controller: 'FileDialogCtrl',
+                targetEvent: ev
+            });
+            $mdDialog.show(dialogOptions).then(function(newFile) {
+                // save to firebase
+                console.log(newFile);
+            });
 
         }
 

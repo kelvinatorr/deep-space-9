@@ -109,3 +109,11 @@
 .gl-break-word {
     overflow-wrap: break-word;
 }
+
+.dp9-file-display-container {
+    width: 100%;
+}
+
+#uploadFile {
+    display: none;
+}

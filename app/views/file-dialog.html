@@ -1,0 +1,46 @@
+<md-dialog aria-label="{{::vm.action}}" ng-cloak flex="40">
+    <form name="vm.fileForm" novalidate ng-submit="vm.fileForm.$valid && vm.save(vm.fileModel)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{::vm.action}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
+                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align-xs="center center" flex-xs="100">
+                    <md-input-container flex flex-xs="100" flex-sm="100" class="dp9-file-display-container">
+                        <label>File to upload</label>
+                        <input type="text" readonly ng-model="vm.fileDisplay" name="fileDisplay"/>
+                        <div ng-messages="vm.fileForm.fileDisplay.$error" ng-if="vm.fileForm.fileDisplay.$dirty">
+                            <div ng-message="fileSelected">
+                                You need to select a file to upload
+                            </div>
+                            <div ng-message="fileSize">
+                                Uploads are limited to 32MB. This file is too big.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-button ng-click="vm.browseFile()">Browse</md-button>
+                    <input type="file" id="uploadFile" data-custom-on-change/>
+                </div>
+                <br hide-gt-sm>
+                <div layout="row" layout-align="end center">
+                    <md-button ng-click="vm.cancel($event)">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.fileForm.$invalid">
+                        Save
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>
+
+
+
