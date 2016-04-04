@@ -14,8 +14,6 @@
     function FileDialogCtrl($mdDialog, $timeout, FileUploader) {
         var vm  = this;
 
-        console.log(vm.folderName);
-
         vm.fileDisplay = '';
 
         vm.fileForm = {};
@@ -27,6 +25,8 @@
         vm.cancel = cancel;
 
         vm.save = save;
+
+        vm.isUploading = false;
 
         function browseFile() {
             document.getElementById('uploadFile').click();
@@ -50,6 +50,8 @@
         function save(fileModel) {
             if(checkFile()) {
                 var files = document.getElementById('uploadFile').files;
+                // show spinner
+                vm.isUploading = true;
                 // upload to cloud
                 FileUploader.upload(files, vm.folderName, fileModel).then(function(response) {
                     // add timestamp
@@ -57,9 +59,12 @@
                     fileModel.uploadTimeStamp = currentDate.toJSON();
                     console.log(response.data);
                     console.log('Success!');
+                    // close and save to firebase
+                    //$mdDialog.hide(file);
+                }).catch(function() {
+                    alert('An error occurred while uploading the file');
+                    vm.isUploading = false;
                 });
-                // close and save to firebase
-                //$mdDialog.hide(file);
             }
         }
 

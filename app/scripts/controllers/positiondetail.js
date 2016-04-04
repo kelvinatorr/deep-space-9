@@ -120,6 +120,7 @@
                 controller: 'FileDialogCtrl',
                 targetEvent: ev
             });
+            dialogOptions.clickOutsideToClose = false;
             $mdDialog.show(dialogOptions).then(function(newFile) {
                 // save to firebase
                 console.log(newFile);

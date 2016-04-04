@@ -4,14 +4,19 @@
             <div class="md-toolbar-tools">
                 <h2>{{::vm.action}}</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)" ng-hide="vm.isUploading">
                     <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align-xs="center center" flex-xs="100">
+                <div layout="row" flex="100" layout-align="center center" ng-show="vm.isUploading">
+                    <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+                </div>
+
+                <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align-xs="center center" flex-xs="100"
+                    ng-hide="vm.isUploading">
                     <md-input-container flex flex-xs="100" flex-sm="100" class="dp9-file-display-container">
                         <label>File to upload</label>
                         <input type="text" readonly ng-model="vm.fileDisplay" name="fileDisplay"/>
@@ -24,15 +29,15 @@
                             </div>
                         </div>
                     </md-input-container>
-                    <md-button ng-click="vm.browseFile()">Browse</md-button>
+                    <md-button ng-click="vm.browseFile()" ng-disabled="vm.isUploading">Browse</md-button>
                     <input type="file" id="uploadFile" data-custom-on-change/>
                 </div>
                 <br hide-gt-sm>
-                <div layout="row" layout-align="end center">
-                    <md-button ng-click="vm.cancel($event)">
+                <div layout="row" layout-align="end center" ng-hide="vm.isUploading">
+                    <md-button ng-click="vm.cancel($event)" ng-disabled="vm.isUploading">
                         Cancel
                     </md-button>
-                    <md-button class="md-primary" type="submit" ng-disabled="vm.fileForm.$invalid">
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.fileForm.$invalid || vm.isUploading">
                         Save
                     </md-button>
                 </div>
