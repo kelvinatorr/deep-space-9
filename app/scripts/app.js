@@ -83,12 +83,14 @@
               url: '/positions/:clientId/:positionId',
               templateUrl: 'views/position-detail.html',
               controller: 'PositionDetailCtrl',
-              controllerAs: 'vm'
-              //resolve: {
-              //    positions: ['Positions','$stateParams', function(Positions, $stateParams) {
-              //        return Positions.getData($stateParams.clientId);
-              //    }]
-              //}
+              controllerAs: 'vm',
+              resolve: {
+                  positionDetail: ['PositionDetail','$stateParams','$state', function(PositionDetail, $stateParams, $state) {
+                      return PositionDetail.getData($stateParams.clientId, $stateParams.positionId).catch(function() {
+                          $state.go('login');
+                      });
+                  }]
+              }
           })
           .state('admin', {
               abstract: true,

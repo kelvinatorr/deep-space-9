@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 'use strict';
 
 describe('Service: CurrentUser', function () {
@@ -17,8 +18,8 @@ describe('Service: CurrentUser', function () {
     var rootScope;
 
     function firebaseObject() {
-        if( !(this instanceof firebaseObject) ) {
-            return new firebaseObject();
+        if(!(this instanceof firebaseObject)) {
+            return new firebaseObject(); /*jshint validthis: true */
         }
 
         //var self = this;
@@ -103,3 +104,4 @@ describe('Service: CurrentUser', function () {
 
 
 });
+/* jshint ignore:end */

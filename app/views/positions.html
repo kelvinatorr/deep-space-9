@@ -46,7 +46,7 @@
                             {{p.description}}
                         </p>
 
-                        <p ng-repeat="c in p.candidates | orderObjectBy: 'rank' : false | limitTo:1">
+                        <p ng-repeat="c in p.candidates | orderObjectBy: 'averageRating' : false | limitTo:1">
                             <strong>Top Candidate</strong>: {{c.name}}
                         </p>
                         <p><strong>Latest Update</strong>: {{p.latestUpdate}} {{p.latestUpdateDateTime | date: 'short'}}</p>

@@ -36,28 +36,25 @@
 
         function createPosition(newPosition, clientId) {
             /*jshint validthis: true */
-            var newPositionKey = newPosition.name.toLowerCase().replace(/\s/g, '');
+            var self = this;
             var clientsSaveObject = {
                 name : newPosition.name,
                 priority: newPosition.priority
             };
-            //console.log(clientsSaveObject);
             return $q(function(resolve, reject) {
                 // save to positions
-                FirebaseRef.ref.child('positions/' + clientId + '/' + newPositionKey).set(newPosition, function(error) {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        // save to clients
-                        FirebaseRef.ref.child('clients/' + clientId + '/positions/' + newPositionKey).set(clientsSaveObject,
-                            function(clientsError) {
-                                if(clientsError) {
-                                    reject(clientsError);
-                                } else {
-                                    resolve();
-                                }
-                            });
-                    }
+                self.data.$add(newPosition).then(function(ref) {
+                    // save to clients
+                    FirebaseRef.ref.child('clients/' + clientId + '/positions/' + ref.key()).set(clientsSaveObject,
+                        function(clientsError) {
+                            if(clientsError) {
+                                reject(clientsError);
+                            } else {
+                                resolve();
+                            }
+                        });
+                }).catch(function(error) {
+                    reject(error);
                 });
             });
         }

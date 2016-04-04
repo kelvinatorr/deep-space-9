@@ -100,3 +100,20 @@
     background-color: rgb(3,169,244);
     color: rgba(0,0,0,0.87);
 }
+
+.dp9-no-objects-hint {
+    margin-top: 0;
+    padding-left: 16px;
+}
+
+.gl-break-word {
+    overflow-wrap: break-word;
+}
+
+.dp9-file-display-container {
+    width: 100%;
+}
+
+#uploadFile {
+    display: none;
+}

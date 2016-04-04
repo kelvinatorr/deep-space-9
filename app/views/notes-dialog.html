@@ -1,0 +1,47 @@
+<md-dialog aria-label="{{::vm.action}}" ng-cloak flex="40">
+    <form name="vm.noteForm" novalidate ng-submit="vm.noteForm.$valid && vm.save(vm.note)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{::vm.action}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
+                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Note</label>
+                        <textarea name="note" ng-model="vm.note.text" required md-autofocus
+                               md-maxlength="256"
+                               ng-model-options="{debounce: {'default': 400, 'blur': 0}}">
+                        </textarea>
+                        <div ng-messages="vm.noteForm.note.$error" md-auto-hide="false"
+                             ng-if="vm.noteForm.note.$dirty">
+                            <div ng-message="required">
+                                A note is required
+                            </div>
+                            <div ng-message="md-maxlength">
+                                This note is too long
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" layout-align="end center">
+                    <md-button ng-click="vm.cancel($event)">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.noteForm.$invalid">
+                        Save
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>
+
+

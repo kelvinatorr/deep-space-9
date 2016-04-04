@@ -4,7 +4,7 @@
             <!--<div class="md-toolbar-tools" layout="column">-->
                 <div layout="row" flex="100" class="dp9-card-list-title">
                     <md-button class="md-icon-button dp9-back-button" aria-label="Back to Clients"
-                               ui-sref="positions({clientId: 'unfps'})" hide-xs>
+                               ui-sref="positions({clientId: '{{vm.clientId}}'})" hide-xs>
                         <md-tooltip md-direction="top" md-delay="400">
                             Back to positions list
                         </md-tooltip>
@@ -12,21 +12,22 @@
                     </md-button>
                     <div flex-xs>
                         <h1 id="cardListH1">
-                            Kung Fu Grand Master
-                            <!--United Federation of Planets Starfleet Positions-->
+                            {{vm.positionDetail.data.name}}
+
                         </h1>
                     </div>
 
-                    <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add Position">
+                    <md-button class="md-icon-button" ng-click="vm.edit($event)" aria-label="Add Position">
                         <md-tooltip md-direction="right" md-delay="400">
                             Edit
                         </md-tooltip>
                         <md-icon md-svg-icon="editor:mode_edit"></md-icon>
                     </md-button>
-
+                    <!--<md-button ng-href="https://deepspace9-1134.appspot.com/gcs?fileId=5668600916475904">Get File</md-button>-->
+                    <!--<md-button ng-click="vm.testDelete()">Test DELETE</md-button>-->
                 </div>
                 <div layout="row" class="dp9-card-list-title">
-                    <span id="cardListSubSpan">Killer 2 inch punch required, must be able to juggle knives while on one knee</span>
+                    <span id="cardListSubSpan">{{vm.positionDetail.data.description}}</span>
                 </div>
             <!--</div>-->
         </div>
@@ -35,7 +36,7 @@
         <div>
             <h3 class="dp9-section-label">Candidates</h3>
         </div>
-        <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add Candidate">
+        <md-button class="md-icon-button" ng-click="vm.addCandidate($event)" aria-label="Add Candidate">
             <md-tooltip md-direction="right" md-delay="400">
                 Add A Candidate
             </md-tooltip>
@@ -43,28 +44,32 @@
         </md-button>
     </div>
     <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
-        <a class="dp9-card-link" href="http://www.jalopnik.com" layout="column" flex-xs="100">
+        <p ng-if="!vm.positionDetail.data.candidates" class="dp9-no-objects-hint">
+            There are no candidates for this position. Add one by clicking on the plus icon above
+        </p>
+
+        <a class="dp9-card-link" href="http://www.jalopnik.com" layout="column" flex-xs="100"
+           ng-if="vm.positionDetail.data.candidates" ng-repeat="c in vm.positionDetail.data.candidates">
             <md-card class="dp9-card dp9-card-link md-whiteframe-3dp" flex-xs="100" flex dp9-card-link-hover>
                 <md-card-title class="dp9-card-title">
                     <md-card-title-text>
                         <span class="md-headline">
-                            Bruce Lee
-                            <md-tooltip md-delay="400">Bruce Lee</md-tooltip>
+                            {{c.firstName}} {{c.lastName}}
                         </span>
                     </md-card-title-text>
                 </md-card-title>
 
                 <md-card-content layout="column" flex>
                     <div>
-                        <p style="overflow-wrap: break-word">
-                            brucewhydoyouhavesuchalongemailaddress.lee@gmail.com
+                        <p class="gl-break-word">
+                            {{c.email}}
                         </p>
                         <p>
-                            (702) 889-2792
+                            {{c.phone | tel}}
                         </p>
 
                         <p>
-                            <strong>Average Rank</strong>: 2
+                            <strong>Average Rank</strong>: {{c.averageRating | number: 0}}
                         </p>
                     </div>
                 </md-card-content>
@@ -81,7 +86,7 @@
         <div>
             <h3 class="dp9-section-label">Notes</h3>
         </div>
-        <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add Note">
+        <md-button class="md-icon-button" ng-click="vm.addNote($event)" aria-label="Add Note">
             <md-tooltip md-direction="right" md-delay="400">
                 Add A Note
             </md-tooltip>
@@ -89,31 +94,26 @@
         </md-button>
     </div>
     <div layout-padding class="dp9-notes-div">
-        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-notes-list">
-            <md-list-item class="md-2-line" ng-click="vm.editNote();">
+        <p ng-if="!vm.positionDetail.data.notes" class="dp9-no-objects-hint">
+            There are no notes for this position. Add one by clicking on the plus icon above
+        </p>
+        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-notes-list" ng-if="vm.positionDetail.data.notes">
+            <md-list-item class="md-2-line" ng-click="vm.editNote();" ng-repeat-start="n in vm.positionDetail.data.notes">
                 <div class="md-list-item-text dp9-note">
-                    <p class="dp9-notes-text">Previously, I was an inveterate busy person. I was too busy for just about everything. And I’m still tremendously guilty of this.</p>
+                    <p class="dp9-notes-text">{{n.text}}</p>
                     <p>
-                        Issac, Oct 10
+                        {{n.user}}, {{n.timeStamp | date: 'short'}}
                     </p>
                 </div>
             </md-list-item>
-            <md-divider ></md-divider>
-            <md-list-item class="md-2-line" ng-click="vm.editNote();">
-                <div class="md-list-item-text dp9-note">
-                    <p class="dp9-notes-text">
-                        JUBILANT crowds waved Russian flags; homecoming pilots were given fresh-baked bread by women in traditional dress. Judging by the pictures on television, Vladimir Putin won a famous victory in Syria this week. After his unexpected declaration that the campaign is over, Mr Putin is claiming credit for a ceasefire and the start of peace talks. He has shown off his forces and, heedless of civilian lives, saved the regime of his ally, Bashar al-Assad (though Mr Assad himself may yet prove dispensable). He has “weaponised” refugees by scattering Syrians among his foes in the European Union. And he has outmanoeuvred Barack Obama, who has consistently failed to grasp the enormity of the Syrian civil war and the threat it poses to America’s allies in the Middle East and Europe.
-                    </p>
-                    <p>Issac, Oct 10</p>
-                </div>
-            </md-list-item>
+            <md-divider ng-repeat-end ng-show="!$last"></md-divider>
         </md-list>
     </div>
     <div layout="row" class="dp9-card-list-title" style="margin-top: 1em;">
         <div>
             <h3 class="dp9-section-label">Files</h3>
         </div>
-        <md-button class="md-icon-button" ng-click="vm.addUser($event)" aria-label="Add a file">
+        <md-button class="md-icon-button" ng-click="vm.addFile($event)" aria-label="Add a file">
             <md-tooltip md-direction="right" md-delay="400">
                 Add A File
             </md-tooltip>

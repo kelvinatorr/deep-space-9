@@ -10,9 +10,9 @@ describe('Controller: UserMembershipCtrl', function () {
 
     var mockFirebaseRef = {
         ref: {
-            child: function(arg) { return {
+            child: function() { return {
                 update: function() {}
-            }}
+            };}
         }
     };
 
@@ -73,9 +73,9 @@ describe('Controller: UserMembershipCtrl', function () {
                         then: function() {
                             return {
                                 catch: function() {}
-                            }
+                            };
                         }
-                    }
+                    };
                 }
             };
             spyOn(UserMembershipCtrl.selectedUserMembership, '$save').and.callThrough();
