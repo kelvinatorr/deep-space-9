@@ -38,13 +38,6 @@
 
         vm.editNote = editNote;
 
-        vm.testDelete = function() {
-            var fileId = '5741031244955648';
-            $http.delete('https://deepspace9-1134.appspot.com//gcs?fileId=' + fileId, {headers: {'Firebase-User-Id': 'cb516b90-7a3f-4f76-aed7-236fac453bf2'}}).success(function() {
-                console.log('delete success!');
-            });
-        };
-
         /**
          * Edit the name, description, or priority of the position
          */
