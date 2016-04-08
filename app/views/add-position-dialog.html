@@ -42,7 +42,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex>
                         <label>Description</label>
-                        <textarea name="description" ng-model="vm.position.description" required md-maxlength="256"></textarea>
+                        <input name="description" ng-model="vm.position.description" required md-maxlength="256"/>
                         <div ng-messages="vm.positionForm.description.$error" md-auto-hide="false" ng-if="vm.positionForm.description.$dirty">
                             <div ng-message="required">
                                 An description is required
