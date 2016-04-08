@@ -125,10 +125,15 @@
             There are no files for this position. Add one by clicking on the plus icon above
         </p>
         <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list" ng-if="vm.positionDetail.data.files">
-            <md-list-item class="md-2-line" ng-repeat="f in vm.positionDetail.data.files">
+            <md-list-item class="md-2-line" ng-repeat="(key, f) in vm.positionDetail.data.files">
                 <a class="md-list-item-text" layout="column" layout-align="center start" ng-href="https://deepspace9-1134.appspot.com/gcs?fileId={{::f.ndbId}}">
                     <h3>{{f.fileName}}</h3>
                     <p>Uploaded By: {{f.userName}} {{f.uploadTimeStamp | date: 'short'}}</p>
+                    <md-icon class="md-secondary" ng-click="vm.deleteFile($event, key, f)" aria-label="Chat" md-svg-icon="action:delete">
+                        <md-tooltip md-direction="left" md-delay="400">
+                            Delete
+                        </md-tooltip>
+                    </md-icon>
                 </a>
             </md-list-item>
 

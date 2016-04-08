@@ -18,7 +18,8 @@
             getData: getData,
             save: save,
             getFileTemplate: getFileTemplate,
-            addFile: addFile
+            addFile: addFile,
+            removeFile: removeFile
         };
 
         function getData(clientId, positionId) {
@@ -47,6 +48,20 @@
             return $q(function(resolve, reject) {
                 var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/files');
                 filesRef.push().set(newFileModel, function(error) {
+                    if(error) {
+                        reject();
+                    } else {
+                        resolve();
+                    }
+                });
+            });
+        }
+
+        function removeFile(clientId, positionId, fileKey) {
+            return $q(function(resolve, reject) {
+                //console.log(fileModel);
+                var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/files/' + fileKey);
+                filesRef.set(null, function(error) {
                     if(error) {
                         reject();
                     } else {
