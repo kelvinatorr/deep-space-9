@@ -121,12 +121,15 @@
         </md-button>
     </div>
     <div layout-padding class="dp9-files-div">
-        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list">
-            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
-                <p>Headshot.jpg</p>
-            </md-list-item>
-            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
-                <p>Selected Works and Writings.pdf</p>
+        <p ng-if="!vm.positionDetail.data.files" class="dp9-no-objects-hint">
+            There are no files for this position. Add one by clicking on the plus icon above
+        </p>
+        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list" ng-if="vm.positionDetail.data.files" >
+            <md-list-item class="md-2-line" ng-click="vm.downloadFile();" ng-repeat="f in vm.positionDetail.data.files">
+                <div class="md-list-item-text">
+                    <h3>{{f.fileName}}</h3>
+                    <p>Uploaded By: {{f.userName}} {{f.uploadTimeStamp | date: 'short'}}</p>
+                </div>
             </md-list-item>
 
         </md-list>
