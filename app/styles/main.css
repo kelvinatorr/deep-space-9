@@ -117,3 +117,29 @@
 #uploadFile {
     display: none;
 }
+
+/*Rules to make an a tag in a list look like a normal button*/
+
+.dp9-files-list>.md-2-line>a.md-list-item-text:visited, .dp9-files-list>md-list-item>a.md-list-item-text {
+    text-decoration: none;
+}
+
+.dp9-files-list>.md-2-line>a.md-list-item-text:hover {
+    background-color: rgba(158,158,158,0.2);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dp9-files-list>.md-2-line>a.md-list-item-text {
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 72px;
+    width: 100%;
+}
+
+.dp9-files-list>.md-2-line {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*end rules to make an a tag in a list look like a normal button*/

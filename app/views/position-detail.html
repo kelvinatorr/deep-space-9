@@ -124,12 +124,12 @@
         <p ng-if="!vm.positionDetail.data.files" class="dp9-no-objects-hint">
             There are no files for this position. Add one by clicking on the plus icon above
         </p>
-        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list" ng-if="vm.positionDetail.data.files" >
-            <md-list-item class="md-2-line" ng-click="vm.downloadFile();" ng-repeat="f in vm.positionDetail.data.files">
-                <div class="md-list-item-text">
+        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list" ng-if="vm.positionDetail.data.files">
+            <md-list-item class="md-2-line" ng-repeat="f in vm.positionDetail.data.files">
+                <a class="md-list-item-text" layout="column" layout-align="center start" ng-href="https://deepspace9-1134.appspot.com/gcs?fileId={{::f.ndbId}}">
                     <h3>{{f.fileName}}</h3>
                     <p>Uploaded By: {{f.userName}} {{f.uploadTimeStamp | date: 'short'}}</p>
-                </div>
+                </a>
             </md-list-item>
 
         </md-list>
