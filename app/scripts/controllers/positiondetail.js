@@ -139,7 +139,7 @@
                 // make api call to app engine
                 FileUploader.deleteFile(file, CurrentUser.data.$id).then(function() {
                     // delete it from firebase
-                    return vm.positionDetail.removeFile($stateParams.clientId, vm.positionDetail.data.$id, key);
+                    return vm.positionDetail.removeFile($stateParams.clientId, vm.positionDetail.data.$id, key, file);
                 }).catch(function() {
                     $mdDialog.show(
                         $mdDialog.alert()

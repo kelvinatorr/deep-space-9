@@ -45,6 +45,8 @@
         }
 
         function addFile(clientId, positionId, newFileModel) {
+            /*jshint validthis: true */
+            var self = this;
             return $q(function(resolve, reject) {
                 var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/files');
                 filesRef.push().set(newFileModel, function(error) {
@@ -52,12 +54,16 @@
                         reject();
                     } else {
                         resolve();
+                        var updateText = CurrentUser.data.firstName + ' ' +  CurrentUser.data.lastName + ' added file ' + newFileModel.fileName;
+                        _updateLatestUpdate.call(self, updateText);
                     }
                 });
             });
         }
 
-        function removeFile(clientId, positionId, fileKey) {
+        function removeFile(clientId, positionId, fileKey, file) {
+            /*jshint validthis: true */
+            var self = this;
             return $q(function(resolve, reject) {
                 //console.log(fileModel);
                 var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/files/' + fileKey);
@@ -66,6 +72,8 @@
                         reject();
                     } else {
                         resolve();
+                        var updateText = CurrentUser.data.firstName + ' ' +  CurrentUser.data.lastName + ' deleted ' + file.fileName;
+                        _updateLatestUpdate.call(self, updateText);
                     }
                 });
             });
@@ -83,7 +91,15 @@
                 uploadTimeStamp: null,
                 ndbId: ''
             };
+        }
 
+        function _updateLatestUpdate(text) {
+            var now = new Date();
+            /*jshint validthis: true */
+            var self = this;
+            self.data.latestUpdate = text + ',';
+            self.data.latestUpdateDateTime = now.toISOString();
+            self.data.$save();
         }
     }
 
