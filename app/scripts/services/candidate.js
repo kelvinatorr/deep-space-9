@@ -34,7 +34,7 @@
                 var newCandidateRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/candidates/').push();
                 newCandidateRef.set(newCandidate, function(error) {
                     if(!error) {
-                        FirebaseRef.ref.child('candidates/' + newCandidateRef.key()).set(newCandidate, function(candidateError) {
+                        FirebaseRef.ref.child('candidates/' + clientId + '/' + newCandidateRef.key()).set(newCandidate, function(candidateError) {
                             if(!candidateError) {
                                 resolve();
                             } else {
