@@ -19,7 +19,8 @@
             save: save,
             getFileTemplate: getFileTemplate,
             addFile: addFile,
-            removeFile: removeFile
+            removeFile: removeFile,
+            addNote: addNote
         };
 
         function getData(clientId, positionId) {
@@ -93,11 +94,28 @@
             };
         }
 
+        function addNote(clientId, positionId, newNote) {
+            /*jshint validthis: true */
+            var self = this;
+            return $q(function(resolve, reject) {
+                var filesRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/notes');
+                filesRef.push().set(newNote, function(error) {
+                    if(error) {
+                        reject();
+                    } else {
+                        resolve();
+                        var updateText = CurrentUser.data.firstName + ' ' +  CurrentUser.data.lastName + ' added a new note';
+                        _updateLatestUpdate.call(self, updateText);
+                    }
+                });
+            });
+        }
+
         function _updateLatestUpdate(text) {
             var now = new Date();
             /*jshint validthis: true */
             var self = this;
-            self.data.latestUpdate = text + ',';
+            self.data.latestUpdate = text + ' - ';
             self.data.latestUpdateDateTime = now.toISOString();
             self.data.$save();
         }

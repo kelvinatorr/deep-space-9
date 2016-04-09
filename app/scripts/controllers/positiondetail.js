@@ -97,7 +97,17 @@
             });
 
             $mdDialog.show(dialogOptions).then(function(newNote) {
-                console.log(newNote);
+                return vm.positionDetail.addNote(vm.clientId, vm.positionDetail.data.$id, newNote);
+            }).catch(function() {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('An Error Occurred')
+                        .textContent('There was a problem adding a new note.')
+                        .ariaLabel('There was a problem adding a new note.')
+                        .ok('Okay')
+                        .targetEvent(ev)
+                );
             });
         }
 
