@@ -20,7 +20,8 @@
             getFileTemplate: getFileTemplate,
             addFile: addFile,
             removeFile: removeFile,
-            addNote: addNote
+            addNote: addNote,
+            addCandidate: addCandidate
         };
 
         function getData(clientId, positionId) {
@@ -109,6 +110,30 @@
                     }
                 });
             });
+        }
+
+        /**
+         * Adds a new candidate to the position details data tree
+         * @param clientId
+         * @param positionId
+         * @returns a promise
+         */
+        function addCandidate(clientId, positionId, newCandidate) {
+            return $q(function(resolve, reject) {
+                var newCandidateRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/candidates/').push();
+                newCandidateRef.set(newCandidate, function(error) {
+                    if(!error) {
+                        // we resolve the key and data so we can write the same key to the candidates tree.
+                        resolve({
+                            key : newCandidateRef.key(),
+                            data: newCandidate
+                        });
+                    } else {
+                        reject(error);
+                    }
+                });
+            });
+
         }
 
         function _updateLatestUpdate(text) {

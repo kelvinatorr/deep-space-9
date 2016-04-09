@@ -80,7 +80,9 @@
             var dialogPromise = $mdDialog.show(dialogOptions);
 
             dialogPromise.then(function(newCandidate) {
-                Candidate.saveNew(vm.clientId, vm.positionDetail.data.$id, newCandidate);
+                return vm.positionDetail.addCandidate(vm.clientId, vm.positionDetail.data.$id, newCandidate);
+            }).then(function(newCandidateKeyData) {
+                return Candidate.saveNew(vm.clientId, newCandidateKeyData);
             });
         }
 

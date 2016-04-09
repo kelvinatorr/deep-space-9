@@ -29,23 +29,15 @@
             });
         }
 
-        function saveNew(clientId, positionId, newCandidate) {
+        function saveNew(clientId, newCandidateKeyData) {
             return $q(function(resolve, reject) {
-                var newCandidateRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/candidates/').push();
-                newCandidateRef.set(newCandidate, function(error) {
-                    if(!error) {
-                        FirebaseRef.ref.child('candidates/' + clientId + '/' + newCandidateRef.key()).set(newCandidate, function(candidateError) {
-                            if(!candidateError) {
-                                resolve();
-                            } else {
-                                reject(candidateError);
-                            }
-                        });
+                FirebaseRef.ref.child('candidates/' + clientId + '/' + newCandidateKeyData.key).set(newCandidateKeyData.data, function(candidateError) {
+                    if(!candidateError) {
+                        resolve();
                     } else {
-                        reject(error);
+                        reject(candidateError);
                     }
                 });
-
             });
         }
 
