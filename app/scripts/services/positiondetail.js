@@ -116,13 +116,20 @@
          * Adds a new candidate to the position details data tree
          * @param clientId
          * @param positionId
+         * @param newCandidate
          * @returns a promise
          */
         function addCandidate(clientId, positionId, newCandidate) {
+            /*jshint validthis: true */
+            var self = this;
             return $q(function(resolve, reject) {
                 var newCandidateRef = FirebaseRef.ref.child('positions/' + clientId + '/' + positionId + '/candidates/').push();
                 newCandidateRef.set(newCandidate, function(error) {
                     if(!error) {
+                        // update latest update
+                        var updateText = CurrentUser.data.firstName + ' ' +  CurrentUser.data.lastName + ' added candidate ' +
+                            newCandidate.firstName + ' ' + newCandidate.lastName;
+                        _updateLatestUpdate.call(self, updateText);
                         // we resolve the key and data so we can write the same key to the candidates tree.
                         resolve({
                             key : newCandidateRef.key(),
