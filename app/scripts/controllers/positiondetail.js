@@ -11,7 +11,7 @@
     angular.module('deepspace9App')
         .controller('PositionDetailCtrl', PositionDetailCtrl);
 
-    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser, Candidate, $http) {
+    function PositionDetailCtrl(positionDetail, $stateParams, $mdDialog, $mdMedia, CurrentUser, Candidate, $http, FileUploader) {
         var vm = this;
 
         var genericDialogOptions = {
@@ -34,14 +34,9 @@
 
         vm.addFile = addFile;
 
-        vm.editNote = editNote;
+        vm.deleteFile = deleteFile;
 
-        vm.testDelete = function() {
-            var fileId = '5741031244955648';
-            $http.delete('https://deepspace9-1134.appspot.com//gcs?fileId=' + fileId, {headers: {'Firebase-User-Id': 'cb516b90-7a3f-4f76-aed7-236fac453bf2'}}).success(function() {
-                console.log('delete success!');
-            });
-        };
+        vm.editNote = editNote;
 
         /**
          * Edit the name, description, or priority of the position
@@ -85,7 +80,9 @@
             var dialogPromise = $mdDialog.show(dialogOptions);
 
             dialogPromise.then(function(newCandidate) {
-                Candidate.saveNew(vm.clientId, vm.positionDetail.data.$id, newCandidate);
+                return vm.positionDetail.addCandidate(vm.clientId, vm.positionDetail.data.$id, newCandidate);
+            }).then(function(newCandidateKeyData) {
+                return Candidate.saveNew(vm.clientId, newCandidateKeyData);
             });
         }
 
@@ -102,7 +99,17 @@
             });
 
             $mdDialog.show(dialogOptions).then(function(newNote) {
-                console.log(newNote);
+                return vm.positionDetail.addNote(vm.clientId, vm.positionDetail.data.$id, newNote);
+            }).catch(function() {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('An Error Occurred')
+                        .textContent('There was a problem adding a new note.')
+                        .ariaLabel('There was a problem adding a new note.')
+                        .ok('Okay')
+                        .targetEvent(ev)
+                );
             });
         }
 
@@ -129,9 +136,41 @@
 
         }
 
+        function deleteFile(ev, key, file) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            // show confirmation dialog
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete ' + file.fileName + '?')
+                .textContent('This action is permanent.')
+                .ariaLabel('Confirm delete ' + file.fileName)
+                .targetEvent(ev)
+                .ok('Yes, delete it')
+                .cancel('No, take me back');
+            $mdDialog.show(confirm).then(function() {
+                // make api call to app engine
+                FileUploader.deleteFile(file, CurrentUser.data.$id).then(function() {
+                    // delete it from firebase
+                    return vm.positionDetail.removeFile($stateParams.clientId, vm.positionDetail.data.$id, key, file);
+                }).catch(function() {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .clickOutsideToClose(true)
+                            .title('An Error Occurred')
+                            .textContent('There was a problem deleting ' +  file.fileName + '.')
+                            .ariaLabel('There was a problem deleting ' +  file.fileName + '.')
+                            .ok('Okay')
+                            .targetEvent(ev)
+                    );
+                });
+            });
+        }
+
         function editNote(note) {
 
         }
+
+
     }
 
 })();

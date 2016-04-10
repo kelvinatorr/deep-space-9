@@ -23,8 +23,7 @@
                         </md-tooltip>
                         <md-icon md-svg-icon="editor:mode_edit"></md-icon>
                     </md-button>
-                    <!--<md-button ng-href="https://deepspace9-1134.appspot.com/gcs?fileId=5668600916475904">Get File</md-button>-->
-                    <!--<md-button ng-click="vm.testDelete()">Test DELETE</md-button>-->
+
                 </div>
                 <div layout="row" class="dp9-card-list-title">
                     <span id="cardListSubSpan">{{vm.positionDetail.data.description}}</span>
@@ -121,12 +120,20 @@
         </md-button>
     </div>
     <div layout-padding class="dp9-files-div">
-        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list">
-            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
-                <p>Headshot.jpg</p>
-            </md-list-item>
-            <md-list-item class="md-2-line" ng-click="vm.downloadFile();">
-                <p>Selected Works and Writings.pdf</p>
+        <p ng-if="!vm.positionDetail.data.files" class="dp9-no-objects-hint">
+            There are no files for this position. Add one by clicking on the plus icon above
+        </p>
+        <md-list flex-xs="100" flex="75" class="md-whiteframe-3dp dp9-files-list" ng-if="vm.positionDetail.data.files">
+            <md-list-item class="md-2-line" ng-repeat="(key, f) in vm.positionDetail.data.files">
+                <a class="md-list-item-text" layout="column" layout-align="center start" ng-href="https://deepspace9-1134.appspot.com/gcs?fileId={{::f.ndbId}}">
+                    <h3>{{f.fileName}}</h3>
+                    <p>Uploaded By: {{f.userName}} {{f.uploadTimeStamp | date: 'short'}}</p>
+                    <md-icon class="md-secondary" ng-click="vm.deleteFile($event, key, f)" aria-label="Chat" md-svg-icon="action:delete">
+                        <md-tooltip md-direction="left" md-delay="400">
+                            Delete
+                        </md-tooltip>
+                    </md-icon>
+                </a>
             </md-list-item>
 
         </md-list>
