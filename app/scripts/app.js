@@ -112,7 +112,7 @@
                   initQuery: function() {
                       return {
                           order: 'lastName',
-                          limit: 5,
+                          limit: 10,
                           page: 1
                       };
                   },

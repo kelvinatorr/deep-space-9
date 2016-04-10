@@ -162,9 +162,17 @@
         }
 
         function deleteUser(ev) {
-            // TODO show confirmation alert
-            users.toggleDisableUser(vm.selected).catch(function(error) {
-                alert(error);
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to toggle the disabled states of ' + vm.selected.length + ' user(s)?')
+                .textContent('Disabled users will not be able to login')
+                .ariaLabel('Confirm disable toggle')
+                .targetEvent(ev)
+                .ok('Yes, toggle their disabled states')
+                .cancel('No, take me back');
+            $mdDialog.show(confirm).then(function() {
+                users.toggleDisableUser(vm.selected).catch(function(error) {
+                    alert(error);
+                });
             });
         }
 
