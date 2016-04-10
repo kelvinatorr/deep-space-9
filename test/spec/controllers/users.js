@@ -37,7 +37,9 @@ describe('Controller: UsersCtrl', function () {
 
     var deferred;
 
-    var $mdDialog = {};
+    var $mdDialog = {
+        confirm: function() {}
+    };
 
     var dialogDeferred;
 
@@ -66,7 +68,6 @@ describe('Controller: UsersCtrl', function () {
         var dialogDeferredPromise = dialogDeferred.promise;
         //dialogDeferredPromise.then(function(value) { console.log('is this being called?')});
         $mdDialog.show = function() {
-            //console.log(dialogDeferredPromise);
             return dialogDeferredPromise;
         };
 
@@ -122,6 +123,8 @@ describe('Controller: UsersCtrl', function () {
 
     it('should call users.toggleDisableUser when toggleDisableUser is called', function() {
         UsersCtrl.deleteUser();
+        dialogDeferred.resolve();
+        scope.$apply();
         expect(users.toggleDisableUser).toHaveBeenCalled();
     });
 });
