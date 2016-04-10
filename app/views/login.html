@@ -24,7 +24,9 @@
                                 <div ng-message when="required"><span>Please enter a password</span></div>
                             </div>
                         </md-input-container>
-                        <p ng-if="vm.failed" class="txt-color-warn">Invalid credentials</p>
+                        <div layout="row" layout-align="center center">
+                            <p ng-if="vm.failed" class="txt-color-warn">Invalid credentials</p>
+                        </div>
                         <div layout="row" layout-align="center center">
                             <md-button type="submit" class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
                                        ng-disabled="vm.loginForm.$invalid" aria-label="Login Button"
