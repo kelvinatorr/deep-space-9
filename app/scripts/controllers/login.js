@@ -52,6 +52,14 @@
         //}
 
         function login(loginData) {
+
+            var signalFailed = function() {
+                $timeout(function() {
+                    vm.isLoggingIn = false;
+                    vm.failed = true;
+                });
+            };
+
             vm.isLoggingIn = true;
             vm.failed = false;
             ref.authWithPassword({
@@ -59,13 +67,13 @@
                 password : loginData.password
             }, function(error) {
                 if (error) {
-                    $timeout(function() {
-                        vm.isLoggingIn = false;
-                        vm.failed = true;
-                    });
+                    signalFailed();
                 } else {
                     // go to next state
-                    $state.go('clients');
+                    $state.go('clients').catch(function() {
+                        // failed probably because user is disabled and cannot resolve CurrentUser
+                        signalFailed();
+                    });
                 }
             });
         }
