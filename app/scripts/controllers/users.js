@@ -163,7 +163,7 @@
 
         function deleteUser(ev) {
             // TODO show confirmation alert
-            users.deleteUser(vm.selected).catch(function(error) {
+            users.toggleDisableUser(vm.selected).catch(function(error) {
                 alert(error);
             });
         }

@@ -81,13 +81,13 @@ describe('Service: Users', function () {
         //console.log(Users);
     });
 
-    describe('deleteUser', function() {
-        it('should call firebase update on deleteUser', function () {
+    describe('toggleDisableUser', function() {
+        it('should call firebase update on toggleDisableUser', function () {
             var deleteList = [
                 {$id: 1},
                 {$id: 2}
             ];
-            Users.deleteUser(deleteList);
+            Users.toggleDisableUser(deleteList);
             expect(firebaseMethods.update).toHaveBeenCalled();
         });
 
@@ -96,7 +96,7 @@ describe('Service: Users', function () {
                 {$id: 1},
                 {$id: 2}
             ];
-            var result = Users.deleteUser(deleteList);
+            var result = Users.toggleDisableUser(deleteList);
             expect('then' in result).toBe(true);
         });
 

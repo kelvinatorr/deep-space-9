@@ -24,7 +24,7 @@ describe('Controller: UsersCtrl', function () {
         createUser: function() {
             return {'catch': function() { return 'Error';}};
         },
-        deleteUser: function() {
+        toggleDisableUser: function() {
             return {'catch': function() { return 'Error';}};
         }
     };
@@ -74,7 +74,7 @@ describe('Controller: UsersCtrl', function () {
 
         spyOn(users, 'createUser').and.callThrough();
 
-        spyOn(users, 'deleteUser').and.callThrough();
+        spyOn(users, 'toggleDisableUser').and.callThrough();
 
         // sublist in the sidenav
         var subList = document.createElement('ul');
@@ -120,8 +120,8 @@ describe('Controller: UsersCtrl', function () {
         expect(users.createUser).toHaveBeenCalledWith(formModel);
     });
 
-    it('should call users.deleteUser deleteUser is called', function() {
+    it('should call users.toggleDisableUser when toggleDisableUser is called', function() {
         UsersCtrl.deleteUser();
-        expect(users.deleteUser).toHaveBeenCalled();
+        expect(users.toggleDisableUser).toHaveBeenCalled();
     });
 });

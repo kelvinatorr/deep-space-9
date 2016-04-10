@@ -25,16 +25,16 @@
             totalUsers: 0,
             getUsers: getUsers,
             createUser: createUser,
-            deleteUser: deleteUser,
+            toggleDisableUser: toggleDisableUser,
             reSyncTableData: reSyncTableData,
             getAllUsers: getAllUsers
         };
 
-        function deleteUser(deleteList) {
+        function toggleDisableUser(deleteList) {
             return $q(function(resolve, reject) {
                 var updateObj = {};
                 angular.forEach(deleteList, function(val) {
-                    updateObj[val.$id + '/isDisabled'] = true;
+                    updateObj[val.$id + '/isDisabled'] = !val.isDisabled;
                 });
                 fire.update(updateObj, function(error){
                     if (error) {
