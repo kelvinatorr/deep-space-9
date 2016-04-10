@@ -51,7 +51,7 @@
               resolve: {
                   clients: ['currentUser','Clients','$state', function(currentUser, Clients, $state) {
                       return Clients.getData(currentUser.data.$id).then(function(clients) {
-                          if(clients.data.length < 2) {
+                          if(clients.data.length === 1) {
                               //user goes straight to positions view if they only have one client
                               $state.go('positions', {clientId: clients.data[0].$id});
                               return;
