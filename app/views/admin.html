@@ -1,7 +1,7 @@
 <div layout="row" flex="100" ng-cloak>
 
     <section layout="column" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" style="overflow-x: hidden;">
             <md-toolbar class="md-theme-indigo" layout="row">
                 <a role="button" ng-href="" ng-click="vm.toggleSideNav()" class="md-toolbar-tools">
                     Admin
@@ -36,6 +36,14 @@
                                 </md-button>
                             </md-list-item>
                         </md-list>
+                        <md-button class="full-width" layout="row" ui-sref="clients">
+                            <div layout="row">
+                                <div class="txt-align-start" flex layout-align="start start">
+                                    <md-icon md-svg-icon="navigation:apps"></md-icon>
+                                    Return to Clients View
+                                </div>
+                            </div>
+                        </md-button>
                     </div>
 
                 </md-list-item>
@@ -73,7 +81,7 @@
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button ng-click="vm.logout()" aria-label="side navigation">
+                        <md-button ng-click="vm.logout()" aria-label="Logout">
                             Logout
                         </md-button>
                     </md-menu-item>
