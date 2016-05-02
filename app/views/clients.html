@@ -8,7 +8,8 @@
             </div>
         </div>
     </div>
-    <md-content flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding>
+    <div flex layout="row" layout-xs="column" flex-xs="100" layout-fill layout-wrap layout-padding
+        >
         <p ng-if="vm.clients.data.length < 1" class="dp9-no-objects-hint">
             You are not a member of any client.
             <span ng-if="vm.currentUser.role === 'users'">You can add membership to a client by visiting the <a ui-sref="usermembership">user membership page.</a></span>
@@ -49,5 +50,5 @@
 
 
 
-    </md-content>
+    </div>
 </div>
