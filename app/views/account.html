@@ -1,0 +1,84 @@
+<div layout="row" flex class="dp9-account-view" layout-align="center">
+
+    <md-card flex-xs="100" flex="60" class="md-whiteframe-3dp" layout-padding>
+        <div layout="column" layout-align="center center">
+            <md-icon md-svg-icon="action:account_circle" style="height: 64px; width: 64px;"></md-icon>
+            <h3 style="margin: 0;">Kelvin Dealca</h3>
+        </div>
+        <div layout="row" layout-align="center center" ng-if="vm.requirePWReset || true">
+            <h3>Please change your password from the current admin supplied password</h3>
+        </div>
+        <div layout="row" layout-align="center center">
+            <form name="vm.passwordForm" flex="60" ng-submit="vm.passwordForm.$valid && vm.save()">
+                <div layout="row" layout-align="center center">
+                    <md-input-container flex="70">
+                        <label for="old-password">Current Password</label>
+                        <input id="old-password" label="old-password" name="old-password" type="password"
+                               ng-model="vm.user.current" required autofocus/>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-input-container flex="70">
+                        <label for="password">New Password</label>
+                        <input id="password" label="password" name="password" type="password"
+                               ng-model="vm.user.password" ng-minlength="8" required
+                               ng-change="vm.passwordWatcher()"/>
+                        <div ng-messages="vm.passwordForm.password.$error" ng-show="vm.passwordForm.password.$dirty">
+                            <div ng-message="required">
+                                <span>This field is required</span>
+                            </div>
+                            <div ng-message="minlength">
+                                <span>Minimum password length is 8 characters</span>
+                            </div>
+                            <div ng-message="goodPassword">
+                                <span>Your new password is too weak. {{vm.passwordStrength.suggestion}}</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="center center" ng-show="vm.passwordStrength.display">
+                    <md-progress-linear flex="70" md-mode="determinate" value="{{vm.passwordStrength.score}}" ng-class="vm.passwordStrength.barClass"></md-progress-linear>
+                    <!--{{vm.passwordStrength.barClass}}-->
+                </div>
+                <div layout="column" layout-align="center center" ng-show="vm.passwordStrength.display" class="gl-margin-bottom-18">
+                    <div>
+                        <strong flex>Password Strength:</strong> <span> {{vm.passwordStrength.message}}</span>
+                    </div>
+                    <span class="gl-font-xs">{{vm.passwordStrength.warning}}</span>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-input-container flex="70">
+                        <label for="confirm">Confirm New Password</label>
+                        <input id="confirm" name="confirm" type="password" ng-model="vm.user.confirm"
+                               required
+                               ng-change="vm.samePasswordCheck()"/>
+                        <div ng-messages="vm.passwordForm.confirm.$error"
+                             ng-if="vm.passwordForm.confirm.$dirty || vm.user.confirm.length > 0">
+                            <div ng-message="required">
+                                <span>This field is required</span>
+                            </div>
+                            <div ng-message="samePassword">
+                                <span>You need to enter the same password</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <footer layout="column" layout-align="end center">
+                    <p ng-show="vm.success && !vm.isSaving">Success! Your password has been changed.</p>
+                    <p class="error-message" ng-show="vm.error && !vm.isSaving">Incorrect current password.</p>
+                    <md-progress-circular md-mode="indeterminate" ng-if="vm.isSaving"></md-progress-circular>
+                    <md-button type="submit" class="md-raised md-primary margin-right-0"
+                               ng-disabled="vm.passwordForm.$invalid || vm.passwordStrength.score < 75"
+                               ng-show="vm.passwordForm.$dirty && !vm.isSaving">
+                        Save
+                    </md-button>
+
+                </footer>
+
+
+            </form>
+        </div>
+    </md-card>
+</div>
+

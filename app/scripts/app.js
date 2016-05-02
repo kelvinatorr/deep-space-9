@@ -92,6 +92,18 @@
                   }]
               }
           })
+          .state('account', {
+              parent: 'main',
+              url: '/account',
+              templateUrl: 'views/account.html'
+              //controller: 'LoginCtrl',
+              //controllerAs: 'vm',
+              //resolve: {
+              //    fire: ['APIEndpoint', function(APIEndpoint) {
+              //        return new Firebase(APIEndpoint);
+              //    }]
+              //}
+          })
           .state('admin', {
               abstract: true,
               url: '/admin',
