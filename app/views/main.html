@@ -26,8 +26,17 @@
                 </md-menu-content>
             </md-menu>
         </md-toolbar>
-        <md-content layout-padding flex>
+        <md-content layout-padding flex id="mainMdContent">
             <div ui-view flex></div>
         </md-content>
+        <md-toolbar hide-xs layout="row"
+            layout-align="end center" id="footerToolbar">
+            <div>
+                <span class="md-toolbar-tools">
+                    <a href="https://github.com/kelvinatorr/deep-space-9/issues/new">Send Feedback</a>
+                <!--<md-icon style="margin: 0 6px;" md-svg-icon="action:favorite" aria-label="Love"></md-icon>-->
+                </span>
+            </div>
+        </md-toolbar>
     </section>
 </div>
