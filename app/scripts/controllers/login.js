@@ -70,7 +70,7 @@
                     signalFailed();
                 } else {
                     // go to next state
-                    $state.go('clients').catch(function() {
+                    $state.go('clients', {init: true}).catch(function() {
                         // failed probably because user is disabled and cannot resolve CurrentUser
                         signalFailed();
                     });

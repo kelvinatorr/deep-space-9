@@ -44,14 +44,14 @@
           })
           .state('clients', {
               parent: 'main',
-              url: '/clients',
+              url: '/clients?init',
               templateUrl: 'views/clients.html',
               controller: 'ClientsCtrl',
               controllerAs: 'vm',
               resolve: {
-                  clients: ['currentUser','Clients','$state', function(currentUser, Clients, $state) {
+                  clients: ['currentUser','Clients','$state','$stateParams', function(currentUser, Clients, $state, $stateParams) {
                       return Clients.getData(currentUser.data.$id).then(function(clients) {
-                          if(clients.data.length === 1) {
+                          if($stateParams.init && clients.data.length === 1) {
                               //user goes straight to positions view if they only have one client
                               $state.go('positions', {clientId: clients.data[0].$id});
                               return;
