@@ -1,24 +1,24 @@
 <div layout="row" flex class="dp9-account-view" layout-align="center">
 
-    <md-card flex-xs="100" flex="60" class="md-whiteframe-3dp" layout-padding>
-        <div layout="column" layout-align="center center">
+    <md-card flex-xs="100" flex="55" class="md-whiteframe-3dp" layout-padding>
+        <div layout="column" layout-align="center center" style="padding: 16px;">
             <md-icon md-svg-icon="action:account_circle" style="height: 64px; width: 64px;"></md-icon>
             <h3 style="margin: 0;">Kelvin Dealca</h3>
         </div>
         <div layout="row" layout-align="center center" ng-if="vm.requirePWReset || true">
             <h3>Please change your password from the current admin supplied password</h3>
         </div>
-        <div layout="row" layout-align="center center">
-            <form name="vm.passwordForm" flex="60" ng-submit="vm.passwordForm.$valid && vm.save()">
+        <div layout="row" flex="100">
+            <form name="vm.passwordForm" flex="100" ng-submit="vm.passwordForm.$valid && vm.save()">
                 <div layout="row" layout-align="center center">
-                    <md-input-container flex="70">
+                    <md-input-container flex-xs="100" flex="70">
                         <label for="old-password">Current Password</label>
                         <input id="old-password" label="old-password" name="old-password" type="password"
                                ng-model="vm.user.current" required autofocus/>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="center center">
-                    <md-input-container flex="70">
+                    <md-input-container flex-xs="100" flex="70">
                         <label for="password">New Password</label>
                         <input id="password" label="password" name="password" type="password"
                                ng-model="vm.user.password" ng-minlength="8" required
@@ -47,7 +47,7 @@
                     <span class="gl-font-xs">{{vm.passwordStrength.warning}}</span>
                 </div>
                 <div layout="row" layout-align="center center">
-                    <md-input-container flex="70">
+                    <md-input-container flex-xs="100" flex="70">
                         <label for="confirm">Confirm New Password</label>
                         <input id="confirm" name="confirm" type="password" ng-model="vm.user.confirm"
                                required
