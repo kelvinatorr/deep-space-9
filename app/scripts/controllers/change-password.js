@@ -30,6 +30,8 @@
 
         vm.isSaving = false;
 
+        //console.log(CurrentUser.data);
+
         //vm.passwordStrength = {
         //    display: false,
         //    score: 1,
@@ -48,7 +50,7 @@
          * Show message above form or not
          * @type {boolean}
          */
-        //vm.requirePWReset = $state.params.requestFromServer;
+        vm.requirePWReset = CurrentUser.data.hasTemporaryPassword;
 
         //vm.passwordWatcher = passwordWatcher;
 
