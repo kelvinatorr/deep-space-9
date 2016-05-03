@@ -11,7 +11,7 @@
     angular.module('deepspace9App')
         .controller('ChangePasswordCtrl', ChangePasswordCtrl);
 
-    function ChangePasswordCtrl() {
+    function ChangePasswordCtrl(CurrentUser) {
         var vm = this;
 
         vm.user = {
@@ -103,7 +103,9 @@
         //}
 
         function samePasswordCheck() {
-            if(!vm.passwordForm.confirm.$dirty && vm.user.confirm.length < 1) return true;
+            if(!vm.passwordForm.confirm.$dirty && vm.user.confirm.length < 1) {
+                return true;
+            }
             var samePassword = vm.user.password === vm.user.confirm;
             vm.passwordForm.confirm.$setValidity('samePassword', samePassword);
             return samePassword;
@@ -111,17 +113,16 @@
 
         function save() {
             var apiModel = {
-                'OldPassword': vm.user.current,
-                'NewPassword': vm.user.password,
-                'ConfirmPassword' : vm.user.confirm
+                oldPassword: vm.user.current,
+                newPassword: vm.user.password
             };
             vm.isSaving = true;
-            $http.put(APIEndpoint + 'account/changepassword', apiModel).success(function() {
+            CurrentUser.changePassword(apiModel).then(function() {
                 vm.success = true;
                 vm.passwordForm.$setPristine();
                 vm.error = false;
                 vm.isSaving = false;
-            }).error(function() {
+            }).catch(function() {
                 vm.error = true;
                 vm.success = false;
                 vm.isSaving = false;

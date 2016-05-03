@@ -19,7 +19,8 @@
             data: {},
             getCurrentUser: getCurrentUser,
             logout: logout,
-            getMembership: getMembership
+            getMembership: getMembership,
+            changePassword: changePassword
         };
 
         /**
@@ -60,6 +61,25 @@
 
         function logout() {
             FirebaseRef.ref.unauth();
+        }
+
+        function changePassword(formParams) {
+            /*jshint validthis: true */
+            var self = this;
+            return $q(function(resolve, reject) {
+                FirebaseRef.ref.changePassword({
+                    email : self.data.email,
+                    oldPassword : formParams.oldPassword,
+                    newPassword : formParams.newPassword
+                }, function(error) {
+                    if (error === null) {
+                        resolve();
+                    } else {
+                        console.log("Error changing password:", error);
+                        reject();
+                    }
+                });
+            });
         }
     }
 })();
