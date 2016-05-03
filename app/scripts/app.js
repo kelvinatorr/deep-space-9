@@ -92,10 +92,10 @@
                   }]
               }
           })
-          .state('account', {
+          .state('changepassword', {
               parent: 'main',
-              url: '/account',
-              templateUrl: 'views/account.html'
+              url: '/changepassword',
+              templateUrl: 'views/change-password.html'
               //controller: 'LoginCtrl',
               //controllerAs: 'vm',
               //resolve: {
