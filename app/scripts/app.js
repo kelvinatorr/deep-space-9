@@ -95,9 +95,9 @@
           .state('changepassword', {
               parent: 'main',
               url: '/changepassword',
-              templateUrl: 'views/change-password.html'
-              //controller: 'LoginCtrl',
-              //controllerAs: 'vm',
+              templateUrl: 'views/change-password.html',
+              controller: 'ChangePasswordCtrl',
+              controllerAs: 'vm'
               //resolve: {
               //    fire: ['APIEndpoint', function(APIEndpoint) {
               //        return new Firebase(APIEndpoint);
