@@ -50,6 +50,10 @@
               controllerAs: 'vm',
               resolve: {
                   clients: ['currentUser','Clients','$state','$stateParams', function(currentUser, Clients, $state, $stateParams) {
+                      if($stateParams.init && currentUser.data.hasTemporaryPassword) {
+                          $state.go('changepassword');
+                          return;
+                      }
                       return Clients.getData(currentUser.data.$id).then(function(clients) {
                           if($stateParams.init && clients.data.length === 1) {
                               //user goes straight to positions view if they only have one client
