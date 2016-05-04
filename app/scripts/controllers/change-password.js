@@ -36,21 +36,19 @@
 
         vm.isSaving = false;
 
-        //console.log(CurrentUser.data);
-
-        //vm.passwordStrength = {
-        //    display: false,
-        //    score: 1,
-        //    message: '',
-        //    warning: '',
-        //    suggestion: '',
-        //    barClass: {
-        //        'gl-25': true,
-        //        'gl-50': false,
-        //        'gl-75': false,
-        //        'gl-100': false
-        //    }
-        //};
+        vm.passwordStrength = {
+            display: false,
+            score: 1,
+            message: '',
+            warning: '',
+            suggestion: '',
+            barClass: {
+                'gl-25': true,
+                'gl-50': false,
+                'gl-75': false,
+                'gl-100': false
+            }
+        };
 
         /**
          * Show message above form or not
@@ -58,57 +56,57 @@
          */
         vm.requirePWReset = CurrentUser.data.hasTemporaryPassword;
 
-        //vm.passwordWatcher = passwordWatcher;
+        vm.passwordWatcher = passwordWatcher;
 
-        //function passwordWatcher() {
-        //    vm.samePasswordCheck();
-        //    if(vm.user.password) {
-        //        // check password strength - https://github.com/dropbox/zxcvbn
-        //        var result = zxcvbn(vm.user.password);
-        //        vm.passwordStrength.score = result.score * 25;
-        //
-        //        switch (vm.passwordStrength.score) {
-        //            case 25:
-        //                vm.passwordStrength.message = 'Very Weak';
-        //                break;
-        //            case 50:
-        //                vm.passwordStrength.message = 'Weak';
-        //                break;
-        //            case 75:
-        //                vm.passwordStrength.message = 'Good';
-        //                break;
-        //            case 100:
-        //                vm.passwordStrength.message = 'Great!';
-        //                break;
-        //            default:
-        //                vm.passwordStrength.message = 'None';
-        //                break;
-        //        }
-        //
-        //        // set class for bar color
-        //        angular.forEach(vm.passwordStrength.barClass, function(val, key) {
-        //            vm.passwordStrength.barClass[key] = key === ('gl-' + vm.passwordStrength.score);
-        //        });
-        //
-        //        if(result.feedback.warning.length > 0) {
-        //            vm.passwordStrength.warning = result.feedback.warning;
-        //        } else {
-        //            vm.passwordStrength.warning = '';
-        //        }
-        //
-        //        if(result.feedback.suggestions.length > 0) {
-        //            vm.passwordStrength.suggestion = result.feedback.suggestions[0];
-        //        } else {
-        //            vm.passwordStrength.suggestion = '';
-        //        }
-        //
-        //        vm.passwordForm.password.$setValidity('goodPassword', vm.passwordStrength.score > 50);
-        //
-        //        vm.passwordStrength.display = true;
-        //    } else {
-        //        vm.passwordStrength.display = false;
-        //    }
-        //}
+        function passwordWatcher() {
+            vm.samePasswordCheck();
+            if(vm.user.password) {
+                // check password strength - https://github.com/dropbox/zxcvbn
+                var result = zxcvbn(vm.user.password);
+                vm.passwordStrength.score = result.score * 25;
+
+                switch (vm.passwordStrength.score) {
+                    case 25:
+                        vm.passwordStrength.message = 'Very Weak';
+                        break;
+                    case 50:
+                        vm.passwordStrength.message = 'Weak';
+                        break;
+                    case 75:
+                        vm.passwordStrength.message = 'Good';
+                        break;
+                    case 100:
+                        vm.passwordStrength.message = 'Great!';
+                        break;
+                    default:
+                        vm.passwordStrength.message = 'None';
+                        break;
+                }
+
+                // set class for bar color
+                angular.forEach(vm.passwordStrength.barClass, function(val, key) {
+                    vm.passwordStrength.barClass[key] = key === ('gl-' + vm.passwordStrength.score);
+                });
+
+                if(result.feedback.warning.length > 0) {
+                    vm.passwordStrength.warning = result.feedback.warning;
+                } else {
+                    vm.passwordStrength.warning = '';
+                }
+
+                if(result.feedback.suggestions.length > 0) {
+                    vm.passwordStrength.suggestion = result.feedback.suggestions[0];
+                } else {
+                    vm.passwordStrength.suggestion = '';
+                }
+
+                vm.passwordForm.password.$setValidity('goodPassword', vm.passwordStrength.score > 50);
+
+                vm.passwordStrength.display = true;
+            } else {
+                vm.passwordStrength.display = false;
+            }
+        }
 
         function samePasswordCheck() {
             if(!vm.passwordForm.confirm.$dirty && vm.user.confirm.length < 1) {
