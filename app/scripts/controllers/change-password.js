@@ -11,8 +11,14 @@
     angular.module('deepspace9App')
         .controller('ChangePasswordCtrl', ChangePasswordCtrl);
 
-    function ChangePasswordCtrl(CurrentUser) {
+    function ChangePasswordCtrl(CurrentUser, $timeout, $scope) {
         var vm = this;
+
+        $scope.$on('$viewContentLoaded', function() {
+           $timeout(function() {
+               $('#old-password').focus();
+           }, 24);
+        });
 
         vm.user = {
             current: '',
