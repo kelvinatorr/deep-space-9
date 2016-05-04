@@ -72,11 +72,13 @@
               controller: 'PositionsCtrl',
               controllerAs: 'vm',
               resolve: {
-                  positions: ['Positions','$stateParams', function(Positions, $stateParams) {
-                      return Positions.getData($stateParams.clientId);
+                  client: ['Clients', '$stateParams', '$state', function (Clients, $stateParams, $state) {
+                      return Clients.getClient($stateParams.clientId).catch(function () {
+                          $state.go('login');
+                      });
                   }],
-                  client: ['Clients','$stateParams','$state', function(Clients, $stateParams, $state) {
-                      return Clients.getClient($stateParams.clientId).catch(function() {
+                  positions: ['Positions', '$stateParams','$state', function (Positions, $stateParams, $state) {
+                      return Positions.getData($stateParams.clientId).catch(function () {
                           $state.go('login');
                       });
                   }]
