@@ -56,6 +56,10 @@
          */
         vm.requirePWReset = CurrentUser.data.hasTemporaryPassword;
 
+        vm.firstName = CurrentUser.data.firstName;
+
+        vm.lastName = CurrentUser.data.lastName;
+
         vm.passwordWatcher = passwordWatcher;
 
         function passwordWatcher() {
