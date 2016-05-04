@@ -166,6 +166,19 @@
     color: rgb(255, 0, 0);
 }
 
+/*#avatarUserNameDiv can be found in change-password.html*/
+#avatarUserNameDiv {
+    padding: 16px;
+}
+
+#avatarUserNameDiv>md-icon {
+    height: 64px; width: 64px;
+}
+
+#avatarUserNameDiv>h3 {
+    margin: 0;
+}
+
 /*For the password strength bar*/
 .dp9-margin-bottom-18 {
     margin-bottom: 18px;
