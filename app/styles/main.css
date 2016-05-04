@@ -161,3 +161,50 @@
 #footerToolbar>div>.md-toolbar-tools {
     font-size: 16px;
 }
+
+.dp9-error-message {
+    color: rgb(255, 0, 0);
+}
+
+/*#avatarUserNameDiv can be found in change-password.html*/
+#avatarUserNameDiv {
+    padding: 16px;
+}
+
+#avatarUserNameDiv>md-icon {
+    height: 64px; width: 64px;
+}
+
+#avatarUserNameDiv>h3 {
+    margin: 0;
+}
+
+/*For the password strength bar*/
+.dp9-margin-bottom-18 {
+    margin-bottom: 18px;
+}
+
+md-progress-linear>.md-container {
+    background-color: rgb(207,216,220) !important;
+}
+
+md-progress-linear.gl-25>.md-container .md-bar.md-bar2 {
+    background-color: rgb(255, 0, 0);
+}
+
+md-progress-linear.gl-50>.md-container .md-bar.md-bar2 {
+    background-color: goldenrod;
+}
+
+md-progress-linear.gl-75>.md-container .md-bar.md-bar2 {
+    background-color: green;
+}
+
+md-progress-linear.gl-100>.md-container .md-bar.md-bar2 {
+    background-color: lime;
+}
+
+.dp9-font-xs {
+    font-size: 1rem;
+}
+/* end password strength bar styles*/

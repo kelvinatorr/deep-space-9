@@ -50,6 +50,10 @@
               controllerAs: 'vm',
               resolve: {
                   clients: ['currentUser','Clients','$state','$stateParams', function(currentUser, Clients, $state, $stateParams) {
+                      if($stateParams.init && currentUser.data.hasTemporaryPassword) {
+                          $state.go('changepassword');
+                          return;
+                      }
                       return Clients.getData(currentUser.data.$id).then(function(clients) {
                           if($stateParams.init && clients.data.length === 1) {
                               //user goes straight to positions view if they only have one client
@@ -68,11 +72,13 @@
               controller: 'PositionsCtrl',
               controllerAs: 'vm',
               resolve: {
-                  positions: ['Positions','$stateParams', function(Positions, $stateParams) {
-                      return Positions.getData($stateParams.clientId);
+                  client: ['Clients', '$stateParams', '$state', function (Clients, $stateParams, $state) {
+                      return Clients.getClient($stateParams.clientId).catch(function () {
+                          $state.go('login');
+                      });
                   }],
-                  client: ['Clients','$stateParams','$state', function(Clients, $stateParams, $state) {
-                      return Clients.getClient($stateParams.clientId).catch(function() {
+                  positions: ['Positions', '$stateParams','$state', function (Positions, $stateParams, $state) {
+                      return Positions.getData($stateParams.clientId).catch(function () {
                           $state.go('login');
                       });
                   }]
@@ -91,6 +97,18 @@
                       });
                   }]
               }
+          })
+          .state('changepassword', {
+              parent: 'main',
+              url: '/changepassword',
+              templateUrl: 'views/change-password.html',
+              controller: 'ChangePasswordCtrl',
+              controllerAs: 'vm'
+              //resolve: {
+              //    fire: ['APIEndpoint', function(APIEndpoint) {
+              //        return new Firebase(APIEndpoint);
+              //    }]
+              //}
           })
           .state('admin', {
               abstract: true,
