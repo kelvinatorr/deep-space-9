@@ -8,16 +8,21 @@
   "eqeqeq": true,
   "immed": true,
   "indent": 2,
-  "latedef": true,
+  "latedef": "nofunc",
   "newcap": true,
   "noarg": true,
-  "quotmark": "single",
+  //"quotmark": "single",
   "undef": true,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+      "angular": false,
+      "$": true,
+      "Firebase": true,
+      "alert": true,
+      "formatLocal": true,
+      "isValidNumber": true
   }
 }

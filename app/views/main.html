@@ -1,23 +1,42 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div layout="row" flex="100" ng-cloak>
+    <section layout="column" flex>
+        <md-toolbar class="md-theme-indigo" layout="row">
+            <md-button ng-click="vm.toggleSideNav()">
+                <md-icon md-svg-icon="navigation:apps" aria-label="Menu Icon"></md-icon>
+            </md-button>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+            <h1 class="md-toolbar-tools" flex><a ui-sref="clients">Deepspace9</a></h1>
+            <md-menu md-position-mode="target-right target">
+                <md-button aria-label="Open user menu" ng-click="$mdOpenMenu()">
+                    <md-icon md-svg-icon="action:account_circle"></md-icon>
+                    <span hide-xs>{{vm.displayName}}</span>
+                </md-button>
+                <md-menu-content width="3">
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+                    <md-menu-item>
+                        <md-button ng-click="vm.logout()" aria-label="Logout">
+                            Logout
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item ng-if="vm.userRole === 'users' || vm.userRole === 'admins'">
+                        <md-button ng-click="vm.goToAdmin();">
+                            Administration
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-toolbar>
+        <md-content layout-padding flex id="mainMdContent">
+            <div ui-view flex></div>
+        </md-content>
+        <md-toolbar hide-xs layout="row"
+            layout-align="end center" id="footerToolbar">
+            <div>
+                <span class="md-toolbar-tools">
+                    <a href="https://github.com/kelvinatorr/deep-space-9/issues/new">Send Feedback</a>
+                <!--<md-icon style="margin: 0 6px;" md-svg-icon="action:favorite" aria-label="Love"></md-icon>-->
+                </span>
+            </div>
+        </md-toolbar>
+    </section>
 </div>

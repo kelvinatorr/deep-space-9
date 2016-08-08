@@ -6,51 +6,25 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+      <link rel="stylesheet" href="styles/generic-helpers.css">
+      <link rel="stylesheet" href="styles/main.css">
+      <link rel="stylesheet" href="styles/admin.css">
     <!-- endbuild -->
   </head>
   <body ng-app="deepspace9App">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <a class="navbar-brand" href="#/">deepspace9</a>
-          </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
-
+    <ui-view></ui-view>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -66,12 +40,52 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="bower_components/phoneformat/dist/phone-format.js"></script>
+    <script src="bower_components/zxcvbn/dist/zxcvbn.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/testauth.js"></script>
+    <script src="scripts/controllers/materialplayground.js"></script>
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/services/users.js"></script>
+    <script src="scripts/controllers/userdialog.js"></script>
+    <script src="scripts/services/firebase.js"></script>
+    <script src="scripts/services/currentuser.js"></script>
+    <script src="scripts/controllers/usermembership.js"></script>
+    <script src="scripts/services/adminclients.js"></script>
+    <script src="scripts/controllers/clients.js"></script>
+    <script src="scripts/services/clients.js"></script>
+    <script src="scripts/filters/orderobjectby.js"></script>
+    <script src="scripts/controllers/positions.js"></script>
+    <script src="scripts/services/positions.js"></script>
+    <script src="scripts/controllers/positiondetail.js"></script>
+    <script src="scripts/directives/dp9-card-link-hover.js"></script>
+    <script src="scripts/controllers/addpositiondialog.js"></script>
+    <script src="scripts/services/positiondetail.js"></script>
+    <script src="scripts/filters/tel.js"></script>
+    <script src="scripts/controllers/candidatedialog.js"></script>
+    <script src="scripts/services/candidate.js"></script>
+    <script src="scripts/directives/input-phone-format.js"></script>
+    <script src="scripts/controllers/notes-dialog.js"></script>
+    <script src="scripts/controllers/file-dialog.js"></script>
+    <script src="scripts/directives/custom-on-change.js"></script>
+    <script src="scripts/services/file-uploader.js"></script>
+    <script src="scripts/controllers/account.js"></script>
+    <script src="scripts/controllers/change-password.js"></script>
+    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
+
 </body>
 </html>

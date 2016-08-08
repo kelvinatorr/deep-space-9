@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xs-12">
+        Test Auth view
+        Logged in as: {{ctrl.loggedInAs.name}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-default" ng-click="ctrl.loadData()">Load Data</button>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-default" ng-click="ctrl.readData()">Read Data</button>
+        Result: {{ctrl.dataResult}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-default" ng-click="ctrl.writeData()">Write Data</button>
+        <!--Result: {{ctrl.dataResult}}-->
+    </div>
+</div>
+

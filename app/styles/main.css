@@ -1,83 +1,210 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+@media (min-width: 600px) {
+
+    .dp9-card {
+        width: 340px;
+        /*height: 344px;*/
+    }
+
+    /*.dp9-card >md-card-title > md-card-title-text> .md-headline {*/
+        /*width: 308px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;*/
+    /*}*/
+
+    #cardListH1 {
+        font-size: 30px;
+    }
 }
 
-body {
-  padding: 0;
+@media (max-width: 600px) {
+
+    #cardListH1 {
+        font-size: 24px;
+    }
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+#cardListH1 {
+    margin: 0; font-weight: 400; box-sizing: border-box;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
+.dp9-list-item-p {
+    width: 276px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+/*Allows us to put a ui-sref on the card list item and have it still look the same when you just have an ng-click on it*/
+.dp9-clients-view .dp9-card .dp9-card-list-item>.md-button {
+    margin: 0;
+    font-weight: normal;
 }
 
-.container-narrow > hr {
-  margin: 30px 0;
+.dp9-card-link,.dp9-card-link:hover, .dp9-card-link:visited, .dp9-card-link:active {
+    text-decoration: none;
+    color: rgba(0,0,0,0.87);
+    padding: 0;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+.dp9-card-title {
+    flex-basis: auto;
+    flex-grow: 0;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
+.md-button.md-icon-button.dp9-back-button {
+    /*margin-right: 13px;*/
+    margin: 0 0 0 -12px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+/*Style for card list header*/
+#cardListDiv {
+    min-height: 64px;
+}
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
+.dp9-card-list-title {
+    align-items: center; letter-spacing: 0.005em; padding: 0 24px; font-size: 20px;
+}
+
+#cardListSubSpan {
+    font-size: 15px;
+}
+/*End styles for card list header*/
+
+/*Style the h3 tags that are the labels for the sections in position detail*/
+.dp9-section-label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.dp9-card>md-card-actions>.dp9-card-action-button {
+    width: 100%
+}
+
+/*Style for the notes section of position details*/
+.dp9-notes-div>md-list .md-list-item-text.dp9-note {
+    margin: 15px 0 15px 0;
+}
+
+.dp9-notes-div>md-list {
+    background-color: #fff;
+}
+
+.dp9-notes-div>md-list .md-list-item-text.dp9-note>.dp9-notes-text {
+    font-size: 16px; font-weight: 400; color: rgba(0,0,0,0.87);
+}
+
+.dp9-notes-div>.dp9-notes-list {
+    max-height: 900px; overflow-y: auto;
+}
+/*End styles for the notes section of position details*/
+
+/*Styles for the files div in position detail and candidate detail*/
+.dp9-files-div>.dp9-files-list {
+    max-height: 600px; overflow-y: auto;
+    background-color: #fff;
+}
+/*End styles for the files div*/
+
+/*Copies the colors normally associated with md-toolbar*/
+.gl-toolbar-colors {
+    background-color: rgb(3,169,244);
+    color: rgba(0,0,0,0.87);
+}
+
+.dp9-no-objects-hint {
+    margin-top: 0;
+    padding-left: 16px;
+}
+
+.gl-break-word {
+    overflow-wrap: break-word;
+}
+
+.dp9-file-display-container {
+    width: 100%;
+}
+
+#uploadFile {
+    display: none;
+}
+
+/*Rules to make an a tag in a list look like a normal button*/
+
+.dp9-files-list>.md-2-line>a.md-list-item-text:visited, .dp9-files-list>md-list-item>a.md-list-item-text {
+    text-decoration: none;
+}
+
+.dp9-files-list>.md-2-line>a.md-list-item-text:hover {
+    background-color: rgba(158,158,158,0.2);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dp9-files-list>.md-2-line>a.md-list-item-text {
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 72px;
+    width: 100%;
+}
+
+.dp9-files-list>.md-2-line {
     padding-left: 0;
     padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
 }
+
+/*end rules to make an a tag in a list look like a normal button*/
+
+#mainMdContent {
+    min-height: calc(100vh - 128px);
+    background-color: #f3f3f3;
+}
+
+#footerToolbar {
+    background-color: rgb(255,255,255); color: rgba(0,0,0, 0.87); box-shadow: 0 -2px 6px 0 rgba(0,0,0,.15);
+}
+
+#footerToolbar>div>.md-toolbar-tools {
+    font-size: 16px;
+}
+
+.dp9-error-message {
+    color: rgb(255, 0, 0);
+}
+
+/*#avatarUserNameDiv can be found in change-password.html*/
+#avatarUserNameDiv {
+    padding: 16px;
+}
+
+#avatarUserNameDiv>md-icon {
+    height: 64px; width: 64px;
+}
+
+#avatarUserNameDiv>h3 {
+    margin: 0;
+}
+
+/*For the password strength bar*/
+.dp9-margin-bottom-18 {
+    margin-bottom: 18px;
+}
+
+md-progress-linear>.md-container {
+    background-color: rgb(207,216,220) !important;
+}
+
+md-progress-linear.gl-25>.md-container .md-bar.md-bar2 {
+    background-color: rgb(255, 0, 0);
+}
+
+md-progress-linear.gl-50>.md-container .md-bar.md-bar2 {
+    background-color: goldenrod;
+}
+
+md-progress-linear.gl-75>.md-container .md-bar.md-bar2 {
+    background-color: green;
+}
+
+md-progress-linear.gl-100>.md-container .md-bar.md-bar2 {
+    background-color: lime;
+}
+
+.dp9-font-xs {
+    font-size: 1rem;
+}
+/* end password strength bar styles*/

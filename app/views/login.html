@@ -1,0 +1,46 @@
+<div layout="row" layout-fill layout-align="center center" flex layout-padding>
+    <div layout="row" flex="20" flex-lg="30" flex-md="70" flex-sm="100" flex-xs="100">
+        <div flex="100" layout="column">
+            <md-card>
+                <md-card-title class="gl-toolbar-colors">
+                    <md-card-title-text layout-align="center center">
+                        <span class="md-headline">DeepSpace9</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content class="md-padding">
+                    <form layout="column" name="vm.loginForm" ng-submit="vm.loginForm.$valid && vm.login(vm.loginFormModel)">
+                        <md-input-container>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" ng-model="vm.loginFormModel.email" required autofocus/>
+                            <div ng-messages="vm.loginForm.email.$error">
+                                <div ng-message="required"><span>Please enter an email address</span></div>
+                                <div ng-message="email"><span>This email is invalid</span></div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container>
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" ng-model="vm.loginFormModel.password" required/>
+                            <div ng-messages for="vm.loginForm.password.$error" ng-if="vm.loginForm.password.$dirty">
+                                <div ng-message when="required"><span>Please enter a password</span></div>
+                            </div>
+                        </md-input-container>
+                        <div layout="row" layout-align="center center">
+                            <p ng-if="vm.failed" class="txt-color-warn">Invalid credentials</p>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <md-button type="submit" class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
+                                       ng-disabled="vm.loginForm.$invalid" aria-label="Login Button"
+                                       ng-hide="vm.isLoggingIn">
+                                Login
+                            </md-button>
+                            <md-progress-circular md-mode="indeterminate" md-diameter="60" ng-if="vm.isLoggingIn"></md-progress-circular>
+                        </div>
+                    </form>
+                </md-card-content>
+
+            </md-card>
+        </div>
+
+
+    </div>
+</div>

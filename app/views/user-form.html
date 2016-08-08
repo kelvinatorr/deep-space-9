@@ -1,0 +1,75 @@
+<md-dialog aria-label="{{::vm.action}} A User" ng-cloak>
+    <form name="vm.userForm" novalidate ng-submit="vm.userForm.$valid && vm.save(vm.user)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{::vm.action}} A User</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
+                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First name</label>
+                        <input name="firstName" type="text" ng-model="vm.user.firstName" required autofocus/>
+                        <div ng-messages="vm.userForm.firstName.$error" md-auto-hide="false" ng-if="vm.userForm.firstName.$dirty">
+                            <div ng-message="required">
+                                A first name is required
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last Name</label>
+                        <input name="lastName" type="text" ng-model="vm.user.lastName" required/>
+                        <div ng-messages="vm.userForm.lastName.$error" md-auto-hide="false" ng-if="vm.userForm.lastName.$dirty">
+                            <div ng-message="required">
+                                A last name is required
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Email</label>
+                        <input name="email" type="email" ng-model="vm.user.email" required ng-model-options="{debounce: {'default': 500, 'blur': 0}}">
+                        <div ng-messages="vm.userForm.email.$error" multiple md-auto-hide="false" ng-if="vm.userForm.email.$dirty">
+                            <div ng-message="required">
+                                An email address is required
+                            </div>
+                            <div ng-message="email">
+                                This email is invalid
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Role</label>
+                        <md-select ng-model="vm.user.role">
+                            <md-option value="clients">
+                                A Client
+                            </md-option>
+                            <md-option value="users">
+                                A User
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.userForm.$invalid">
+                        Save
+                    </md-button>
+                    <md-button ng-click="vm.cancel($event)" style="margin-right:20px;">
+                        Cancel
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">-->
+
+        <!--</md-dialog-actions>-->
+    </form>
+</md-dialog>

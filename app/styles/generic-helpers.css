@@ -1,0 +1,16 @@
+
+.txt-color-warn {
+    color:rgb(255,87,34);
+}
+
+.full-width {
+    width: 100%;
+}
+
+a[role="button"] {
+    cursor: pointer;
+}
+
+.txt-align-start {
+    text-align: start;
+}

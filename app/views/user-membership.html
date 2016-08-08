@@ -1,0 +1,50 @@
+<md-content flex layout-padding>
+    <div layout="row" flex>
+        <div flex="50">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Users</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content>
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="u in vm.users.data"
+                            ng-class="{'active': u.$id === vm.selectedUser.$id}"
+                            ng-click="vm.selectUser(u);">
+                            <md-icon md-svg-icon="social:person"></md-icon>
+                            <div class="md-list-item-text">
+                                <h3>{{u.firstName}} {{u.lastName}}</h3>
+                                <p>{{u.role}}</p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+
+
+        <div flex="50">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Clients</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content flex layout="column">
+                    <md-list flex>
+                        <md-list-item ng-repeat="c in vm.clients.data">
+                            <md-checkbox ng-model="vm.selectedUserMembership[c.$id]" ng-click="vm.addMembership(c)"></md-checkbox>
+                            <p>{{c.name}}</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+
+    </div>
+
+
+</md-content>

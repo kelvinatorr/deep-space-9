@@ -1,0 +1,72 @@
+<md-dialog aria-label="{{::vm.action}}" ng-cloak flex="40">
+    <form name="vm.positionForm" novalidate ng-submit="vm.positionForm.$valid && vm.save(vm.position)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{::vm.action}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel($event)">
+                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
+                        <label>Name</label>
+                        <input name="name" type="text" ng-model="vm.position.name" required md-autofocus md-maxlength="32"
+                               ng-model-options="{debounce: {'default': 400, 'blur': 0}}"/>
+                        <div ng-messages="vm.positionForm.name.$error" md-auto-hide="false" ng-if="vm.positionForm.name.$dirty">
+                            <div ng-message="required">
+                                A name is required
+                            </div>
+                            <div ng-message="md-maxlength">
+                                This name is too long
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <div flex="5"></div>
+                    <md-input-container class="md-block" flex-gt-sm="50" flex-xs flex-sm>
+                        <label>Priority</label>
+                        <input name="priority" type="number" ng-model="vm.position.priority" required min="0"/>
+                        <div ng-messages="vm.positionForm.priority.$error" md-auto-hide="false" ng-if="vm.positionForm.priority.$dirty">
+                            <div ng-message="required">
+                                A priority is required
+                            </div>
+                            <div ng-message="min">
+                                Priority cannot be negative
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Description</label>
+                        <input name="description" ng-model="vm.position.description" required md-maxlength="256"/>
+                        <div ng-messages="vm.positionForm.description.$error" md-auto-hide="false" ng-if="vm.positionForm.description.$dirty">
+                            <div ng-message="required">
+                                An description is required
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div layout="row" layout-align="end center">
+                    <!--<span flex></span>-->
+                    <md-button ng-click="vm.cancel($event)">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-primary" type="submit" ng-disabled="vm.positionForm.$invalid">
+                        Save
+                    </md-button>
+
+                </div>
+            </div>
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">-->
+
+        <!--</md-dialog-actions>-->
+    </form>
+</md-dialog>
+

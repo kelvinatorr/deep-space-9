@@ -21,19 +21,44 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
       // bower:js
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/firebase/firebase.js',
+      'bower_components/angularfire/dist/angularfire.js',
+      'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-material-data-table/dist/md-data-table.min.js',
+      'bower_components/phoneformat/dist/phone-format.js',
+      'bower_components/zxcvbn/dist/zxcvbn.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+        'node_modules/babel-polyfill/dist/polyfill.js',
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
-      "test/spec/**/*.js"
+      "test/spec/**/*.js",
+        "app/views/**/*.html"
     ],
 
     // list of files / patterns to exclude
     exclude: [
     ],
+
+      // preprocess matching files before serving them to the browser
+      // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+      preprocessors: {
+          "app/views/**/*.html": ['ng-html2js']
+      },
+      //
+      ngHtml2JsPreprocessor: {
+          // prepend this to the
+          //prependPrefix: 'views/',
+          stripPrefix: 'app/',
+          moduleName: "templates"
+      },
 
     // web server port
     port: 8080,
@@ -53,7 +78,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+        "karma-ng-html2js-preprocessor"
     ],
 
     // Continuous Integration mode
@@ -64,7 +90,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
